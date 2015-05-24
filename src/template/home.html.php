@@ -1,0 +1,1 @@
+At home with <?php $value1 ?>. <a href="?r=<?php Routes::CONTACT ?>">Contact me</a>
