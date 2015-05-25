@@ -1,14 +1,18 @@
 <?php
 
-require_once('../config.php');
-require_once('../services.php');
-require_once('../routes.php');
+$function = function($class){
+    $namespacePath = str_replace('Framework2\\', '', $class);
+    $filePath = '../'.str_replace('\\', '/', $namespacePath) . '.php';
 
-$services = new Services(new Config(), new Routes());
+    include_once $filePath;
+};
+spl_autoload_register($function);
 
-$routeName = isset($_REQUEST['r']) ? $_REQUEST['r'] : Routes::HOME;
+$services = new Framework2\Services(new Framework2\Config(), new Framework2\Routes());
 
-$route = $services->get(Router::class)->find($routeName);
+$routeName = isset($_REQUEST['r']) ? $_REQUEST['r'] : Framework2\Routes::HOME;
+
+$route = $services->get(Framework2\Routing\Router::class)->find($routeName);
 $controller = $route->getClass();
 $action = $route->getMethod();
 

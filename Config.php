@@ -1,5 +1,7 @@
 <?php
 
+namespace Framework2;
+
 class Config
 {
 

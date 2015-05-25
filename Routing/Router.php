@@ -1,5 +1,9 @@
 <?php
 
+namespace Framework2\Routing;
+
+use Framework2\Routes;
+
 class Router
 {
 
