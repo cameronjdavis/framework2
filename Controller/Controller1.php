@@ -3,24 +3,38 @@
 namespace Framework2\Controller;
 
 use Framework2\Services;
+use Framework2\Templating\PageFactory;
 
 class Controller1
 {
 
+    /**
+     * @var PageFactory
+     */
+    private $pageFactory;
+
     public function __construct(Services $services)
     {
-        
+        $this->pageFactory = $services->get(PageFactory::class);
     }
 
     public function home()
     {
-        // @todo: render the template with variables
-        return include('../src/template/home.html.php');
+        $page = $this->pageFactory->create()
+                ->setTitle('Title 1')
+                ->setBody('body 1 <a href="?r=' . \Framework2\Routes::CONTACT . '">Contact me</a>');
+
+        $this->pageFactory->render($page);
     }
 
     public function contact()
     {
-        return 'Contect me page';
+        $page = $this->pageFactory->create()
+                ->setTitle('Contact me')
+                ->setBody('Contact me page')
+                ->setHttpCode(\Framework2\Templating\Page::HTTP_404);
+
+        $this->pageFactory->render($page);
     }
 
 }

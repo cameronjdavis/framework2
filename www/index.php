@@ -1,8 +1,8 @@
 <?php
 
-$function = function($class){
+$function = function($class) {
     $namespacePath = str_replace('Framework2\\', '', $class);
-    $filePath = '../'.str_replace('\\', '/', $namespacePath) . '.php';
+    $filePath = '../' . str_replace('\\', '/', $namespacePath) . '.php';
 
     include_once $filePath;
 };
@@ -16,4 +16,4 @@ $route = $services->get(Framework2\Routing\Router::class)->find($routeName);
 $controller = $route->getClass();
 $action = $route->getMethod();
 
-echo (new $controller($services))->$action();
+(new $controller($services))->$action();

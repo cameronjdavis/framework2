@@ -32,6 +32,8 @@ class Services
         switch ($key) {
             case Router::class:
                 return new Router($this->routes);
+            case Templating\PageFactory::class:
+                return new Templating\PageFactory();
             default:
                 throw new \Exception("Service ({$key}) could not be created");
         }
