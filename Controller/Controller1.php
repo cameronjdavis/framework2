@@ -24,7 +24,7 @@ class Controller1
                 ->setTitle('Title 1')
                 ->setBody('body 1 <a href="?r=' . \Framework2\Routes::CONTACT . '">Contact me</a>');
 
-        $this->pageFactory->render($page);
+        echo $this->pageFactory->render($page);
     }
 
     public function contact()
@@ -34,7 +34,7 @@ class Controller1
                 ->setBody('Contact me page')
                 ->setHttpCode(\Framework2\Templating\Page::HTTP_404);
 
-        $this->pageFactory->render($page);
+        echo $this->pageFactory->render($page);
     }
 
 }

@@ -5,7 +5,17 @@ namespace Framework2\Templating;
 class PageFactory
 {
 
-    const BASE_PAGE = '../template/base.html.php';
+    private $basePageTemplate;
+
+    public function __construct($basePageTemplate)
+    {
+        $this->basePageTemplate = $basePageTemplate;
+    }
+
+    public function setBasePageTemplate($basePageTemplate)
+    {
+        $this->basePageTemplate = $basePageTemplate;
+    }
 
     public function create()
     {
@@ -14,9 +24,9 @@ class PageFactory
 
     public function render(Page $page)
     {
-        http_response_code($page->getHttpCode());
+        //http_response_code($page->getHttpCode());
 
-        include(self::BASE_PAGE);
+        return $this->basePageTemplate;
     }
 
 }

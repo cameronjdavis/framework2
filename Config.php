@@ -5,10 +5,13 @@ namespace Framework2;
 class Config
 {
 
-    const TEST_SETTING = 'TEST_SETTING';
+    const TEMPLATE = 'template';
+    const BASE_PAGE = 'base_page';
 
     public $settings = [
-        self::TEST_SETTING => 'Test setting 2',
+        self::TEMPLATE => [
+            self::BASE_PAGE => '../template/base.html.php'
+        ]
     ];
 
 }
