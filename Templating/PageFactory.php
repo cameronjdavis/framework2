@@ -4,7 +4,6 @@ namespace Framework2\Templating;
 
 class PageFactory
 {
-
     private $basePageTemplate;
 
     public function __construct($basePageTemplate)
@@ -24,9 +23,14 @@ class PageFactory
 
     public function render(Page $page)
     {
-        //http_response_code($page->getHttpCode());
+        http_response_code($page->getHttpCode());
 
-        return $this->basePageTemplate;
+        // render the template into $output
+        ob_start();
+        include $this->basePageTemplate;
+        $output = ob_get_flush();
+        ob_end_clean();
+
+        return $output;
     }
-
 }

@@ -36,7 +36,7 @@ class Services
                 return new Router($this->routes);
             case Templating\PageFactory::class:
                 return new Templating\PageFactory(
-                        file_get_contents($this->settings[Config::TEMPLATE][Config::BASE_PAGE]));
+                        $this->settings[Config::TEMPLATE][Config::BASE_PAGE]);
             default:
                 throw new \Exception("Service ({$key}) could not be created");
         }
