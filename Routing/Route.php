@@ -4,14 +4,22 @@ namespace Framework2\Routing;
 
 class Route
 {
-
+    private $pattern;
     private $class;
     private $method;
+    private $params;
 
-    public function __construct($class, $method)
+    public function __construct($pattern, $class, $method, array $params = [])
     {
+        $this->pattern = $pattern;
         $this->class = $class;
         $this->method = $method;
+        $this->params = $params;
+    }
+
+    public function getPattern()
+    {
+        return $this->pattern;
     }
 
     public function getClass()
@@ -24,4 +32,8 @@ class Route
         return $this->method;
     }
 
+    public function getParams()
+    {
+        return $this->params;
+    }
 }

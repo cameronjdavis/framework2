@@ -3,7 +3,7 @@
 namespace Framework2;
 
 use Framework2\Routing\Router;
-use Framework2\Routes;
+use Framework2\Routing\Routes;
 
 class Services
 {

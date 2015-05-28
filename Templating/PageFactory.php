@@ -26,11 +26,11 @@ class PageFactory
         http_response_code($page->getHttpCode());
 
         // render the template into $output
-        ob_start();
+        //ob_start();
         include $this->basePageTemplate;
-        $output = ob_get_flush();
-        ob_end_clean();
+        //$output = ob_get_flush();
+        //ob_end_clean();
 
-        return $output;
+        //return $output;
     }
 }
