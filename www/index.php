@@ -13,7 +13,7 @@ $config = include '../config.php';
 $serviceFactory = include '../services.php';
 $services = new Framework2\Services\Services($config, $serviceFactory, new Framework2\Routing\Routes($routes));
 
-$requestedRoute = isset($_REQUEST['r']) ? $_REQUEST['r'] : Framework2\Routing\Routes::HOME;
+$requestedRoute = isset($_REQUEST['r']) ? $_REQUEST['r'] : \Routes::HOME;
 
 $route = $services->get(Framework2\Routing\Router::class)->find($requestedRoute);
 $controller = $route->getClass();
