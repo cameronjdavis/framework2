@@ -2,7 +2,7 @@
 
 namespace Framework2\Controller;
 
-use Framework2\Services;
+use Framework2\Services\Services;
 use Framework2\Templating\PageFactory;
 use Framework2\Routing\Router;
 use Framework2\Routing\Routes;

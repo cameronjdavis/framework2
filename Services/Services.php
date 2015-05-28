@@ -1,23 +1,26 @@
 <?php
 
-namespace Framework2;
+namespace Framework2\Services;
 
 use Framework2\Routing\Router;
 use Framework2\Routing\Routes;
 
 class Services
 {
-
     private $instances;
-    private $config;
     private $routes;
     private $settings;
 
-    public function __construct(Config $config, Routes $routes)
+    /**
+     * @var ServiceFactoryInterface
+     */
+    private $factory;
+
+    public function __construct(array $settings, ServiceFactoryInterface $factory, Routes $routes)
     {
-        $this->config = $config;
         $this->routes = $routes;
-        $this->settings = $config->settings;
+        $this->settings = $settings;
+        $this->factory = $factory;
     }
 
     public function get($key)
@@ -34,12 +37,12 @@ class Services
         switch ($key) {
             case Router::class:
                 return new Router($this->routes);
-            case Templating\PageFactory::class:
-                return new Templating\PageFactory(
-                        $this->settings[Config::TEMPLATE][Config::BASE_PAGE]);
             default:
+                $serivce = $this->factory->create($key, $this->settings);
+                if ($serivce) {
+                    return $serivce;
+                }
                 throw new \Exception("Service ({$key}) could not be created");
         }
     }
-
 }

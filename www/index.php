@@ -9,11 +9,13 @@ $function = function($class) {
 spl_autoload_register($function);
 
 $routes = include '../routes.php';
-$services = new Framework2\Services(new Framework2\Config(), new Framework2\Routing\Routes($routes));
+$config = include '../config.php';
+$serviceFactory = include '../services.php';
+$services = new Framework2\Services\Services($config, $serviceFactory, new Framework2\Routing\Routes($routes));
 
-$routeName = isset($_REQUEST['r']) ? $_REQUEST['r'] : Framework2\Routing\Routes::HOME;
+$requestedRoute = isset($_REQUEST['r']) ? $_REQUEST['r'] : Framework2\Routing\Routes::HOME;
 
-$route = $services->get(Framework2\Routing\Router::class)->find($routeName);
+$route = $services->get(Framework2\Routing\Router::class)->find($requestedRoute);
 $controller = $route->getClass();
 $action = $route->getMethod();
 
