@@ -6,8 +6,6 @@ use Framework2\Routing\Route;
 
 class Routes
 {
-    const HOME = 'home';
-    const CONTACT = 'contact';
     private $routes;
 
     public function __construct(array $routes)
