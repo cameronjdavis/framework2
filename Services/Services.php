@@ -2,13 +2,9 @@
 
 namespace Framework2\Services;
 
-use Framework2\Routing\Router;
-use Framework2\Routing\Routes;
-
 class Services
 {
     private $instances;
-    private $routes;
     private $settings;
 
     /**
@@ -16,9 +12,8 @@ class Services
      */
     private $factory;
 
-    public function __construct(array $settings, ServiceFactoryInterface $factory, Routes $routes)
+    public function __construct(array $settings, ServiceFactoryInterface $factory)
     {
-        $this->routes = $routes;
         $this->settings = $settings;
         $this->factory = $factory;
     }
@@ -34,15 +29,12 @@ class Services
 
     public function create($key)
     {
-        switch ($key) {
-            case Router::class:
-                return new Router($this->routes);
-            default:
-                $serivce = $this->factory->create($key, $this->settings);
-                if ($serivce) {
-                    return $serivce;
-                }
-                throw new \Exception("Service ({$key}) could not be created");
+        $serivce = $this->factory->create($key, $this->settings);
+
+        if ($serivce) {
+            return $serivce;
         }
+
+        throw new \Exception("Service ({$key}) could not be created");
     }
 }

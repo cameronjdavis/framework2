@@ -10,8 +10,9 @@ spl_autoload_register($function);
 
 $routes = include '../routes.php';
 $config = include '../config.php';
-$serviceFactory = include '../services.php';
-$services = new Framework2\Services\Services($config, $serviceFactory, new Framework2\Routing\Routes($routes));
+include '../services.php';
+$serviceFactory = new ServiceFactory(new Framework2\Routing\Routes($routes));
+$services = new Framework2\Services\Services($config, $serviceFactory);
 
 $requestedRoute = $services->get(ServiceFactory::QUERY_INPUT)->get('r', Routes::HOME);
 
