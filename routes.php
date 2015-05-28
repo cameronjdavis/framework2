@@ -6,7 +6,7 @@ use Framework2\Routing\Route;
 
 return [
     Routes::HOME => new Route(
-            '',
+            'TODO',
             Controller\Controller1::class, 'home'),
     Routes::CONTACT => new Route(
             'contact/{contactId}/{id2}',

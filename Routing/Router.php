@@ -43,7 +43,7 @@ class Router
             // generate the route using regex patterns for route params
             // e.g. /contact/{id} becomes /contact/(\d+)
             $routeRegex = $this->generate($key, $params);
-var_dump($routeRegex);
+
             // attempt to match the incoming route with the complete route regex
             if (preg_match("({$routeRegex})", $completeRoute, $matches)) {
                 unset($matches[0]);
