@@ -4,7 +4,6 @@ namespace Framework2\Services;
 
 use Framework2\Routing\Router;
 use Framework2\Routing\Routes;
-use Framework2\ParamConverting\ParamConverters;
 
 /**
  * Repository of services that are lazy loaded.
@@ -12,7 +11,6 @@ use Framework2\ParamConverting\ParamConverters;
  */
 class Services
 {
-    const PARAM_CONVERTERS = 'param_conveters';
     private $instances;
     private $settings;
     private $routes;
@@ -53,9 +51,6 @@ class Services
         switch ($key) {
             case Router::class:
                 return new Router($this->routes);
-            case ParamConverters::class:
-                return new ParamConverters(
-                        $this->settings[self::PARAM_CONVERTERS]);
             default:
                 return $this->factory->create($key, $this->settings, $this);
         }

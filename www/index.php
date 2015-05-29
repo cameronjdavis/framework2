@@ -24,14 +24,6 @@ $requestedRoute = $services->get(ServiceFactory::QUERY)->get('r', Routes::HOME);
 // find the route object that matches the requested route
 $route = $services->get(Framework2\Routing\Router::class)->find($requestedRoute);
 
-// get the service key of the param converter for the route (if there is one)
-$converterKey = $services->get(\Framework2\ParamConverting\ParamConverters::class)
-        ->getConverterKey($route);
-// get the param converter identified by the service key
-$converter = $services->get($converterKey);
-// if a converter is specified then use it
-$param = $converter ? $converter->convert() : null;
-
 // call the controller action with the optional converted parameter
 $controller = $route->getClass();
 $action = $route->getMethod();
