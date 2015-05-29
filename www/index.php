@@ -2,7 +2,7 @@
 
 $function = function($class) {
     $namespacePath = str_replace('Framework2\\', '', $class);
-    $filePath = '../' . str_replace('\\', '/', $namespacePath) . '.php';
+    $filePath = '../src/' . str_replace('\\', '/', $namespacePath) . '.php';
 
     include_once $filePath;
 };
