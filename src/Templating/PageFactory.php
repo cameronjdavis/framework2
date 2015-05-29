@@ -2,13 +2,21 @@
 
 namespace Framework2\Templating;
 
+use Framework2\Templating\Renderer;
+
 class PageFactory
 {
     private $basePageTemplate;
 
-    public function __construct($basePageTemplate)
+    /**
+     * @var Renderer
+     */
+    private $renderer;
+
+    public function __construct($basePageTemplate, Renderer $renderer)
     {
         $this->basePageTemplate = $basePageTemplate;
+        $this->renderer = $renderer;
     }
 
     public function setBasePageTemplate($basePageTemplate)
@@ -25,12 +33,6 @@ class PageFactory
     {
         http_response_code($page->getHttpCode());
 
-        // render the template into $output
-        ob_start();
-        include $this->basePageTemplate;
-        $output = ob_get_contents();
-        ob_end_clean();
-
-        return $output;
+        return $this->renderer->render($this->basePageTemplate, compact('page'));
     }
 }

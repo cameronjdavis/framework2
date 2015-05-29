@@ -6,6 +6,7 @@ use Framework2\Services\Services;
 use Framework2\Templating\PageFactory;
 use Framework2\Routing\Router;
 use Framework2\Example\ExampleParamConverter;
+use Framework2\Templating\Renderer;
 
 class Controller1
 {
@@ -23,11 +24,16 @@ class Controller1
      * @var \Framework2\Helper\Input
      */
     private $query;
-    
+
     /**
      * @var ExampleParamConverter
      */
     private $paramConverter;
+
+    /**
+     * @var Renderer
+     */
+    private $renderer;
 
     public function __construct(Services $services)
     {
@@ -35,6 +41,7 @@ class Controller1
         $this->router = $services->get(Router::class);
         $this->query = $services->get(\ServiceFactory::QUERY);
         $this->paramConverter = $services->get(ExampleParamConverter::class);
+        $this->renderer = $services->get(Renderer::class);
     }
 
     public function home()
@@ -56,16 +63,16 @@ class Controller1
         $bool = $this->query->getBool('bool1');
 
         $contact = $this->router->generate(\Routes::CONTACT, ['contactId' => 101, 'id2' => 223]);
-        
-        $exampleClass = $this->paramConverter->build();
-        
-        include '../template/contact.html.php';
 
-//        $page = $this->pageFactory->create()
-//                ->setTitle('Contact me')
-//                ->setBody("Route param 1: {$routeParam1}. Route param 2: {$routeParam2}. <a href=\"?r={$contact}\">Refresh</a>. qv: {$queryValue}. bool1: {$bool}")
-//                ->setHttpCode(\Framework2\Templating\Page::HTTP_404);
-//
-//        echo $this->pageFactory->render($page);
+        $exampleClass = $this->paramConverter->build();
+
+        $fragment = $this->renderer->render('../template/contact.html.php', compact('routeParam1', 'routeParam2', 'qv', 'bool', 'contact', 'exampleClass'));
+
+        $page = $this->pageFactory->create()
+                ->setTitle('Contact me')
+                ->setBody($fragment)
+                ->setHttpCode(\Framework2\Templating\Page::HTTP_404);
+
+        echo $this->pageFactory->render($page);
     }
 }
