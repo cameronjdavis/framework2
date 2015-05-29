@@ -27,7 +27,7 @@ class Controller1
     {
         $this->pageFactory = $services->get(PageFactory::class);
         $this->router = $services->get(Router::class);
-        $this->query = $services->get(\ServiceFactory::QUERY_INPUT);
+        $this->query = $services->get(\ServiceFactory::QUERY);
     }
 
     public function home()

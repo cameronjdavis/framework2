@@ -4,10 +4,11 @@ use Framework2\Templating\PageFactory;
 use Framework2\Helper\Input;
 use Framework2\Routing\Router;
 use Framework2\Routing\Routes;
+use Framework2\Services\ServiceFactoryInterface;
 
-class ServiceFactory implements \Framework2\Services\ServiceFactoryInterface
+class ServiceFactory implements ServiceFactoryInterface
 {
-    const QUERY_INPUT = 'query_input';
+    const QUERY = 'query';
     
     private $routes;
     
@@ -24,7 +25,7 @@ class ServiceFactory implements \Framework2\Services\ServiceFactoryInterface
             case PageFactory::class:
                 return new PageFactory(
                         $settings['template']['base_page']);
-            case self::QUERY_INPUT:
+            case self::QUERY:
                 return new Input(INPUT_GET);
         }
     }

@@ -14,7 +14,7 @@ include '../services.php';
 $serviceFactory = new ServiceFactory(new Framework2\Routing\Routes($routes));
 $services = new Framework2\Services\Services($config, $serviceFactory);
 
-$requestedRoute = $services->get(ServiceFactory::QUERY_INPUT)->get('r', Routes::HOME);
+$requestedRoute = $services->get(ServiceFactory::QUERY)->get('r', Routes::HOME);
 
 $route = $services->get(Framework2\Routing\Router::class)->find($requestedRoute);
 $controller = $route->getClass();
