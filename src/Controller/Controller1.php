@@ -71,7 +71,8 @@ class Controller1
         $page = $this->pageFactory->create()
                 ->setTitle('Contact me')
                 ->setBody($fragment)
-                ->setHttpCode(\Framework2\Templating\Page::HTTP_404);
+                ->setHttpCode(\Framework2\Templating\Page::HTTP_404)
+                ->addHeadContent('<link rel="stylesheet" type="text/css" href="contact_style.css">');
 
         echo $this->pageFactory->render($page);
     }
