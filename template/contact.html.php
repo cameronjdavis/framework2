@@ -4,4 +4,5 @@
     <li>$qv: <?= var_dump($qv) ?></li>
     <li>$bool: <?= var_dump($bool) ?></li>
     <li><a href="?r=<?= $contact ?>&qv=123&bool1=0">Contact again</a></li>
+    <li>$exampleClass: <?= var_dump($exampleClass) ?></li>
 </ul>

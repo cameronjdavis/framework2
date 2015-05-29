@@ -5,7 +5,7 @@ namespace Framework2\Controller;
 use Framework2\Services\Services;
 use Framework2\Templating\PageFactory;
 use Framework2\Routing\Router;
-use Framework2\ParamConverting\TestClass;
+use Framework2\Example\ExampleParamConverter;
 
 class Controller1
 {
@@ -23,12 +23,18 @@ class Controller1
      * @var \Framework2\Helper\Input
      */
     private $query;
+    
+    /**
+     * @var ExampleParamConverter
+     */
+    private $paramConverter;
 
     public function __construct(Services $services)
     {
         $this->pageFactory = $services->get(PageFactory::class);
         $this->router = $services->get(Router::class);
         $this->query = $services->get(\ServiceFactory::QUERY);
+        $this->paramConverter = $services->get(ExampleParamConverter::class);
     }
 
     public function home()
@@ -50,6 +56,8 @@ class Controller1
         $bool = $this->query->getBool('bool1');
 
         $contact = $this->router->generate(\Routes::CONTACT, ['contactId' => 101, 'id2' => 223]);
+        
+        $exampleClass = $this->paramConverter->build();
         
         include '../template/contact.html.php';
 
