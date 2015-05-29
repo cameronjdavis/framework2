@@ -44,4 +44,15 @@ class Input
     {
         return $this->get($key, $default, FILTER_VALIDATE_INT);
     }
+    
+    /**
+     * Get a bool value from the input
+     * @param string $key
+     * @param bool $default
+     * @return bool
+     */
+    public function getBool($key, $default = false)
+    {
+        return $this->get($key, $default, FILTER_VALIDATE_BOOLEAN);
+    }
 }

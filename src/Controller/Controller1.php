@@ -47,12 +47,13 @@ class Controller1
         $routeParam2 = $this->router->getParams()['id2'];
 
         $queryValue = $this->query->getInt('qv', 'default_value');
+        $bool = $this->query->getBool('bool1');
 
         $contact = $this->router->generate(\Routes::CONTACT, ['contactId' => 101, 'id2' => 223]);
 
         $page = $this->pageFactory->create()
                 ->setTitle('Contact me')
-                ->setBody("Route param 1: {$routeParam1}. Route param 2: {$routeParam2}. <a href=\"?r={$contact}\">Refresh</a>. Query value: {$queryValue}")
+                ->setBody("Route param 1: {$routeParam1}. Route param 2: {$routeParam2}. <a href=\"?r={$contact}\">Refresh</a>. qv: {$queryValue}. bool1: {$bool}")
                 ->setHttpCode(\Framework2\Templating\Page::HTTP_404);
 
         echo $this->pageFactory->render($page);
