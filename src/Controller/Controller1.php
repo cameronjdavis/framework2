@@ -5,6 +5,7 @@ namespace Framework2\Controller;
 use Framework2\Services\Services;
 use Framework2\Templating\PageFactory;
 use Framework2\Routing\Router;
+use Framework2\ParamConverting\TestClass;
 
 class Controller1
 {
@@ -17,7 +18,7 @@ class Controller1
      * @var Router
      */
     private $router;
-    
+
     /**
      * @var \Framework2\Helper\Input
      */
@@ -44,9 +45,9 @@ class Controller1
     {
         $routeParam1 = $this->router->getParams()['contactId'];
         $routeParam2 = $this->router->getParams()['id2'];
-        
+
         $queryValue = $this->query->getInt('qv', 'default_value');
-        
+
         $contact = $this->router->generate(\Routes::CONTACT, ['contactId' => 101, 'id2' => 223]);
 
         $page = $this->pageFactory->create()
@@ -55,5 +56,10 @@ class Controller1
                 ->setHttpCode(\Framework2\Templating\Page::HTTP_404);
 
         echo $this->pageFactory->render($page);
+    }
+
+    public function withParam(TestClass $param)
+    {
+        var_dump($param);
     }
 }
