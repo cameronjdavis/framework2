@@ -39,7 +39,7 @@ class Controller1
     {
         $this->pageFactory = $services->get(PageFactory::class);
         $this->router = $services->get(Router::class);
-        $this->query = $services->get(\ServiceFactory::QUERY);
+        $this->query = $services->get(Services::QUERY);
         $this->paramConverter = $services->get(ExampleParamConverter::class);
         $this->renderer = $services->get(Renderer::class);
     }

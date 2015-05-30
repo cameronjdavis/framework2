@@ -4,6 +4,9 @@ namespace Framework2\Services;
 
 use Framework2\Routing\Router;
 use Framework2\Routing\Routes;
+use Framework2\Templating\PageFactory;
+use Framework2\Helper\Input;
+use Framework2\Templating\Renderer;
 
 /**
  * Repository of services that are lazy loaded.
@@ -11,6 +14,7 @@ use Framework2\Routing\Routes;
  */
 class Services
 {
+    const QUERY = 'query';
     private $instances;
     private $settings;
     private $routes;
@@ -51,6 +55,16 @@ class Services
         switch ($key) {
             case Router::class:
                 return new Router($this->routes);
+            case Renderer::class:
+                return new Renderer();
+            case PageFactory::class:
+                return new PageFactory(
+                        $this->settings[\Config::TEMPLATE][\Config::BASE_PAGE], $this->get(Renderer::class));
+            case self::QUERY:
+                // @todo: pass in $_GET and find the filter_
+                // method to filter a variable rather than 
+                // a hard-coded constant
+                return new Input(INPUT_GET);
             default:
                 return $this->factory->create($key, $this->settings, $this);
         }

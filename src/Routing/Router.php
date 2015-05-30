@@ -72,6 +72,7 @@ class Router
         $generated = $route->getPattern();
 
         foreach ($route->getParams() as $paramKey => $pattern) {
+            // @todo: ensure $params[$paramKey] matches regex in $pattern
             $generated = str_replace("{{$paramKey}}", $params[$paramKey], $generated);
         }
 
