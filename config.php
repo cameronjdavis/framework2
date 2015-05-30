@@ -1,7 +1,13 @@
 <?php
 
+class Config
+{
+    const TEMPLATE = 'template';
+    const BASE_PAGE = 'base_page';
+}
+
 return [
-    'template' => [
-        'base_page' => '../template/base.html.php'
+    Config::TEMPLATE => [
+        Config::BASE_PAGE => '../template/base.html.php'
     ],
 ];

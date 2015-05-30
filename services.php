@@ -18,7 +18,7 @@ class ServiceFactory implements ServiceFactoryInterface
                 return new Renderer();
             case PageFactory::class:
                 return new PageFactory(
-                        $settings['template']['base_page'],
+                        $settings[Config::TEMPLATE][Config::BASE_PAGE],
                         $services->get(Renderer::class));
             case self::QUERY:
                 return new Input(INPUT_GET);
