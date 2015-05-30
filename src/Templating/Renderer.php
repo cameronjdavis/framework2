@@ -20,7 +20,7 @@ class Renderer
 
         // render the template into $output
         ob_start();
-        include $templateFile;
+        require $templateFile;
         $output = ob_get_contents();
         ob_end_clean();
 

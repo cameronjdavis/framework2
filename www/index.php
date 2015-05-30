@@ -4,13 +4,13 @@ $function = function($class) {
     $namespacePath = str_replace('Framework2\\', '', $class);
     $filePath = '../src/' . str_replace('\\', '/', $namespacePath) . '.php';
 
-    include_once $filePath;
+    require_once $filePath;
 };
 spl_autoload_register($function);
 
-$routes = include '../routes.php';
-$config = include '../config.php';
-include '../services.php';
+$routes = require_once '../routes.php';
+$config = require_once '../config.php';
+require_once '../services.php';
 
 // instantiate this application's custom services
 $serviceFactory = new ServiceFactory();
@@ -27,4 +27,4 @@ $route = $services->get(Framework2\Routing\Router::class)->find($requestedRoute)
 // call the controller action with the optional converted parameter
 $controller = $route->getClass();
 $action = $route->getMethod();
-(new $controller($services))->$action($param);
+(new $controller($services))->$action();
