@@ -11,6 +11,6 @@
 
 return [
     Config::TEMPLATE => [
-        Config::BASE_PAGE => '../template/debug.html.php'
+        //Config::BASE_PAGE => '../template/debug.html.php'
     ],
 ];

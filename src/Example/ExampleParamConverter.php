@@ -40,6 +40,7 @@ class ExampleParamConverter
         $testClass->boolVal = $this->query->getBool('boolVal');
         $testClass->routeParam1 = $this->router->getParams()['contactId'];
         $testClass->routeParam2 = $this->router->getParams()['id2'];
+        $testClass->array = $this->query->getIntArray('array1');
         
         return $testClass;
     }

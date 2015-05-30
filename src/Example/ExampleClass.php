@@ -14,4 +14,6 @@ class ExampleClass
     public $routeParam1;
     
     public $routeParam2;
+
+    public $array;
 }
