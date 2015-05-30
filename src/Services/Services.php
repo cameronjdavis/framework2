@@ -56,7 +56,7 @@ class Services
             case Router::class:
                 return new Router($this->routes);
             case Renderer::class:
-                return new Renderer();
+                return new Renderer($this->get(Router::class));
             case PageFactory::class:
                 return new PageFactory(
                         $this->settings[\Config::TEMPLATE][\Config::BASE_PAGE], $this->get(Renderer::class));

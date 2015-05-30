@@ -2,11 +2,22 @@
 
 namespace Framework2\Templating;
 
+use \Framework2\Routing\Router;
+
 /**
  * Render templates with parameters.
  */
 class Renderer
 {
+    /**
+     * @var Router
+     */
+    private $router;
+
+    public function __construct(Router $router)
+    {
+        $this->router = $router;
+    }
 
     /**
      * Render a template file with parameters using "include".
@@ -16,6 +27,9 @@ class Renderer
      */
     public function render($templateFile, array $params = [])
     {
+        // add the router so it is available while rendering
+        $params['router'] = $this->router;
+
         extract($params);
 
         // render the template into $output

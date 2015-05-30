@@ -46,10 +46,11 @@ class Controller1
 
     public function home()
     {
-        $contact = $this->router->generate(\Routes::CONTACT, ['contactId' => 101, 'id2' => 223]);
+        $fragment = $this->renderer->render('../template/index.html.php');
+        
         $page = $this->pageFactory->create()
-                ->setTitle('Title 1')
-                ->setBody('body 1 <a href="?r=' . $contact . '">Contact me</a>');
+                ->setTitle('Framework 2 Index')
+                ->setBody($fragment);
 
         echo $this->pageFactory->render($page);
     }
