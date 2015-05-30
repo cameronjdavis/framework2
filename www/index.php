@@ -8,8 +8,12 @@ $function = function($class) {
 };
 spl_autoload_register($function);
 
-$routes = require_once '../routes.php';
+// @todo: how do we know whether or not to use config.dev.php? Environment variable?
 $config = require_once '../config.php';
+$configDev = require_once '../config.dev.php';
+$config = array_replace_recursive($config, $configDev);
+
+$routes = require_once '../routes.php';
 require_once '../services.php';
 
 // instantiate this application's custom services
