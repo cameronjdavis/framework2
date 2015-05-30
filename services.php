@@ -21,6 +21,9 @@ class ServiceFactory implements ServiceFactoryInterface
                         $settings[Config::TEMPLATE][Config::BASE_PAGE],
                         $services->get(Renderer::class));
             case self::QUERY:
+                // @todo: pass in $_GET and find the filter_
+                // method to filter a variable rather than 
+                // a hard-coded constant
                 return new Input(INPUT_GET);
             case ExampleParamConverter::class:
                 return new ExampleParamConverter(
