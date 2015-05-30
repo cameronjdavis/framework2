@@ -8,10 +8,16 @@ $function = function($class) {
 };
 spl_autoload_register($function);
 
-// @todo: how do we know whether or not to use config.dev.php? Environment variable?
-$config = require_once '../config.php';
-$configDev = require_once '../config.dev.php';
-$config = array_replace_recursive($config, $configDev);
+// load the base config
+$config = require_once('../config.php');
+// get the environemnt variable for this app
+$environment = getenv('FRAMEWORK2_ENV');
+// if the environemnt variable is set then load its config
+if ($environment) {
+    $environmentConfig = require_once "../config.{$environment}.php";
+    // merge the two configs giving precedence to $environmentConfig
+    $config = array_replace_recursive($config, $environmentConfig);
+}
 
 $routes = require_once '../routes.php';
 require_once '../services.php';
