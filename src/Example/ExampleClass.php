@@ -3,9 +3,15 @@
 namespace Framework2\Example;
 
 /**
- * An example class that can be build using a param converter.
+ * An example class that can be built using a param converter.
  */
 class ExampleClass
 {
-    public $exampleValue1;
+    public $intVal;
+    
+    public $boolVal;
+    
+    public $routeParam1;
+    
+    public $routeParam2;
 }

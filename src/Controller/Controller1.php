@@ -56,17 +56,11 @@ class Controller1
 
     public function contact()
     {
-        $routeParam1 = $this->router->getParams()['contactId'];
-        $routeParam2 = $this->router->getParams()['id2'];
-
-        $qv = $this->query->getInt('qv', 'default_value');
-        $bool = $this->query->getBool('bool1');
-
-        $contact = $this->router->generate(\Routes::CONTACT, ['contactId' => 101, 'id2' => 223]);
+        $contact = $this->router->generate(\Routes::CONTACT, ['contactId' => 44, 'id2' => 87]);
 
         $exampleClass = $this->paramConverter->build();
 
-        $fragment = $this->renderer->render('../template/contact.html.php', compact('routeParam1', 'routeParam2', 'qv', 'bool', 'contact', 'exampleClass'));
+        $fragment = $this->renderer->render('../template/contact.html.php', compact('contact', 'exampleClass'));
 
         $page = $this->pageFactory->create()
                 ->setTitle('Contact me')

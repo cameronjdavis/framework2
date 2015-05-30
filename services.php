@@ -6,6 +6,7 @@ use Framework2\Services\ServiceFactoryInterface;
 use Framework2\Services\Services;
 use Framework2\Example\ExampleParamConverter;
 use Framework2\Templating\Renderer;
+use Framework2\Routing\Router;
 
 class ServiceFactory implements ServiceFactoryInterface
 {
@@ -27,7 +28,8 @@ class ServiceFactory implements ServiceFactoryInterface
                 return new Input(INPUT_GET);
             case ExampleParamConverter::class:
                 return new ExampleParamConverter(
-                        $services->get(self::QUERY));
+                        $services->get(self::QUERY),
+                        $services->get(Router::class));
         }
     }
 }
