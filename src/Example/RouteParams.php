@@ -3,7 +3,7 @@
 namespace Framework2\Example;
 
 use Framework2\Services\Services;
-use Framework2\Templating\PageFactory;
+use Framework2\Templating\PageBuilder;
 use Framework2\Routing\Router;
 
 /**
@@ -17,14 +17,14 @@ class RouteParams
     private $router;
     
     /**
-     * @var PageFactory
+     * @var PageBuilder
      */
-    private $pageFactory;
+    private $PageBuilder;
 
     public function __construct(Services $services)
     {
         $this->router = $services->get(Router::class);
-        $this->pageFactory = $services->get(PageFactory::class);
+        $this->PageBuilder = $services->get(PageBuilder::class);
     }
 
     public function useRouteParams()
@@ -32,7 +32,7 @@ class RouteParams
         $intParam = $this->router->getParams()['intParam'];
         $param2 = $this->router->getParams()['param2'];
 
-        $page = $this->pageFactory->create()
+        $page = $this->PageBuilder->create()
                 ->setBody("<h1>Example route parameters</h1>
                            <ul>
                             <li>intParam: {$intParam}</li>
@@ -40,6 +40,6 @@ class RouteParams
                            </ul>
                            <p>Controller action was <em>" . __METHOD__ . "();</em></p>");
 
-        echo $this->pageFactory->render($page);
+        echo $this->PageBuilder->render($page);
     }
 }

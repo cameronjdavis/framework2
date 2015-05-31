@@ -4,7 +4,7 @@ namespace Framework2\Services;
 
 use Framework2\Routing\Router;
 use Framework2\Routing\Routes;
-use Framework2\Templating\PageFactory;
+use Framework2\Templating\PageBuilder;
 use Framework2\Helper\Input;
 use Framework2\Templating\Renderer;
 
@@ -57,8 +57,8 @@ class Services
                 return new Router($this->routes);
             case Renderer::class:
                 return new Renderer($this->get(Router::class));
-            case PageFactory::class:
-                return new PageFactory(
+            case PageBuilder::class:
+                return new PageBuilder(
                         $this->settings[\Config::TEMPLATE][\Config::BASE_PAGE], $this->get(Renderer::class));
             case self::QUERY:
                 // @todo: pass in $_GET and find the filter_

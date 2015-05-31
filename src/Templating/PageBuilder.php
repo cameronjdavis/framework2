@@ -4,7 +4,7 @@ namespace Framework2\Templating;
 
 use Framework2\Templating\Renderer;
 
-class PageFactory
+class PageBuilder
 {
     private $basePageTemplate;
 

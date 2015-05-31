@@ -4,7 +4,7 @@ namespace Framework2\Example;
 
 use Framework2\Services\Services;
 use Framework2\Helper\Input;
-use Framework2\Templating\PageFactory;
+use Framework2\Templating\PageBuilder;
 
 /**
  * Controller that demonstrates use of query string input.
@@ -17,14 +17,14 @@ class QueryString
     private $query;
 
     /**
-     * @var PageFactory
+     * @var PageBuilder
      */
-    private $pageFactory;
+    private $PageBuilder;
 
     public function __construct(Services $services)
     {
         $this->query = $services->get(Services::QUERY);
-        $this->pageFactory = $services->get(PageFactory::class);
+        $this->PageBuilder = $services->get(PageBuilder::class);
     }
 
     public function queryValues()
@@ -39,7 +39,7 @@ class QueryString
         $arrayVal = ob_get_contents();
         ob_end_clean();
 
-        $page = $this->pageFactory->create()
+        $page = $this->PageBuilder->create()
                 ->setBody("<h1>Example query value inputs</h1>
                            <ul>
                             <li>stringVal: {$stringVal}</li>
@@ -49,6 +49,6 @@ class QueryString
                            </ul>
                            <p>Controller action was <em>" . __METHOD__ . "();</em></p>");
 
-        echo $this->pageFactory->render($page);
+        echo $this->PageBuilder->render($page);
     }
 }
