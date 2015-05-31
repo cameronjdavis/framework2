@@ -6,7 +6,7 @@ use Framework2\Services\Services;
 use Framework2\Templating\PageFactory;
 use Framework2\Templating\Renderer;
 
-class Controller1
+class Index
 {
     /**
      * @var PageFactory
@@ -26,11 +26,11 @@ class Controller1
 
     public function home()
     {
-        $fragment = $this->renderer->render('../template/index.html.php');
+        $fragment = $this->renderer->render('../src/Example/index.html.php');
 
         $page = $this->pageFactory->create()
                 ->setTitle('Framework 2 Quick Start Guide')
-                ->setBody($fragment . "<p>Page rendered in <em>" . __METHOD__ . "();</em></p>");
+                ->setBody($fragment . "<p>Controller action was <em>" . __METHOD__ . "();</em></p>");
 
         echo $this->pageFactory->render($page);
     }

@@ -12,7 +12,7 @@ class Routes
 
 return [
     Routes::HOME => new Route(
-            'index', Controller\Controller1::class, 'home'),
+            'index', Controller\Index::class, 'home'),
     Routes::QUERY_STRING => new Route(
             'query_string', \Framework2\Example\QueryString::class, 'queryValues'),
     Routes::ROUTE_PARAMS => new Route(
