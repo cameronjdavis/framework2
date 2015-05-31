@@ -10,6 +10,5 @@
         </li>
         <li>Route parameters <a href="?r=<?= $routeParams ?>"><?= $routeParams ?></a></li>
         <li><a href="?r=<?= $router->generate(ExampleRoutes::APP_CONFIG) ?>">Application config</a></li>
-        <li>Config for development environments</li>
     </ul>
 </p>

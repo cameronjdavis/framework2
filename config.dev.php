@@ -10,7 +10,5 @@
  */
 
 return [
-    Config::TEMPLATES => [
-        //Config::BASE_PAGE => '../template/debug.html.php'
-    ],
+    ExampleConfig::EXAMPLE_SETTING => 'Overriding value from ' . __FILE__
 ];

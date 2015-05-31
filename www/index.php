@@ -11,7 +11,7 @@ spl_autoload_register($function);
 // load the base config
 $config = require_once('../config.php');
 // get the environemnt variable for this app
-$environment = getenv('FRAMEWORK2_ENV');
+$environment = getenv(Config::ENV_VARIABLE);
 // if the environemnt variable is set then load its config
 if ($environment) {
     $environmentConfig = require_once "../config.{$environment}.php";

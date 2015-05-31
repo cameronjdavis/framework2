@@ -14,7 +14,7 @@ class ConfigExample
      * @var ExampleSettingUser
      */
     private $settingUser;
-    
+
     /**
      * @var PageBuilder
      */
@@ -29,12 +29,15 @@ class ConfigExample
     public function configSetting()
     {
         $settingValue = $this->settingUser->settingValue;
-        
-        $env = getenv('FRAMEWORK2_ENV');
+
+        $env = getenv(\Config::ENV_VARIABLE);
+
+        $message = $env ? "Environment variable " . \Config::ENV_VARIABLE . " is set to <b>{$env}</b> so config.{$env}.php has been loaded" : "Environment variable " . \Config::ENV_VARIABLE . " is not set. If you set it then environment-specific config will be loaded from config." . \Config::ENV_VARIABLE . ".php. E.g. config.dev.php.";
 
         $page = $this->pageBuilder->create()
                 ->setBody("<h1>App config</h1>
-                        Config setting value is: <em>{$settingValue}</em>
+                           <p>Example config setting value is: <em>{$settingValue}</em></p>
+                           <p>{$message}</p>
                            <p>Controller action was <em>" . __METHOD__ . "();</em></p>");
 
         echo $this->pageBuilder->render($page);

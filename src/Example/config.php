@@ -6,5 +6,5 @@ class ExampleConfig
 }
 
 return [
-    ExampleConfig::EXAMPLE_SETTING => 'TO BE SURE! TO BE SURE!'
+    ExampleConfig::EXAMPLE_SETTING => 'Value from ' . __FILE__
 ];
