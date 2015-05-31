@@ -47,7 +47,7 @@ class QueryString
                             <li>boolVal: {$boolVal}</li>
                             <li>arrayVal: {$arrayVal}</li>
                            </ul>
-                           <p>Page rendered in " . __METHOD__ . "();</p>");
+                           <p>Page rendered in <em>" . __METHOD__ . "();</em></p>");
 
         echo $this->pageFactory->render($page);
     }
