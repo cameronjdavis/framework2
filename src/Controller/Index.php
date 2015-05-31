@@ -20,7 +20,7 @@ class Index
 
     public function __construct(Services $services)
     {
-        $this->PageBuilder = $services->get(PageBuilder::class);
+        $this->pageBuilder = $services->get(PageBuilder::class);
         $this->renderer = $services->get(Renderer::class);
     }
 
@@ -28,10 +28,10 @@ class Index
     {
         $fragment = $this->renderer->render('../src/Example/index.html.php');
 
-        $page = $this->PageBuilder->create()
+        $page = $this->pageBuilder->create()
                 ->setTitle('Framework 2 Quick Start Guide')
                 ->setBody($fragment . "<p>Controller action was <em>" . __METHOD__ . "();</em></p>");
 
-        echo $this->PageBuilder->render($page);
+        echo $this->pageBuilder->render($page);
     }
 }

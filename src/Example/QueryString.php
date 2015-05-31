@@ -19,12 +19,12 @@ class QueryString
     /**
      * @var PageBuilder
      */
-    private $PageBuilder;
+    private $pageBuilder;
 
     public function __construct(Services $services)
     {
-        $this->query = $services->get(Services::QUERY);
-        $this->PageBuilder = $services->get(PageBuilder::class);
+        $this->query = $services->get(\Service::QUERY);
+        $this->pageBuilder = $services->get(PageBuilder::class);
     }
 
     public function queryValues()
@@ -39,7 +39,7 @@ class QueryString
         $arrayVal = ob_get_contents();
         ob_end_clean();
 
-        $page = $this->PageBuilder->create()
+        $page = $this->pageBuilder->create()
                 ->setBody("<h1>Example query value inputs</h1>
                            <ul>
                             <li>stringVal: {$stringVal}</li>
@@ -49,6 +49,6 @@ class QueryString
                            </ul>
                            <p>Controller action was <em>" . __METHOD__ . "();</em></p>");
 
-        echo $this->PageBuilder->render($page);
+        echo $this->pageBuilder->render($page);
     }
 }

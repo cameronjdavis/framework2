@@ -24,7 +24,7 @@ class RouteParams
     public function __construct(Services $services)
     {
         $this->router = $services->get(Router::class);
-        $this->PageBuilder = $services->get(PageBuilder::class);
+        $this->pageBuilder = $services->get(PageBuilder::class);
     }
 
     public function useRouteParams()
@@ -32,7 +32,7 @@ class RouteParams
         $intParam = $this->router->getParams()['intParam'];
         $param2 = $this->router->getParams()['param2'];
 
-        $page = $this->PageBuilder->create()
+        $page = $this->pageBuilder->create()
                 ->setBody("<h1>Example route parameters</h1>
                            <ul>
                             <li>intParam: {$intParam}</li>
@@ -40,6 +40,6 @@ class RouteParams
                            </ul>
                            <p>Controller action was <em>" . __METHOD__ . "();</em></p>");
 
-        echo $this->PageBuilder->render($page);
+        echo $this->pageBuilder->render($page);
     }
 }

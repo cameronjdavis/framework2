@@ -10,7 +10,7 @@
  */
 
 return [
-    Config::TEMPLATE => [
+    Config::TEMPLATES => [
         //Config::BASE_PAGE => '../template/debug.html.php'
     ],
 ];

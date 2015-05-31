@@ -20,21 +20,18 @@ if ($environment) {
 }
 
 $routes = require_once '../routes.php';
-require_once '../services.php';
-
-// instantiate this application's custom services
-$serviceFactory = new ServiceFactory();
+$servicesArray = require_once '../services.php';
 
 // get the application's service loader
-$services = new Framework2\Services\Services($config, $serviceFactory, new Framework2\Routing\Routes($routes));
+$services = new Framework2\Services\Services($config, $servicesArray, new Framework2\Routing\Routes($routes));
 
 // get the requested route or a default route
-$requestedRoute = $services->get(Framework2\Services\Services::QUERY)->get('r', Routes::HOME);
+$requestedRoute = $services->get(Service::QUERY)->get('r', Routes::HOME);
 
 // find the route object that matches the requested route
 $route = $services->get(Framework2\Routing\Router::class)->find($requestedRoute);
 
-// call the controller action with the optional converted parameter
+// call the controller action
 $controller = $route->getClass();
 $action = $route->getMethod();
 (new $controller($services))->$action();

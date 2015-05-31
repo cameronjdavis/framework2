@@ -2,32 +2,23 @@
 
 namespace Framework2\Services;
 
-use Framework2\Routing\Router;
 use Framework2\Routing\Routes;
-use Framework2\Templating\PageBuilder;
-use Framework2\Helper\Input;
-use Framework2\Templating\Renderer;
 
 /**
  * Repository of services that are lazy loaded.
- * A service is identified by a key string.
+ * A service is identified by a key.
  */
 class Services
 {
-    const QUERY = 'query';
     private $instances;
     private $settings;
+    private $services;
     private $routes;
 
-    /**
-     * @var ServiceFactoryInterface
-     */
-    private $factory;
-
-    public function __construct(array $settings, ServiceFactoryInterface $factory, Routes $routes)
+    public function __construct(array $settings, array $services, Routes $routes)
     {
         $this->settings = $settings;
-        $this->factory = $factory;
+        $this->services = $services;
         $this->routes = $routes;
     }
 
@@ -52,21 +43,16 @@ class Services
      */
     public function create($key)
     {
-        switch ($key) {
-            case Router::class:
-                return new Router($this->routes);
-            case Renderer::class:
-                return new Renderer($this->get(Router::class));
-            case PageBuilder::class:
-                return new PageBuilder(
-                        $this->settings[\Config::TEMPLATE][\Config::BASE_PAGE], $this->get(Renderer::class));
-            case self::QUERY:
-                // @todo: pass in $_GET and find the filter_
-                // method to filter a variable rather than 
-                // a hard-coded constant
-                return new Input(INPUT_GET);
-            default:
-                return $this->factory->create($key, $this->settings, $this);
-        }
+        $serviceCallback = $this->services[$key];
+
+        return $serviceCallback($this->settings, $this);
+    }
+
+    /**
+     * @return Routes
+     */
+    public function getRoutes()
+    {
+        return $this->routes;
     }
 }
