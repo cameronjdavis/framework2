@@ -39,20 +39,15 @@ class QueryString
         $arrayVal = ob_get_contents();
         ob_end_clean();
 
-        // render the print_r into a variable
-        ob_start();
-        print_r($this->query->getArray('intArrayVal'));
-        $intArrayVal = ob_get_contents();
-        ob_end_clean();
-
         $page = $this->pageFactory->create()
-                ->setBody("<ul>
+                ->setBody("<h1>Example query value inputs</h1>
+                           <ul>
                             <li>stringVal: {$stringVal}</li>
                             <li>intVal: {$intVal}</li>
                             <li>boolVal: {$boolVal}</li>
                             <li>arrayVal: {$arrayVal}</li>
-                            <li>intArrayVal: {$intArrayVal}</li>
-                           </ul>");
+                           </ul>
+                           <p>Page rendered in " . __METHOD__ . "();</p>");
 
         echo $this->pageFactory->render($page);
     }

@@ -1,8 +1,8 @@
 <?php
-    $queryString = $router->generate(Routes::QUERY_STRING) . '&stringVal=FatCat&intVal=765&boolVal=1&arrayVal[]=abc&arrayVal[]=def&intArrayVal[]=321&intArrayVal[]=654';
+    $queryString = $router->generate(Routes::QUERY_STRING) . '&stringVal=FatCat&intVal=765&boolVal=1&arrayVal[]=abc&arrayVal[]=def';
 ?>
 <h1>Framework2</h1>
-<h2>Example Usages</h2>
+<h2>Quick start guide</h2>
 <p>
     <ul>
         <li>Query string processing <a href="?r=<?= $queryString ?>">
