@@ -2,7 +2,7 @@
 
 namespace Framework2\Templating;
 
-use \Framework2\Routing\Router;
+use Framework2\Routing\Router;
 
 /**
  * Render templates with parameters.
@@ -20,7 +20,7 @@ class Renderer
     }
 
     /**
-     * Render a template file with parameters using "include".
+     * Render a template file with parameters.
      * @param string $templateFile Path to the template file
      * @param array $params A compacted array
      * @return string The rendered template

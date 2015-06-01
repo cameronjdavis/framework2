@@ -4,35 +4,49 @@ namespace Framework2\Templating;
 
 use Framework2\Templating\Renderer;
 
+/**
+ * Create new pages and render them with a template.
+ */
 class PageBuilder
 {
-    private $basePageTemplate;
+    /**
+     * @var string
+     */
+    private $template;
 
     /**
      * @var Renderer
      */
     private $renderer;
 
-    public function __construct($basePageTemplate, Renderer $renderer)
+    /**
+     * @param string $template Path to the page template file
+     * @param Renderer $renderer
+     */
+    public function __construct($template, Renderer $renderer)
     {
-        $this->basePageTemplate = $basePageTemplate;
+        $this->template = $template;
         $this->renderer = $renderer;
     }
 
-    public function setBasePageTemplate($basePageTemplate)
-    {
-        $this->basePageTemplate = $basePageTemplate;
-    }
-
+    /**
+     * Construct and return a new page.
+     * @return \Framework2\Templating\Page
+     */
     public function create()
     {
         return new Page();
     }
 
+    /**
+     * Render the template using $page and return the rendered page.
+     * @param \Framework2\Templating\Page $page
+     * @return string
+     */
     public function render(Page $page)
     {
         http_response_code($page->getHttpCode());
 
-        return $this->renderer->render($this->basePageTemplate, compact('page'));
+        return $this->renderer->render($this->template, compact('page'));
     }
 }
