@@ -22,10 +22,7 @@ return [
                 $settings[\Config::TEMPLATES][\Config::BASE_PAGE], $services->get(Renderer::class));
     },
     Service::QUERY => function(array $settings, Services $services) {
-        // @todo: pass in $_GET and find the filter_
-        // method to filter a variable rather than 
-        // a hard-coded constant
-        return new Input(INPUT_GET);
+        return new Input($_GET);
     }
 ] + require_once('../src/Example/services.php');
 

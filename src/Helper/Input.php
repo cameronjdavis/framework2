@@ -3,20 +3,21 @@
 namespace Framework2\Helper;
 
 /**
- * Access to input values on a given input channel.
- * E.g. INPUT_GET, INPUT_POST et al.
+ * Access to input values from an array, such as $_GET or $_COOKIE.
  */
 class Input
 {
-    private $inputType;
+    /**
+     * @var array
+     */
+    private $input;
 
     /**
-     * @param int $inputType E.g. INPUT_GET et al
-     * @see INPUT_GET
+     * @param array $input E.g. $_GET
      */
-    public function __construct($inputType)
+    public function __construct(array $input)
     {
-        $this->inputType = $inputType;
+        $this->input = $input;
     }
 
     /**
@@ -28,9 +29,15 @@ class Input
      */
     public function get($key, $default = null, $filter = FILTER_DEFAULT, array $options = [])
     {
-        $input = filter_input($this->inputType, $key, $filter, $options);
+        // if value does not exist in input array, return default
+        if (false == array_key_exists($key, $this->input)) {
+            return $default;
+        }
 
-        // return default if no value specified or if the filter failed
+        // get the value from the input array and filter it
+        $input = filter_var($this->input[$key], $filter, $options);
+
+        // return default if the filter failed
         return $input ? $input : $default;
     }
 
