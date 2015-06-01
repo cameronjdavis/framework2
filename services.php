@@ -1,6 +1,6 @@
 <?php
 
-use Framework2\Services\Services;
+use Framework2\Services;
 use Framework2\Templating\PageBuilder;
 use Framework2\Helper\Input;
 use Framework2\Templating\Renderer;

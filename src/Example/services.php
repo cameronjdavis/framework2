@@ -1,7 +1,7 @@
 <?php
 
 use Framework2\Example\ExampleSettingUser;
-use Framework2\Services\Services;
+use Framework2\Services;
 
 return [
     ExampleSettingUser::class => function(array $settings, Services $services) {

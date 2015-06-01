@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework2\Services;
+namespace Framework2;
 
 use Framework2\Routing\Routes;
 

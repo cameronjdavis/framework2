@@ -2,7 +2,7 @@
 
 namespace Framework2\Controller;
 
-use Framework2\Services\Services;
+use Framework2\Services;
 use Framework2\Templating\PageBuilder;
 use Framework2\Templating\Renderer;
 
