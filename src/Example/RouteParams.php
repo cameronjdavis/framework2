@@ -19,7 +19,7 @@ class RouteParams
     /**
      * @var PageBuilder
      */
-    private $PageBuilder;
+    private $pageBuilder;
 
     public function __construct(Services $services)
     {

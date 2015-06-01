@@ -11,7 +11,7 @@ class Index
     /**
      * @var PageBuilder
      */
-    private $PageBuilder;
+    private $pageBuilder;
 
     /**
      * @var Renderer
