@@ -10,5 +10,5 @@ class Routes
 
 return [
     Routes::HOME => new Route(
-            'home', Controller\Index::class, 'home'),
+            Routes::HOME, Controller\Index::class, 'home'),
         ] + require_once('../src/Example/routes.php');
