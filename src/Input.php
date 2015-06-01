@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework2\Helper;
+namespace Framework2;
 
 /**
  * Access to input values from an array, such as $_GET or $_COOKIE.

@@ -3,7 +3,7 @@
 namespace Framework2\Example;
 
 use Framework2\Services;
-use Framework2\Helper\Input;
+use Framework2\Input;
 use Framework2\Templating\PageBuilder;
 
 /**
