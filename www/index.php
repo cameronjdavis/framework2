@@ -23,7 +23,7 @@ $routes = require_once '../routes.php';
 $servicesArray = require_once '../services.php';
 
 // get the application's service loader
-$services = new Framework2\Services($config, $servicesArray, new Framework2\Routing\Routes($routes));
+$services = new Framework2\Services($config, $servicesArray, $routes);
 
 // get the requested route or a default route
 $requestedRoute = $services->get(Service::QUERY)->get('r', Routes::HOME);

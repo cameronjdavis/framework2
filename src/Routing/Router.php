@@ -2,12 +2,10 @@
 
 namespace Framework2\Routing;
 
-use Framework2\Routing\Routes;
-
 class Router
 {
     /**
-     * @var Routes
+     * @var Route[]
      */
     private $routes;
 
@@ -16,7 +14,10 @@ class Router
      */
     private $routeParams;
 
-    public function __construct(Routes $routes)
+    /**
+     * @param Route[] $routes
+     */
+    public function __construct(array $routes)
     {
         $this->routes = $routes;
     }
@@ -31,7 +32,7 @@ class Router
     {
         $matches = null;
 
-        foreach ($this->routes->getRoutes() as $key => $route) {
+        foreach ($this->routes as $key => $route) {
             $params = $route->getParams();
 
             // add () around the route param regex patterns
@@ -67,7 +68,7 @@ class Router
      */
     public function generate($routeKey, array $params = [])
     {
-        $route = $this->routes->getRoute($routeKey);
+        $route = $this->routes[$routeKey];
 
         $generated = $route->getPattern();
 

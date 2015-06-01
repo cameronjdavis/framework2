@@ -2,8 +2,6 @@
 
 namespace Framework2;
 
-use Framework2\Routing\Routes;
-
 /**
  * Repository of services that are lazy loaded.
  * A service is identified by a key.
@@ -13,9 +11,18 @@ class Services
     private $instances;
     private $settings;
     private $services;
+    
+    /**
+     * @var Routing\Route
+     */
     private $routes;
 
-    public function __construct(array $settings, array $services, Routes $routes)
+    /**
+     * @param array $settings
+     * @param array $services
+     * @param Routing\Route[] $routes
+     */
+    public function __construct(array $settings, array $services, array $routes)
     {
         $this->settings = $settings;
         $this->services = $services;
@@ -49,7 +56,7 @@ class Services
     }
 
     /**
-     * @return Routes
+     * @return Routing\Route[]
      */
     public function getRoutes()
     {
