@@ -38,7 +38,8 @@ class Index
 
         $page = $this->pageBuilder->create()
                 ->setTitle('Framework 2 Quick Start Guide')
-                ->setBody($fragment . "<p>Controller action was <em>" . __METHOD__ . "();</em></p>");
+                ->setBody($fragment . "<p>Controller action was <em>" . __METHOD__ . "();</em></p>")
+                ->addHeadContent('<link rel="stylesheet" type="text/css" href="index_style.css">');
 
         $response = $this->responseBuilder->createResponse()
                 ->setContent($this->pageBuilder->render($page))
