@@ -15,7 +15,7 @@ class RouteParams
      * @var Router
      */
     private $router;
-    
+
     /**
      * @var PageBuilder
      */
@@ -31,7 +31,7 @@ class RouteParams
     {
         $intParam = $this->router->getParams()['intParam'];
         $param2 = $this->router->getParams()['param2'];
-        
+
         $generated = $this->router->generate(\ExampleRoutes::ROUTE_PARAMS, ['intParam' => 666, 'param2' => 'p2']);
 
         $page = $this->pageBuilder->create()

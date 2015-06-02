@@ -11,7 +11,7 @@ class Services
     private $instances;
     private $settings;
     private $services;
-    
+
     /**
      * @var Routing\Route
      */

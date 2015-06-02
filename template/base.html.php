@@ -1,7 +1,7 @@
 <html>
     <head>
         <title><?= $page->getTitle() ?></title>
-        <?php foreach($page->getHeadContent() as $headContent): ?>
+        <?php foreach ($page->getHeadContent() as $headContent): ?>
             <?= $headContent ?>
         <?php endforeach; ?>
     </head>

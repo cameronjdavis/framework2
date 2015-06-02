@@ -6,7 +6,8 @@ use Framework2\Input;
 use Framework2\Templating\Renderer;
 use Framework2\Routing\Router;
 
-class Service {
+class Service
+{
     const QUERY = 'query';
 }
 
@@ -24,5 +25,5 @@ return [
     Service::QUERY => function(array $settings, Services $services) {
         return new Input($_GET);
     }
-] + require_once('../src/Example/services.php');
+        ] + array_merge(require_once('../src/Example/services.php'), require_once('../src/Response/services.php'));
 
