@@ -25,5 +25,5 @@ return [
     Service::QUERY => function(array $settings, Services $services) {
         return new Input($_GET);
     }
-        ] + array_merge(require_once('../src/Example/services.php'), require_once('../src/Response/services.php'));
+        ] + array_merge(require_once('../src/Example/services.php'));
 

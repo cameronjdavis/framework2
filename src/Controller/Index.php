@@ -20,16 +20,10 @@ class Index
      */
     private $renderer;
 
-    /**
-     * @var HttpResponseBuilder
-     */
-    private $responseBuilder;
-
     public function __construct(Services $services)
     {
         $this->pageBuilder = $services->get(PageBuilder::class);
         $this->renderer = $services->get(Renderer::class);
-        $this->responseBuilder = $services->get(HttpResponseBuilder::class);
     }
 
     public function home()
@@ -41,11 +35,6 @@ class Index
                 ->setBody($fragment . "<p>Controller action was <em>" . __METHOD__ . "();</em></p>")
                 ->addHeadContent('<link rel="stylesheet" type="text/css" href="index_style.css">');
 
-        $response = $this->responseBuilder->createResponse()
-                ->setContent($this->pageBuilder->render($page))
-                ->setHttpCode(HttpResponse::HTTP_403)
-                ->addHeader('MyHeader', 'header_value_1');
-
-        $this->responseBuilder->render($response);
+        echo $this->pageBuilder->render($page);
     }
 }
