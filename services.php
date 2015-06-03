@@ -8,7 +8,15 @@ use Framework2\Routing\Router;
 
 class Service
 {
+    /**
+     * Service to access query param values.
+     */
     const QUERY = 'query';
+
+    /**
+     * Service to access route param values.
+     */
+    const ROUTE_PARAMS = 'route_params';
 }
 
 return [
@@ -24,6 +32,9 @@ return [
     },
     Service::QUERY => function(array $settings, Services $services) {
         return new Input($_GET);
-    }
+    },
+    Service::ROUTE_PARAMS => function(array $settings, Services $services) {
+        return new Input($services->get(Router::class)->getParams());
+    },
         ] + array_merge(require_once('../src/Example/services.php'));
 

@@ -24,7 +24,7 @@ class Router
 
     /**
      * Find the Route object for an incoming route string
-     * by matching the incoming route with Regex.
+     * by matching the incoming route with regex.
      * @param string $completeRoute
      * @return Route
      */
@@ -35,7 +35,7 @@ class Router
         foreach ($this->routes as $key => $route) {
             $params = $route->getParams();
 
-            // add () around the route param regex patterns
+            // add () around each of the route param regex patterns
             // E.g. \d+ becomes (\d+)
             array_walk($params, function(&$val) {
                 $val = "({$val})";
@@ -49,9 +49,9 @@ class Router
             if (preg_match("({$routeRegex})", $completeRoute, $matches)) {
                 unset($matches[0]);
 
-                // remember the route params for later reference
-                // keys come from route param names
-                // values come from regex matches for route params
+                // remember the route params for later reference.
+                // keys come from route param names.
+                // values come from regex matches for route params.
                 $this->routeParams = array_combine(array_keys($params), $matches);
 
                 return $route;

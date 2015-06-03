@@ -5,6 +5,7 @@ namespace Framework2\Example;
 use Framework2\Services;
 use Framework2\Templating\PageBuilder;
 use Framework2\Routing\Router;
+use Framework2\Input;
 
 /**
  * Controller that demonstrates use of route parameters.
@@ -20,17 +21,23 @@ class RouteParams
      * @var PageBuilder
      */
     private $pageBuilder;
+    
+    /**
+     * @var Input
+     */
+    private $routeParams;
 
     public function __construct(Services $services)
     {
         $this->router = $services->get(Router::class);
         $this->pageBuilder = $services->get(PageBuilder::class);
+        $this->routeParams = $services->get(\Service::ROUTE_PARAMS);
     }
 
     public function useRouteParams()
     {
-        $intParam = $this->router->getParams()['intParam'];
-        $param2 = $this->router->getParams()['param2'];
+        $intParam = $this->routeParams->getInt('intParam');
+        $param2 = $this->routeParams->get('param2');
 
         $generated = $this->router->generate(\ExampleRoutes::ROUTE_PARAMS, ['intParam' => 666, 'param2' => 'p2']);
 
