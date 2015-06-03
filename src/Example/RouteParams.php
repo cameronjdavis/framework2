@@ -21,7 +21,7 @@ class RouteParams
      * @var PageBuilder
      */
     private $pageBuilder;
-    
+
     /**
      * @var Input
      */
