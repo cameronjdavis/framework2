@@ -2,7 +2,6 @@
 
 namespace Framework2\Controller;
 
-use Framework2\Services;
 use Framework2\Templating\PageBuilder;
 use Framework2\Templating\Renderer;
 
@@ -18,10 +17,10 @@ class Index
      */
     private $renderer;
 
-    public function __construct(Services $services)
+    public function __construct(PageBuilder $pageBuilder, Renderer $renderer)
     {
-        $this->pageBuilder = $services->get(PageBuilder::class);
-        $this->renderer = $services->get(Renderer::class);
+        $this->pageBuilder = $pageBuilder;
+        $this->renderer = $renderer;
     }
 
     public function home()

@@ -2,7 +2,6 @@
 
 namespace Framework2\Example;
 
-use Framework2\Services;
 use Framework2\Input;
 use Framework2\Templating\PageBuilder;
 
@@ -21,10 +20,10 @@ class QueryString
      */
     private $pageBuilder;
 
-    public function __construct(Services $services)
+    public function __construct(Input $query, PageBuilder $pageBuilder)
     {
-        $this->query = $services->get(\Service::QUERY);
-        $this->pageBuilder = $services->get(PageBuilder::class);
+        $this->query = $query;
+        $this->pageBuilder = $pageBuilder;
     }
 
     public function queryValues()

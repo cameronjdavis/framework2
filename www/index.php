@@ -19,8 +19,8 @@ if ($environment) {
     $config = array_replace_recursive($config, $environmentConfig);
 }
 
-$routes = require_once '../routes.php';
 $servicesArray = require_once '../services.php';
+$routes = require_once '../routes.php';
 
 // get the application's service loader
 $services = new Framework2\Services($config, $servicesArray, $routes);
@@ -32,6 +32,6 @@ $requestedRoute = $services->get(Service::QUERY)->get('r', Routes::HOME);
 $route = $services->get(Framework2\Routing\Router::class)->find($requestedRoute);
 
 // call the controller action
-$controller = $route->getClass();
+$controller = $route->getServiceName();
 $action = $route->getMethod();
-(new $controller($services))->$action();
+$services->get($controller)->$action();

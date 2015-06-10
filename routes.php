@@ -1,6 +1,5 @@
 <?php
 
-use Framework2\Controller;
 use Framework2\Routing\Route;
 
 class Routes
@@ -9,6 +8,7 @@ class Routes
 }
 
 return [
-    Routes::HOME => new Route(
-            Routes::HOME, Controller\Index::class, 'home'),
+    Routes::HOME =>
+    new Route(
+            Routes::HOME, Framework2\Controller\Index::class, 'home'),
         ] + require_once('../src/Example/routes.php');

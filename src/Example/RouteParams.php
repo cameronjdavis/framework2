@@ -2,7 +2,6 @@
 
 namespace Framework2\Example;
 
-use Framework2\Services;
 use Framework2\Templating\PageBuilder;
 use Framework2\Routing\Router;
 use Framework2\Input;
@@ -27,11 +26,11 @@ class RouteParams
      */
     private $routeParams;
 
-    public function __construct(Services $services)
+    public function __construct(Router $router, PageBuilder $pageBuilder, Input $routeParams)
     {
-        $this->router = $services->get(Router::class);
-        $this->pageBuilder = $services->get(PageBuilder::class);
-        $this->routeParams = $services->get(\Service::ROUTE_PARAMS);
+        $this->router = $router;
+        $this->pageBuilder = $pageBuilder;
+        $this->routeParams = $routeParams;
     }
 
     public function useRouteParams()

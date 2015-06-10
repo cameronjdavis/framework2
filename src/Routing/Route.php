@@ -16,7 +16,7 @@ class Route
     /**
      * @var string
      */
-    private $class;
+    private $service;
 
     /**
      * @var string
@@ -30,14 +30,14 @@ class Route
 
     /**
      * @param string $pattern Route pattern with placeholders. E.g. user/{userId}
-     * @param string $class Controller class. E.g. Framewor2\UserController.
-     * @param string $method Name of method in Controller class. E.g. showUser().
+     * @param string $service Name of service to load to fulfill this route.
+     * @param string $method Name of method in Controller service. E.g. showUser().
      * @param array $params Associative array of route param regexes keyed on route name. E.g. ['userId' => '\d+'].
      */
-    public function __construct($pattern, $class, $method, array $params = [])
+    public function __construct($pattern, $service, $method, array $params = [])
     {
         $this->pattern = $pattern;
-        $this->class = $class;
+        $this->service = $service;
         $this->method = $method;
         $this->params = $params;
     }
@@ -52,12 +52,12 @@ class Route
     }
 
     /**
-     * Get the class of the controller this route points to.
+     * Get the name of the service that will fulfill this route.
      * @return string
      */
-    public function getClass()
+    public function getServiceName()
     {
-        return $this->class;
+        return $this->service;
     }
 
     /**

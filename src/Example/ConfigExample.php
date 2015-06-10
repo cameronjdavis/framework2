@@ -2,7 +2,6 @@
 
 namespace Framework2\Example;
 
-use Framework2\Services;
 use Framework2\Templating\PageBuilder;
 
 /**
@@ -20,10 +19,10 @@ class ConfigExample
      */
     private $pageBuilder;
 
-    public function __construct(Services $services)
+    public function __construct(ExampleSettingUser $settingUser, PageBuilder $pageBuilder)
     {
-        $this->settingUser = $services->get(ExampleSettingUser::class);
-        $this->pageBuilder = $services->get(PageBuilder::class);
+        $this->settingUser = $settingUser;
+        $this->pageBuilder = $pageBuilder;
     }
 
     public function configSetting()
