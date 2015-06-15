@@ -24,7 +24,8 @@ return [
         return new Router($services->getRoutes());
     },
     Renderer::class => function(array $settings, Services $services) {
-        return new Renderer($services->get(Router::class));
+        return (new Renderer($services->get(Router::class)))
+                        ->addRenderingParam('router', $services->get(Router::class));
     },
     PageBuilder::class => function(array $settings, Services $services) {
         return new PageBuilder(

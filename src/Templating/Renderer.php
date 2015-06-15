@@ -2,22 +2,15 @@
 
 namespace Framework2\Templating;
 
-use Framework2\Routing\Router;
-
 /**
  * Render templates with parameters.
  */
 class Renderer
 {
     /**
-     * @var Router
+     * @var array
      */
-    private $router;
-
-    public function __construct(Router $router)
-    {
-        $this->router = $router;
-    }
+    private $renderingParams;
 
     /**
      * Render a template file with parameters.
@@ -27,10 +20,7 @@ class Renderer
      */
     public function render($templateFile, array $params = [])
     {
-        // add the router so it is available while rendering
-        $params['router'] = $this->router;
-
-        extract($params);
+        extract($this->renderingParams + $params);
 
         // render the template into $output
         ob_start();
@@ -39,5 +29,21 @@ class Renderer
         ob_end_clean();
 
         return $output;
+    }
+
+    /**
+     * Add a named parameter that will be available
+     * while rendering a template with render().
+     * Useful for making standard helpers available
+     * while rendering templates.
+     * @param string $paramName E.g. 'router' means $router will be available.
+     * @param mixed $param E.g. new Router().
+     * @return Renderer
+     */
+    public function addRenderingParam($paramName, $param)
+    {
+        $this->renderingParams[$paramName] = $param;
+
+        return $this;
     }
 }
