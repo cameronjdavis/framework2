@@ -11,4 +11,5 @@ return [
     Routes::HOME =>
     new Route(
             Routes::HOME, Framework2\Controller\Index::class, 'home'),
-        ] + require_once('../src/Example/routes.php');
+        ] + array_merge(require_once('../src/Example/routes.php'),
+          require_once('../src/Rest/routes.php'));

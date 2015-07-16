@@ -17,6 +17,8 @@ class Service
      * Service to access route param values.
      */
     const ROUTE_PARAMS = 'route_params';
+    
+    const POST = 'post';
 }
 
 return [
@@ -37,8 +39,12 @@ return [
     Service::ROUTE_PARAMS => function(array $settings, Services $services) {
         return new Input($services->get(Router::class)->getParams());
     },
+    Service::POST => function(array $settings, Services $services) {
+        return new Input($_POST);
+    },
     Framework2\Controller\Index::class => function(array $settings, Services $services) {
         return new Framework2\Controller\Index($services->get(PageBuilder::class), $services->get(Renderer::class));
     },
-        ] + array_merge(require_once('../src/Example/services.php'));
+        ] + array_merge(require_once('../src/Example/services.php'),
+          require_once('../src/Rest/services.php'));
 
