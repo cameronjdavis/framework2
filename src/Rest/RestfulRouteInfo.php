@@ -2,6 +2,9 @@
 
 namespace Framework2\Rest;
 
+/**
+ * Metadata of a RESTful route.
+ */
 class RestfulRouteInfo
 {
     /**

@@ -4,6 +4,9 @@ namespace Framework2\Rest;
 
 use Framework2\Input;
 
+/**
+ * Entry point for RESTful actions.
+ */
 class RestfulController
 {
     /**
