@@ -25,9 +25,9 @@ return [
     ExampleRoutes::APP_CONFIG => new Route(
             'app_config', \Framework2\Example\ConfigExample::class, 'configSetting'),
     ExampleRestfulRoutes::DELETE => new Route(
-            'rest_example/{' . ExampleRestfulHelper::ID . '}/delete', ExampleRestfulServices::CONTROLLER, 'delete', ['example_id' => '\d+']),
+            'rest_example/{' . ExampleRestfulHelper::ID . '}/delete', ExampleRestfulServices::CONTROLLER, 'delete', [ExampleRestfulHelper::ID => '\d+']),
     ExampleRestfulRoutes::GET => new Route(
-            'rest_example/{' . ExampleRestfulHelper::ID . '}', ExampleRestfulServices::CONTROLLER, 'get', ['example_id' => '\d+']),
+            'rest_example/{' . ExampleRestfulHelper::ID . '}', ExampleRestfulServices::CONTROLLER, 'get', [ExampleRestfulHelper::ID => '\d+']),
     ExampleRestfulRoutes::CREATE => new Route(
             'rest_example/create', ExampleRestfulServices::CONTROLLER, 'create'),
 ];
