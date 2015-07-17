@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework2\Rest;
+namespace Framework2\Example;
 
 class ExampleRestfulObject
 {

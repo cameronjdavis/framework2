@@ -45,6 +45,5 @@ return [
     Framework2\Controller\Index::class => function(array $settings, Services $services) {
         return new Framework2\Controller\Index($services->get(PageBuilder::class), $services->get(Renderer::class));
     },
-        ] + array_merge(require_once('../src/Example/services.php'),
-          require_once('../src/Rest/services.php'));
+        ] + array_merge(require_once('../src/Example/services.php'));
 

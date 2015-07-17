@@ -1,9 +1,9 @@
 <?php
 $queryString = $router->generate(ExampleRoutes::QUERY_STRING) . '&stringVal=FatCat&intVal=765&boolVal=1&arrayVal[]=abc&arrayVal[]=def';
 $routeParams = $router->generate(ExampleRoutes::ROUTE_PARAMS, ['intParam' => 55, 'param2' => 'another_value']);
-$deleteRoute = $router->generate(ExampleRestfulRoutes::DELETE, [Framework2\Rest\ExampleRestfulHelper::ID => 44]);
-$createRoute = $router->generate(ExampleRestfulRoutes::CREATE) . '&' . Framework2\Rest\ExampleRestfulHelper::PROP_1 . '=example prop1 value';
-$getRoute = $router->generate(ExampleRestfulRoutes::GET, [Framework2\Rest\ExampleRestfulHelper::ID => 123]);
+$deleteRoute = $router->generate(ExampleRestfulRoutes::DELETE, [Framework2\Example\ExampleRestfulHelper::ID => 44]);
+$createRoute = $router->generate(ExampleRestfulRoutes::CREATE) . '&' . Framework2\Example\ExampleRestfulHelper::PROP_1 . '=example prop1 value';
+$getRoute = $router->generate(ExampleRestfulRoutes::GET, [Framework2\Example\ExampleRestfulHelper::ID => 123]);
 ?>
 <h1>Framework2 Quick Start Guide</h1>
 

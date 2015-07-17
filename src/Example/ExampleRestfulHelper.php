@@ -1,8 +1,10 @@
 <?php
 
-namespace Framework2\Rest;
+namespace Framework2\Example;
 
 use Framework2\Input;
+use Framework2\Rest\RestfulInterface;
+use Framework2\Example\ExampleRestfulObject;
 
 class ExampleRestfulHelper implements RestfulInterface
 {
