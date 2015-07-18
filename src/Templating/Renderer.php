@@ -20,15 +20,27 @@ class Renderer
      */
     public function render($templateFile, array $params = [])
     {
-        extract($this->renderingParams + $params);
+        // simple, empty object to use as context for rendering
+        $context = new \stdClass();
 
-        // render the template into $output
-        ob_start();
-        require $templateFile;
-        $output = ob_get_contents();
-        ob_end_clean();
+        // anonymous function to perform rendering
+        $function = function($templateFile, $params) {
+            // make all rendering params available in the template
+            extract($params);
 
-        return $output;
+            // render the template into the buffer and return
+            ob_start();
+            require $templateFile;
+
+            return ob_get_clean();
+        };
+
+        // bind the function to the empty object
+        // doing so makes $this = the empty object (within the template)
+        $boundFunction = $function->bindTo($context);
+
+        // call the newly bound anonymous function to render
+        return $boundFunction($templateFile, $this->renderingParams + $params);
     }
 
     /**
