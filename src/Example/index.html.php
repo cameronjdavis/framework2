@@ -9,14 +9,11 @@ $updateRoute = $router->generate(ExampleRestfulRoutes::UPDATE, [Framework2\Examp
 ?>
 <h1>Framework2 Quick Start Guide</h1>
 
-<p>
 <ul>
-    <li>Query string processing <a href="?r=<?= $queryString ?>"><em><?= $queryString ?></em></a>
-    </li>
+    <li>Query string processing <a href="?r=<?= $queryString ?>"><em><?= $queryString ?></em></a></li>
     <li>Route parameters <a href="?r=<?= $routeParams ?>"><?= $routeParams ?></a></li>
     <li><a href="?r=<?= $router->generate(ExampleRoutes::APP_CONFIG) ?>">Application config</a></li>
-
-    <li> Restful controller examples
+    <li>Restful controller examples
         <ul>
             <li><a href="?r=<?= $deleteRoute ?>">Delete</a></li>
             <li><a href="?r=<?= $createRoute ?>">Create</a></li>
@@ -26,4 +23,3 @@ $updateRoute = $router->generate(ExampleRestfulRoutes::UPDATE, [Framework2\Examp
         </ul>
     </li>
 </ul>
-</p>
