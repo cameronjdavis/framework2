@@ -20,9 +20,6 @@ class Renderer
      */
     public function render($templateFile, array $params = [])
     {
-        // simple, empty object to use as context for rendering
-        $context = new \stdClass();
-
         // anonymous function to perform rendering
         $function = function($templateFile, $params) {
             // make all rendering params available in the template
@@ -35,9 +32,9 @@ class Renderer
             return ob_get_clean();
         };
 
-        // bind the function to the empty object
+        // bind the function to a new empty object
         // doing so makes $this = the empty object (within the template)
-        $boundFunction = $function->bindTo($context);
+        $boundFunction = $function->bindTo(new \stdClass());
 
         // call the newly bound anonymous function to render
         return $boundFunction($templateFile, $this->renderingParams + $params);
