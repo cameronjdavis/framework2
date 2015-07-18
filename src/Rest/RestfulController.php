@@ -35,30 +35,42 @@ class RestfulController
     {
         $id = $this->routeParams->getInt($this->routeInfo->getIdName());
 
-        echo json_encode($this->restful->delete($id));
+        $this->render($this->restful->delete($id));
     }
 
     public function create()
     {
-        echo json_encode($this->restful->create());
+        $this->render($this->restful->create());
     }
 
     public function get()
     {
         $id = $this->routeParams->getInt($this->routeInfo->getIdName());
 
-        echo json_encode($this->restful->get($id));
+        $this->render($this->restful->get($id));
     }
 
     public function getMultiple()
     {
-        echo json_encode($this->restful->getMultiple());
+        $this->render($this->restful->getMultiple());
     }
 
     public function update()
     {
         $id = $this->routeParams->getInt($this->routeInfo->getIdName());
 
-        echo json_encode($this->restful->update($id));
+        $this->render($this->restful->update($id));
+    }
+
+    /**
+     * Render $data as a JSON string.
+     * @param mixed $data
+     * @return string
+     */
+    public function render($data)
+    {
+        header('Content-Type: application/json');
+
+        echo json_encode($data, JSON_PRETTY_PRINT);
     }
 }

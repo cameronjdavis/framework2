@@ -18,5 +18,5 @@ interface RestfulInterface
     
     public function getMultiple();
     
-    public function update();
+    public function update($id);
 }

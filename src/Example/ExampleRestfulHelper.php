@@ -58,9 +58,9 @@ class ExampleRestfulHelper implements RestfulInterface
         return [$object1, $object2];
     }
 
-    public function update()
+    public function update($id)
     {
-        $object = $this->get(765);
+        $object = $this->get($id);
 
         return $object->setProp1(
                         $this->input->get(self::PROP_1));
