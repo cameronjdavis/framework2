@@ -18,6 +18,9 @@ class Service
      */
     const ROUTE_PARAMS = 'route_params';
     
+    /**
+     * Service to access post param values.
+     */
     const POST = 'post';
 }
 
