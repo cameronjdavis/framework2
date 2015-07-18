@@ -29,7 +29,7 @@ $services = new Framework2\Services($config, $servicesArray, $routes);
 $requestedRoute = $services->get(Service::QUERY)->get('r', Routes::HOME);
 
 // find the route object that matches the requested route
-$route = $services->get(Framework2\Routing\Router::class)->find($requestedRoute);
+$route = $services->get(Framework2\Routing\Router::class)->find($requestedRoute, $_SERVER['REQUEST_METHOD']);
 
 // call the controller action
 $controller = $route->getServiceName();

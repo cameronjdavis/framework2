@@ -9,6 +9,30 @@ namespace Framework2\Routing;
 class Route
 {
     /**
+     * HTTP request method
+     */
+    const GET = 'GET';
+
+    /**
+     * HTTP request method
+     */
+    const POST = 'POST';
+
+    /**
+     * HTTP request method
+     */
+    const PUT = 'PUT';
+
+    /**
+     * HTTP request method
+     */
+    const PATCH = 'PATCH';
+
+    /**
+     * HTTP request method
+     */
+    const DELETE = 'DELETE';
+    /**
      * @var string
      */
     private $pattern;
@@ -29,6 +53,12 @@ class Route
     private $params;
 
     /**
+     * List of valid HTTP methods. E.g. GET, POST, PATCH.
+     * @var string[]
+     */
+    private $httpMethods;
+
+    /**
      * @param string $pattern Route pattern with placeholders. E.g. user/{userId}
      * @param string $service Name of service to load to fulfill this route.
      * @param string $method Name of method in Controller service. E.g. showUser().
@@ -40,6 +70,7 @@ class Route
         $this->service = $service;
         $this->method = $method;
         $this->params = $params;
+        $this->httpMethods = [self::GET, self::POST];
     }
 
     /**
@@ -78,5 +109,26 @@ class Route
     public function getParams()
     {
         return $this->params;
+    }
+
+    /**
+     * Get the HTTP methods that this route can be used with.
+     * @return string[]
+     */
+    public function getHttpMethods()
+    {
+        return $this->httpMethods;
+    }
+
+    /**
+     * Set the HTTP rquest methods this route uses.
+     * @param string[] $methods
+     * @return \Framework2\Routing\Route
+     */
+    public function setHttpMethods($methods)
+    {
+        $this->httpMethods = $methods;
+
+        return $this;
     }
 }

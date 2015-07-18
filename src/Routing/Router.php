@@ -26,13 +26,19 @@ class Router
      * Find the Route object for an incoming route string
      * by matching the incoming route with regex.
      * @param string $completeRoute
+     * @param string $httpMethod
      * @return Route
      */
-    public function find($completeRoute)
+    public function find($completeRoute, $httpMethod)
     {
         $matches = null;
 
         foreach ($this->routes as $key => $route) {
+            // if the requested route is not supported by the current route object
+            if (!in_array($httpMethod, $route->getHttpMethods())) {
+                continue;
+            }
+
             $params = $route->getParams();
 
             // add () around each of the route param regex patterns

@@ -30,7 +30,7 @@ return [
         return new RestfulController($services->get(ExampleRestfulHelper::class), $services->get(ExampleRestfulServices::ROUTE_INFO), $services->get(Service::ROUTE_PARAMS));
     },
     ExampleRestfulHelper::class => function(array $settings, Services $services) {
-        return new ExampleRestfulHelper($services->get(Service::QUERY));
+        return new ExampleRestfulHelper($services->get(Service::POST));
     },
     ExampleRestfulServices::ROUTE_INFO => function(array $settings, Services $services) {
         return new RestfulRouteInfo(ExampleRestfulHelper::ID);
