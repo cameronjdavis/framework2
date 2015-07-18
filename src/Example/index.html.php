@@ -4,6 +4,8 @@ $routeParams = $router->generate(ExampleRoutes::ROUTE_PARAMS, ['intParam' => 55,
 $deleteRoute = $router->generate(ExampleRestfulRoutes::DELETE, [Framework2\Example\ExampleRestfulHelper::ID => 44]);
 $createRoute = $router->generate(ExampleRestfulRoutes::CREATE) . '&' . Framework2\Example\ExampleRestfulHelper::PROP_1 . '=example prop1 value';
 $getRoute = $router->generate(ExampleRestfulRoutes::GET, [Framework2\Example\ExampleRestfulHelper::ID => 123]);
+$getMultiple = $router->generate(ExampleRestfulRoutes::GET_MULTIPLE);
+$updateRoute = $router->generate(ExampleRestfulRoutes::UPDATE, [Framework2\Example\ExampleRestfulHelper::ID => 123]) . '&' . Framework2\Example\ExampleRestfulHelper::PROP_1 . '=updated value';
 ?>
 <h1>Framework2 Quick Start Guide</h1>
 
@@ -19,6 +21,8 @@ $getRoute = $router->generate(ExampleRestfulRoutes::GET, [Framework2\Example\Exa
             <li><a href="?r=<?= $deleteRoute ?>">Delete</a></li>
             <li><a href="?r=<?= $createRoute ?>">Create</a></li>
             <li><a href="?r=<?= $getRoute ?>">Get</a></li>
+            <li><a href="?r=<?= $getMultiple ?>">Get multiple</a></li>
+            <li><a href="?r=<?= $updateRoute ?>">Update</a></li>
         </ul>
     </li>
 </ul>

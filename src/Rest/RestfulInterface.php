@@ -15,4 +15,8 @@ interface RestfulInterface
     public function create();
 
     public function get($id);
+    
+    public function getMultiple();
+    
+    public function update();
 }

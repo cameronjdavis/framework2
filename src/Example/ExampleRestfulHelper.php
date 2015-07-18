@@ -29,7 +29,9 @@ class ExampleRestfulHelper implements RestfulInterface
 
     public function delete($id)
     {
-        // @todo
+        // nothing to delete in this example
+
+        return true;
     }
 
     /**
@@ -41,5 +43,26 @@ class ExampleRestfulHelper implements RestfulInterface
         return (new ExampleRestfulObject())
                         ->setId($id)
                         ->setProp1('sample value');
+    }
+
+    public function getMultiple()
+    {
+        $object1 = (new ExampleRestfulObject())
+                ->setId(23)
+                ->setProp1('value 1');
+
+        $object2 = (new ExampleRestfulObject())
+                ->setId(24)
+                ->setProp1('value 2');
+
+        return [$object1, $object2];
+    }
+
+    public function update()
+    {
+        $object = $this->get(765);
+
+        return $object->setProp1(
+                        $this->input->get(self::PROP_1));
     }
 }

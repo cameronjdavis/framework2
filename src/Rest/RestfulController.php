@@ -35,9 +35,7 @@ class RestfulController
     {
         $id = $this->routeParams->getInt($this->routeInfo->getIdName());
 
-        $this->restful->delete($id);
-        
-        echo json_encode($id);
+        echo json_encode($this->restful->delete($id));
     }
 
     public function create()
@@ -50,5 +48,17 @@ class RestfulController
         $id = $this->routeParams->getInt($this->routeInfo->getIdName());
 
         echo json_encode($this->restful->get($id));
+    }
+
+    public function getMultiple()
+    {
+        echo json_encode($this->restful->getMultiple());
+    }
+
+    public function update()
+    {
+        $id = $this->routeParams->getInt($this->routeInfo->getIdName());
+
+        echo json_encode($this->restful->update($id));
     }
 }
