@@ -15,6 +15,9 @@ class ExampleRestfulHelper implements CrudInterface
      */
     private $input;
 
+    /**
+     * @param Input $input Input channel to read values during create/update.
+     */
     public function __construct(Input $input)
     {
         $this->input = $input;
