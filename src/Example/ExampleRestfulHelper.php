@@ -3,10 +3,10 @@
 namespace Framework2\Example;
 
 use Framework2\Input;
-use Framework2\Rest\RestfulInterface;
+use Framework2\Rest\CrudInterface;
 use Framework2\Example\ExampleRestfulObject;
 
-class ExampleRestfulHelper implements RestfulInterface
+class ExampleRestfulHelper implements CrudInterface
 {
     const ID = 'example_id';
     const PROP_1 = 'prop1';
@@ -40,7 +40,8 @@ class ExampleRestfulHelper implements RestfulInterface
      */
     public function get($id)
     {
-        return (new ExampleRestfulObject())
+        return $id == 666 ? null :
+        (new ExampleRestfulObject())
                         ->setId($id)
                         ->setProp1('sample value');
     }

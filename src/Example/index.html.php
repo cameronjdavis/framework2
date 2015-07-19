@@ -4,6 +4,7 @@ $routeParams = $router->generate(ExampleRoutes::ROUTE_PARAMS, ['intParam' => 55,
 $deleteRoute = $router->generate(ExampleRestfulRoutes::DELETE, [Framework2\Example\ExampleRestfulHelper::ID => 44]);
 $createRoute = $router->generate(ExampleRestfulRoutes::CREATE);
 $getRoute = $router->generate(ExampleRestfulRoutes::GET, [Framework2\Example\ExampleRestfulHelper::ID => 123]);
+$getNonRoute = $router->generate(ExampleRestfulRoutes::GET, [Framework2\Example\ExampleRestfulHelper::ID => 666]);
 $getMultiple = $router->generate(ExampleRestfulRoutes::GET_MULTIPLE);
 $updateRoute = $router->generate(ExampleRestfulRoutes::UPDATE, [Framework2\Example\ExampleRestfulHelper::ID => 123]);
 ?>
@@ -23,6 +24,7 @@ $updateRoute = $router->generate(ExampleRestfulRoutes::UPDATE, [Framework2\Examp
                 </form>
             </li>
             <li><a href="?r=<?= $getRoute ?>">Get via GET</a></li>
+            <li><a href="?r=<?= $getNonRoute ?>">Get non-existent resource</a></li>
             <li><a href="?r=<?= $getMultiple ?>">Get multiple via GET</a></li>
             <li>
                 <form action="?r=<?= $updateRoute ?>" method="POST">

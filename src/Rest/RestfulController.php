@@ -10,9 +10,9 @@ use Framework2\Input;
 class RestfulController
 {
     /**
-     * @var RestfulInterface
+     * @var CrudInterface
      */
-    private $restful;
+    private $crud;
 
     /**
      * @var Input
@@ -24,9 +24,10 @@ class RestfulController
      */
     private $routeInfo;
 
-    public function __construct(RestfulInterface $restful, RestfulRouteInfo $routeInfo, Input $routeParams)
+    public function __construct(CrudInterface $crud,
+            RestfulRouteInfo $routeInfo, Input $routeParams)
     {
-        $this->restful = $restful;
+        $this->crud = $crud;
         $this->routeParams = $routeParams;
         $this->routeInfo = $routeInfo;
     }
@@ -35,31 +36,33 @@ class RestfulController
     {
         $id = $this->routeParams->getInt($this->routeInfo->getIdName());
 
-        $this->render($this->restful->delete($id));
+        $this->render($this->crud->delete($id));
     }
 
     public function create()
     {
-        $this->render($this->restful->create());
+        $this->render($this->crud->create());
     }
 
     public function get()
     {
         $id = $this->routeParams->getInt($this->routeInfo->getIdName());
 
-        $this->render($this->restful->get($id));
+        $object = $this->crud->get($id);
+
+        $this->render($object, $object ? 200 : 404);
     }
 
     public function getMultiple()
     {
-        $this->render($this->restful->getMultiple());
+        $this->render($this->crud->getMultiple());
     }
 
     public function update()
     {
         $id = $this->routeParams->getInt($this->routeInfo->getIdName());
 
-        $this->render($this->restful->update($id));
+        $this->render($this->crud->update($id));
     }
 
     /**
@@ -67,8 +70,10 @@ class RestfulController
      * @param mixed $data
      * @return string
      */
-    public function render($data)
+    public function render($data, $code = 200)
     {
+        http_response_code($code);
+
         header('Content-Type: application/json');
 
         echo json_encode($data, JSON_PRETTY_PRINT);

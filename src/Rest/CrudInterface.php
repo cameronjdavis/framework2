@@ -3,11 +3,14 @@
 namespace Framework2\Rest;
 
 /**
- * A class that implements this interface can
- * perform normally RESTful actions like.
- * E.g. Create, get, delete.
+ * A CrudInterface provides methods to
+ * - create
+ * - read
+ * - update
+ * - delete
+ * a stored record.
  */
-interface RestfulInterface
+interface CrudInterface
 {
 
     public function delete($id);
@@ -15,8 +18,8 @@ interface RestfulInterface
     public function create();
 
     public function get($id);
-    
+
     public function getMultiple();
-    
+
     public function update($id);
 }
