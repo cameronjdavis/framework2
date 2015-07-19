@@ -5,7 +5,7 @@ namespace Framework2\Rest;
 use Framework2\Input;
 
 /**
- * Entry point for RESTful actions.
+ * Entry points for performing CRUD operations.
  */
 class CrudController
 {
