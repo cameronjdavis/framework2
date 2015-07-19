@@ -7,7 +7,7 @@ use Framework2\Input;
 /**
  * Entry point for RESTful actions.
  */
-class RestfulController
+class CrudController
 {
     /**
      * @var CrudInterface
