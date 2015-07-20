@@ -8,8 +8,22 @@ namespace Framework2;
  */
 class Services
 {
+    /**
+     * Array of created services
+     * @var array
+     */
     private $instances;
+
+    /**
+     * Multi-dimensional array of config settings
+     * @var array
+     */
     private $settings;
+
+    /**
+     * Array of anonymous functions that create services, keyed ons ervice name
+     * @var array
+     */
     private $services;
 
     /**
@@ -18,8 +32,8 @@ class Services
     private $routes;
 
     /**
-     * @param array $settings
-     * @param array $services
+     * @param array $settings Multi-dimensional array of config settings
+     * @param array $services Array of anonymous functions that create services, keyed ons ervice name
      * @param Routing\Route[] $routes
      */
     public function __construct(array $settings, array $services, array $routes)

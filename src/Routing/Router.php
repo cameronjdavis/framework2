@@ -34,7 +34,7 @@ class Router
         $matches = null;
 
         foreach ($this->routes as $key => $route) {
-            // if the requested route is not supported by the current route object
+            // if the HTTP method is not supported by the current route object
             if (!in_array($httpMethod, $route->getHttpMethods())) {
                 continue;
             }
