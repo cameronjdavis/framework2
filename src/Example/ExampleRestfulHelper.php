@@ -59,10 +59,14 @@ class ExampleRestfulHelper implements CrudInterface
      */
     public function get($id)
     {
-        return $id == 666 ? null :
-                (new ExampleRestfulObject())
-                        ->setId($id)
-                        ->setProp1('sample value');
+        if ($id == 666) {
+            $this->errors->addError('ERR_003',
+                    "Record could not be found. ID: {$id}");
+        } else {
+            return (new ExampleRestfulObject())
+                            ->setId($id)
+                            ->setProp1('sample value');
+        }
     }
 
     public function getMultiple()

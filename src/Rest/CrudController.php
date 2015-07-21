@@ -3,7 +3,7 @@
 namespace Framework2\Rest;
 
 use Framework2\Input;
-use Framework2\ErrorBuffer;
+use Framework2\Rest\JsonResponder;
 
 /**
  * Entry points for performing CRUD operations.
@@ -26,29 +26,30 @@ class CrudController
     private $routeInfo;
 
     /**
-     * @var ErrorBuffer
+     * @var JsonResponder
      */
-    private $errors;
+    private $responder;
 
     public function __construct(CrudInterface $crud,
-            RestfulRouteInfo $routeInfo, Input $routeParams, ErrorBuffer $errors)
+            RestfulRouteInfo $routeInfo, Input $routeParams,
+            JsonResponder $responder)
     {
         $this->crud = $crud;
         $this->routeParams = $routeParams;
         $this->routeInfo = $routeInfo;
-        $this->errors = $errors;
+        $this->responder = $responder;
     }
 
     public function delete()
     {
         $id = $this->routeParams->getInt($this->routeInfo->getIdName());
 
-        $this->respond($this->crud->delete($id));
+        $this->responder->respond($this->crud->delete($id));
     }
 
     public function create()
     {
-        $this->respond($this->crud->create());
+        $this->responder->respond($this->crud->create());
     }
 
     public function get()
@@ -57,34 +58,18 @@ class CrudController
 
         $object = $this->crud->get($id);
 
-        $this->respond($object, $object ? 200 : 404);
+        $this->responder->respond($object);
     }
 
     public function getMultiple()
     {
-        $this->respond($this->crud->getMultiple());
+        $this->responder->respond($this->crud->getMultiple());
     }
 
     public function update()
     {
         $id = $this->routeParams->getInt($this->routeInfo->getIdName());
 
-        $this->respond($this->crud->update($id));
-    }
-
-    public function respond($data, $code = 200)
-    {
-        // if any errors have been recorded
-        if ($this->errors->hasErrors()) {
-            $errors = new \stdClass();
-            $errors->erorrs = $this->errors->getErrors();
-            // override the response with the errors
-            $data = $errors;
-            $code = 400;
-        }
-
-        http_response_code($code);
-        header('Content-Type: application/json');
-        echo json_encode($data, JSON_PRETTY_PRINT);
+        $this->responder->respond($this->crud->update($id));
     }
 }
