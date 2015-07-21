@@ -3,6 +3,7 @@
 namespace Framework2\Rest;
 
 use Framework2\Input;
+use Framework2\ErrorBuffer;
 
 /**
  * Entry points for performing CRUD operations.
@@ -24,24 +25,30 @@ class CrudController
      */
     private $routeInfo;
 
+    /**
+     * @var ErrorBuffer
+     */
+    private $errors;
+
     public function __construct(CrudInterface $crud,
-            RestfulRouteInfo $routeInfo, Input $routeParams)
+            RestfulRouteInfo $routeInfo, Input $routeParams, ErrorBuffer $errors)
     {
         $this->crud = $crud;
         $this->routeParams = $routeParams;
         $this->routeInfo = $routeInfo;
+        $this->errors = $errors;
     }
 
     public function delete()
     {
         $id = $this->routeParams->getInt($this->routeInfo->getIdName());
 
-        $this->render($this->crud->delete($id));
+        $this->respond($this->crud->delete($id));
     }
 
     public function create()
     {
-        $this->render($this->crud->create());
+        $this->respond($this->crud->create());
     }
 
     public function get()
@@ -50,32 +57,34 @@ class CrudController
 
         $object = $this->crud->get($id);
 
-        $this->render($object, $object ? 200 : 404);
+        $this->respond($object, $object ? 200 : 404);
     }
 
     public function getMultiple()
     {
-        $this->render($this->crud->getMultiple());
+        $this->respond($this->crud->getMultiple());
     }
 
     public function update()
     {
         $id = $this->routeParams->getInt($this->routeInfo->getIdName());
 
-        $this->render($this->crud->update($id));
+        $this->respond($this->crud->update($id));
     }
 
-    /**
-     * Render $data as a JSON string.
-     * @param mixed $data
-     * @return string
-     */
-    public function render($data, $code = 200)
+    public function respond($data, $code = 200)
     {
+        // if any errors have been recorded
+        if ($this->errors->hasErrors()) {
+            $errors = new \stdClass();
+            $errors->erorrs = $this->errors->getErrors();
+            // override the response with the errors
+            $data = $errors;
+            $code = 400;
+        }
+
         http_response_code($code);
-
         header('Content-Type: application/json');
-
         echo json_encode($data, JSON_PRETTY_PRINT);
     }
 }

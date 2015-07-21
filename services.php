@@ -45,6 +45,9 @@ return [
     Service::POST => function(array $settings, Services $services) {
         return new Input($_POST);
     },
+    \Framework2\ErrorBuffer::class => function(array $settings, Services $services) {
+        return new \Framework2\ErrorBuffer();
+    },
     Framework2\Controller\Index::class => function(array $settings, Services $services) {
         return new Framework2\Controller\Index($services->get(PageBuilder::class), $services->get(Renderer::class));
     },

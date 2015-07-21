@@ -32,6 +32,12 @@ $updateRoute = $router->generate(ExampleRestfulRoutes::UPDATE, [Framework2\Examp
                     <input type="submit" value="Update via POST">
                 </form>
             </li>
+            <li>
+                <form action="?r=<?= $createRoute ?>" method="POST">
+                    <input name="<?= Framework2\Example\ExampleRestfulHelper::PROP_1 ?>" value="bad value">
+                    <input type="submit" value="Bad input causes error">
+                </form>
+            </li>
         </ul>
     </li>
 </ul>

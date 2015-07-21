@@ -5,6 +5,7 @@ namespace Framework2\Example;
 use Framework2\Input;
 use Framework2\Rest\CrudInterface;
 use Framework2\Example\ExampleRestfulObject;
+use Framework2\ErrorBuffer;
 
 class ExampleRestfulHelper implements CrudInterface
 {
@@ -16,18 +17,33 @@ class ExampleRestfulHelper implements CrudInterface
     private $input;
 
     /**
-     * @param Input $input Input channel to read values during create/update.
+     * @var ErrorBuffer
      */
-    public function __construct(Input $input)
+    private $errors;
+
+    /**
+     * @param Input $input Input channel to read values during create/update.
+     * @param ErrorBuffer $errors
+     */
+    public function __construct(Input $input, ErrorBuffer $errors)
     {
         $this->input = $input;
+        $this->errors = $errors;
     }
 
     public function create()
     {
+        if ($this->input->get(self::PROP_1) == 'bad value') {
+            $this->errors->addError('ERR_001', 'You specified a bad value.');
+            $this->errors->addError('ERR_002', 'Thank you, come again.');
+
+            return;
+        }
+
         return (new ExampleRestfulObject())
                         ->setId(999)
-                        ->setProp1($this->input->get(self::PROP_1, 'default prop 1'));
+                        ->setProp1($this->input->get(self::PROP_1,
+                                        'default prop 1'));
     }
 
     public function delete($id)
@@ -44,7 +60,7 @@ class ExampleRestfulHelper implements CrudInterface
     public function get($id)
     {
         return $id == 666 ? null :
-        (new ExampleRestfulObject())
+                (new ExampleRestfulObject())
                         ->setId($id)
                         ->setProp1('sample value');
     }
