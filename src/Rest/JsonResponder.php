@@ -2,7 +2,7 @@
 
 namespace Framework2\Rest;
 
-use Framework2\ErrorBuffer;
+use Framework2\Error\ErrorBuffer;
 
 /**
  * Render a JSON HTTP response.
@@ -32,11 +32,16 @@ class JsonResponder
     {
         // if any errors have been recorded
         if ($this->errors->hasErrors()) {
-            $errors = new \stdClass();
-            $errors->erorrs = $this->errors->getErrors();
             // override the response with the errors
-            $data = $errors;
             $code = 400;
+
+            $data = new \stdClass();
+            foreach ($this->errors->getErrors() as $error) {
+                $jsonError = new \stdClass();
+                $jsonError->code = $error->getCode();
+                $jsonError->message = $error->getMessage();
+                $data->errors[] = $jsonError;
+            }
         }
 
         http_response_code($code);

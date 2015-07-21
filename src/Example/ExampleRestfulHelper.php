@@ -5,7 +5,7 @@ namespace Framework2\Example;
 use Framework2\Input;
 use Framework2\Rest\CrudInterface;
 use Framework2\Example\ExampleRestfulObject;
-use Framework2\ErrorBuffer;
+use Framework2\Error\ErrorBuffer;
 
 class ExampleRestfulHelper implements CrudInterface
 {

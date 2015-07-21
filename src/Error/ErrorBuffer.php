@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework2;
+namespace Framework2\Error;
 
 /**
  * A buffer for error messages.
@@ -8,7 +8,7 @@ namespace Framework2;
 class ErrorBuffer
 {
     /**
-     * @var string[]
+     * @var Error[]
      */
     private $errors = [];
 
@@ -20,14 +20,14 @@ class ErrorBuffer
      */
     public function addError($code, $error)
     {
-        $this->errors[$code] = $error;
+        $this->errors[] = new Error($code, $error);
 
         return $this;
     }
 
     /**
      * Get the buffered errors.
-     * @return string[]
+     * @return Error[]
      */
     public function getErrors()
     {

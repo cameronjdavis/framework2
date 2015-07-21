@@ -27,13 +27,13 @@ return [
         return new \Framework2\Example\ConfigExample($services->get(ExampleSettingUser::class), $services->get(\Framework2\Templating\PageBuilder::class), $services->get(\Framework2\Templating\PageBuilder::class));
     },
     \Framework2\Rest\JsonResponder::class => function(array $settings, Services $services) {
-        return new \Framework2\Rest\JsonResponder($services->get(\Framework2\ErrorBuffer::class));
+        return new \Framework2\Rest\JsonResponder($services->get(\Framework2\Error\ErrorBuffer::class));
     },
     ExampleRestfulServices::CONTROLLER => function(array $settings, Services $services) {
         return new CrudController($services->get(ExampleRestfulHelper::class), $services->get(ExampleRestfulServices::ROUTE_INFO), $services->get(Service::ROUTE_PARAMS), $services->get(\Framework2\Rest\JsonResponder::class));
     },
     ExampleRestfulHelper::class => function(array $settings, Services $services) {
-        return new ExampleRestfulHelper($services->get(Service::POST), $services->get(\Framework2\ErrorBuffer::class));
+        return new ExampleRestfulHelper($services->get(Service::POST), $services->get(\Framework2\Error\ErrorBuffer::class));
     },
     ExampleRestfulServices::ROUTE_INFO => function(array $settings, Services $services) {
         return new RestfulRouteInfo(ExampleRestfulHelper::ID);
