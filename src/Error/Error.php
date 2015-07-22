@@ -2,6 +2,10 @@
 
 namespace Framework2\Error;
 
+/**
+ * An error consisting of a short error code
+ * and a descriptive message.
+ */
 class Error
 {
     /**

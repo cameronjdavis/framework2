@@ -3,7 +3,7 @@
 namespace Framework2\Error;
 
 /**
- * A buffer for error messages.
+ * An in-memory buffer for error messages.
  */
 class ErrorBuffer
 {
