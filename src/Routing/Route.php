@@ -63,14 +63,16 @@ class Route
      * @param string $service Name of service to load to fulfill this route.
      * @param string $method Name of method in Controller service. E.g. showUser().
      * @param array $params Associative array of route param regexes keyed on route name. E.g. ['userId' => '\d+'].
+     * @param string[] $httpMethods Array of HTTP methods this routes allows
      */
-    public function __construct($pattern, $service, $method, array $params = [])
+    public function __construct($pattern, $service, $method, array $params = [],
+            array $httpMethods = [self::GET, self::POST])
     {
         $this->pattern = $pattern;
         $this->service = $service;
         $this->method = $method;
         $this->params = $params;
-        $this->httpMethods = [self::GET, self::POST];
+        $this->httpMethods = $httpMethods;
     }
 
     /**
@@ -121,8 +123,8 @@ class Route
     }
 
     /**
-     * Set the HTTP rquest methods this route uses.
-     * @param string[] $methods
+     * Set the HTTP request methods this route uses.
+     * @param string[] $methods E.g. ['GET', 'POST']
      * @return \Framework2\Routing\Route
      */
     public function setHttpMethods($methods)

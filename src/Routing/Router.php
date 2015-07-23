@@ -2,6 +2,11 @@
 
 namespace Framework2\Routing;
 
+/**
+ * Map a route string to its matching route object,
+ * and generate complete route strings by looking up
+ * a Route object and applying route params.
+ */
 class Router
 {
     /**
@@ -34,7 +39,7 @@ class Router
         $matches = null;
 
         foreach ($this->routes as $key => $route) {
-            // if the requested route is not supported by the current route object
+            // if the requested HTTP method is not supported by the current route object
             if (!in_array($httpMethod, $route->getHttpMethods())) {
                 continue;
             }
@@ -68,7 +73,7 @@ class Router
     /**
      * Lookup a route with $routeKey and fill in its
      * route param placeholders with values from $params
-     * @param string $routeKey
+     * @param string $routeKey Name of the route
      * @param array $params Keyed on route param name
      * @return string Complete route
      */
