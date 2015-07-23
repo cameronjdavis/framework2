@@ -25,31 +25,31 @@ class Service
 }
 
 return [
-    Router::class => function(array $config, Services $services) {
-        return new Router($services->getRoutes());
+    Router::class => function(array $config, Services $s) {
+        return new Router($s->getRoutes());
     },
-    Renderer::class => function(array $config, Services $services) {
+    Renderer::class => function(array $config, Services $s) {
         return (new Renderer())
-                        ->addRenderingParam('router', $services->get(Router::class));
+                        ->addRenderingParam('router', $s->get(Router::class));
     },
-    PageBuilder::class => function(array $config, Services $services) {
+    PageBuilder::class => function(array $config, Services $s) {
         return new PageBuilder(
-                $config[\Config::TEMPLATES][\Config::BASE_PAGE], $services->get(Renderer::class));
+                $config[\Config::TEMPLATES][\Config::BASE_PAGE], $s->get(Renderer::class));
     },
-    Service::QUERY => function(array $config, Services $services) {
+    Service::QUERY => function(array $config, Services $s) {
         return new Input($_GET);
     },
-    Service::ROUTE_PARAMS => function(array $config, Services $services) {
-        return new Input($services->get(Router::class)->getParams());
+    Service::ROUTE_PARAMS => function(array $config, Services $s) {
+        return new Input($s->get(Router::class)->getParams());
     },
-    Service::POST => function(array $config, Services $services) {
+    Service::POST => function(array $config, Services $s) {
         return new Input($_POST);
     },
-    \Framework2\Error\ErrorBuffer::class => function(array $config, Services $services) {
+    \Framework2\Error\ErrorBuffer::class => function(array $config, Services $s) {
         return new \Framework2\Error\ErrorBuffer();
     },
-    Framework2\Controller\Index::class => function(array $config, Services $services) {
-        return new Framework2\Controller\Index($services->get(PageBuilder::class), $services->get(Renderer::class));
+    Framework2\Controller\Index::class => function(array $config, Services $s) {
+        return new Framework2\Controller\Index($s->get(PageBuilder::class), $s->get(Renderer::class));
     },
         ] + array_merge(require_once('../src/Example/services.php'));
 

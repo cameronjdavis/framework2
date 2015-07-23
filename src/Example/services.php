@@ -13,29 +13,29 @@ class ExampleRestfulServices
 }
 
 return [
-    ExampleSettingUser::class => function(array $config, Services $services) {
+    ExampleSettingUser::class => function(array $config, Services $s) {
         return new ExampleSettingUser(
                 $config[ExampleConfig::EXAMPLE_SETTING]);
     },
-    \Framework2\Example\QueryString::class => function(array $config, Services $services) {
-        return new \Framework2\Example\QueryString($services->get(Service::QUERY), $services->get(\Framework2\Templating\PageBuilder::class));
+    \Framework2\Example\QueryString::class => function(array $config, Services $s) {
+        return new \Framework2\Example\QueryString($s->get(Service::QUERY), $s->get(\Framework2\Templating\PageBuilder::class));
     },
-    \Framework2\Example\RouteParams::class => function(array $config, Services $services) {
-        return new \Framework2\Example\RouteParams($services->get(Framework2\Routing\Router::class), $services->get(\Framework2\Templating\PageBuilder::class), $services->get(Service::ROUTE_PARAMS));
+    \Framework2\Example\RouteParams::class => function(array $config, Services $s) {
+        return new \Framework2\Example\RouteParams($s->get(Framework2\Routing\Router::class), $s->get(\Framework2\Templating\PageBuilder::class), $s->get(Service::ROUTE_PARAMS));
     },
-    \Framework2\Example\ConfigExample::class => function(array $config, Services $services) {
-        return new \Framework2\Example\ConfigExample($services->get(ExampleSettingUser::class), $services->get(\Framework2\Templating\PageBuilder::class), $services->get(\Framework2\Templating\PageBuilder::class));
+    \Framework2\Example\ConfigExample::class => function(array $config, Services $s) {
+        return new \Framework2\Example\ConfigExample($s->get(ExampleSettingUser::class), $s->get(\Framework2\Templating\PageBuilder::class), $s->get(\Framework2\Templating\PageBuilder::class));
     },
-    \Framework2\Rest\JsonResponder::class => function(array $config, Services $services) {
-        return new \Framework2\Rest\JsonResponder($services->get(\Framework2\Error\ErrorBuffer::class));
+    \Framework2\Rest\JsonResponder::class => function(array $config, Services $s) {
+        return new \Framework2\Rest\JsonResponder($s->get(\Framework2\Error\ErrorBuffer::class));
     },
-    ExampleRestfulServices::CONTROLLER => function(array $config, Services $services) {
-        return new CrudController($services->get(ExampleRestfulHelper::class), $services->get(ExampleRestfulServices::ROUTE_INFO), $services->get(Service::ROUTE_PARAMS), $services->get(\Framework2\Rest\JsonResponder::class));
+    ExampleRestfulServices::CONTROLLER => function(array $config, Services $s) {
+        return new CrudController($s->get(ExampleRestfulHelper::class), $s->get(ExampleRestfulServices::ROUTE_INFO), $s->get(Service::ROUTE_PARAMS), $s->get(\Framework2\Rest\JsonResponder::class));
     },
-    ExampleRestfulHelper::class => function(array $config, Services $services) {
-        return new ExampleRestfulHelper($services->get(Service::POST), $services->get(\Framework2\Error\ErrorBuffer::class));
+    ExampleRestfulHelper::class => function(array $config, Services $s) {
+        return new ExampleRestfulHelper($s->get(Service::POST), $s->get(\Framework2\Error\ErrorBuffer::class));
     },
-    ExampleRestfulServices::ROUTE_INFO => function(array $config, Services $services) {
+    ExampleRestfulServices::ROUTE_INFO => function(array $config, Services $s) {
         return new RestfulRouteInfo(ExampleRestfulHelper::ID);
     },
 ];
