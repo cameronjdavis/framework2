@@ -8,8 +8,22 @@ namespace Framework2;
  */
 class Services
 {
+    /**
+     * Array of instantiated services, keyed on service name
+     * @var mixed[]
+     */
     private $instances;
-    private $settings;
+    
+    /**
+     * Multidimensional array of config settings
+     * @var array
+     */
+    private $config;
+    
+    /**
+     * Array of callable functions that create services, keyed on service name.
+     * @var callable[]
+     */
     private $services;
 
     /**
@@ -18,13 +32,13 @@ class Services
     private $routes;
 
     /**
-     * @param array $settings
-     * @param array $services
+     * @param array $config Multidimensional array of config settings
+     * @param array $services Array of callable functions that create services, keyed on service name.
      * @param Routing\Route[] $routes
      */
-    public function __construct(array $settings, array $services, array $routes)
+    public function __construct(array $config, array $services, array $routes)
     {
-        $this->settings = $settings;
+        $this->config = $config;
         $this->services = $services;
         $this->routes = $routes;
     }
@@ -52,7 +66,7 @@ class Services
     {
         $serviceCallback = $this->services[$key];
 
-        return $serviceCallback($this->settings, $this);
+        return $serviceCallback($this->config, $this);
     }
 
     /**
