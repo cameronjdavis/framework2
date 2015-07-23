@@ -58,7 +58,7 @@ class CrudController
 
         $object = $this->crud->get($id);
 
-        $this->responder->respond($object);
+        $this->responder->respond($object, $object ? 200 : 404);
     }
 
     public function getMultiple()
