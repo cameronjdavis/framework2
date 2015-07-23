@@ -9,17 +9,33 @@ use Framework2\Error\ErrorBuffer;
  */
 class JsonResponder
 {
+    const ENVELOPE = 'envelope';
     /**
      * @var ErrorBuffer
      */
     private $errors;
 
     /**
-     * @param ErrorBuffer $errors
+     * @var bool
      */
-    public function __construct(ErrorBuffer $errors)
+    private $useEnvelope;
+
+    /**
+     * @var EnvelopeInterface
+     */
+    private $envelope;
+
+    /**
+     * @param ErrorBuffer $errors
+     * @param bool $useEnvelope If true, put response in an envelope
+     * @param EnvelopeInterface $envelope
+     */
+    public function __construct(ErrorBuffer $errors, $useEnvelope,
+            EnvelopeInterface $envelope)
     {
         $this->errors = $errors;
+        $this->useEnvelope = $useEnvelope;
+        $this->envelope = $envelope;
     }
 
     /**
@@ -30,22 +46,27 @@ class JsonResponder
      */
     public function respond($data, $code = 200)
     {
+        $errors = null;
+
         // if any errors have been recorded
         if ($this->errors->hasErrors()) {
             // override the response with the errors
             $code = 400;
 
-            $data = new \stdClass();
+            $errors = [];
             foreach ($this->errors->getErrors() as $error) {
                 $jsonError = new \stdClass();
                 $jsonError->code = $error->getCode();
                 $jsonError->message = $error->getMessage();
-                $data->errors[] = $jsonError;
+                $errors[] = $jsonError;
             }
         }
 
-        http_response_code($code);
+        $response = $this->envelope->putInEnvelope($data, $errors, $code);
+
+        // when using an envelope always respond with 200
+        http_response_code($this->useEnvelope ? 200 : $code);
         header('Content-Type: application/json');
-        echo json_encode($data, JSON_PRETTY_PRINT);
+        echo json_encode($response, JSON_PRETTY_PRINT);
     }
 }

@@ -38,6 +38,13 @@ $updateRoute = $router->generate(ExampleRestfulRoutes::UPDATE, [Framework2\Examp
                     <input type="submit" value="Bad input causes error">
                 </form>
             </li>
+            <li><a href="?r=<?= $getRoute ?>&<?= Framework2\Rest\JsonResponder::ENVELOPE ?>=1">Respond with JSON envelope</a></li>
+            <li>
+                <form action="?r=<?= $createRoute ?>&<?= Framework2\Rest\JsonResponder::ENVELOPE ?>=1" method="POST">
+                    <input name="<?= Framework2\Example\ExampleRestfulHelper::PROP_1 ?>" value="bad value">
+                    <input type="submit" value="Error with JSON envelope">
+                </form>
+            </li>
         </ul>
     </li>
 </ul>
