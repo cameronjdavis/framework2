@@ -33,12 +33,16 @@ return [
                 $s->get(\Framework2\Templating\PageBuilder::class),
                 $s->get(\Framework2\Templating\PageBuilder::class));
     },
+    \Framework2\Error\ErrorFormatter::class => function(array $config, Services $s) {
+        return new \Framework2\Error\ErrorFormatter();
+    },
     \Framework2\Rest\JsonResponder::class => function(array $config, Services $s) {
         $useEnvelope = $s->get(Service::QUERY)->getBool(JsonResponder::ENVELOPE,
                 false);
         $envelope = $useEnvelope ? new Framework2\Rest\Envelope() : new Framework2\Rest\NoEnvelope();
         return new JsonResponder($s->get(\Framework2\Error\ErrorBuffer::class),
-                $useEnvelope, $envelope);
+                $useEnvelope, $envelope,
+                $s->get(\Framework2\Error\ErrorFormatter::class));
     },
     ExampleRestfulServices::CONTROLLER => function(array $config, Services $s) {
         return new CrudController($s->get(ExampleRestfulHelper::class),

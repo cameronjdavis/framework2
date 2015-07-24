@@ -34,7 +34,7 @@ class ExampleRestfulHelper implements CrudInterface
     public function create()
     {
         if ($this->input->get(self::PROP_1) == 'bad value') {
-            $this->errors->addError('ERR_001', 'You specified a bad value.');
+            $this->errors->addError('ERR_001', 'You specified a bad value.', self::PROP_1);
             $this->errors->addError('ERR_002', 'Thank you, come again.');
 
             return;

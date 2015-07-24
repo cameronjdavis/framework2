@@ -3,6 +3,7 @@
 namespace Framework2\Rest;
 
 use Framework2\Error\ErrorBuffer;
+use Framework2\Error\ErrorFormatter;
 
 /**
  * Render a JSON HTTP response.
@@ -26,16 +27,22 @@ class JsonResponder
     private $envelope;
 
     /**
+     * @var ErrorFormatter
+     */
+    private $formatter;
+
+    /**
      * @param ErrorBuffer $errors
      * @param bool $useEnvelope If true, put response in an envelope
      * @param EnvelopeInterface $envelope
      */
     public function __construct(ErrorBuffer $errors, $useEnvelope,
-            EnvelopeInterface $envelope)
+            EnvelopeInterface $envelope, ErrorFormatter $formatter)
     {
         $this->errors = $errors;
         $this->useEnvelope = $useEnvelope;
         $this->envelope = $envelope;
+        $this->formatter = $formatter;
     }
 
     /**
@@ -52,14 +59,7 @@ class JsonResponder
         if ($this->errors->hasErrors()) {
             // override the response with the errors
             $code = 400;
-
-            $errors = [];
-            foreach ($this->errors->getErrors() as $error) {
-                $jsonError = new \stdClass();
-                $jsonError->code = $error->getCode();
-                $jsonError->message = $error->getMessage();
-                $errors[] = $jsonError;
-            }
+            $errors = $this->formatter->formatErrors($this->errors->getErrors());
         }
 
         $response = $this->envelope->putInEnvelope($data, $errors, $code);

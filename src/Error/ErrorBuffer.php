@@ -16,11 +16,12 @@ class ErrorBuffer
      * Add an error to the buffer
      * @param string $code Short error code. E.g. ERR_001.
      * @param string $error Human-readable message
+     * @param string $field Name of the field the error relates to
      * @return ErrorBuffer
      */
-    public function addError($code, $error)
+    public function addError($code, $error, $field = null)
     {
-        $this->errors[] = new Error($code, $error);
+        $this->errors[] = new Error($code, $error, $field);
 
         return $this;
     }

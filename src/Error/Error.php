@@ -19,13 +19,20 @@ class Error
     private $message;
 
     /**
+     * @var string
+     */
+    private $field;
+
+    /**
      * @param string $code Short error code. E.g. ERR_001.
      * @param string $message Human-readable message
+     * @param string $field Name of the field the error relates to
      */
-    public function __construct($code, $message)
+    public function __construct($code, $message, $field = null)
     {
         $this->code = $code;
         $this->message = $message;
+        $this->field = $field;
     }
 
     /**
@@ -44,5 +51,14 @@ class Error
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * Get the name of the field this error relates to.
+     * @return string
+     */
+    public function getField()
+    {
+        return $this->field;
     }
 }
