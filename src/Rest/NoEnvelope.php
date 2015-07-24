@@ -10,7 +10,7 @@ class NoEnvelope implements EnvelopeInterface
 {
 
     /**
-     * Return $errors if there are any of $data if no errors
+     * Returns $errors if there are any or $data if no errors
      * @param mixed $data Response data
      * @param mixed $errors Error data
      * @param int $code

@@ -36,10 +36,13 @@ class ErrorBuffer
 
     /**
      * Empty the buffer.
+     * @return ErrorBuffer
      */
     public function clean()
     {
         $this->errors = [];
+
+        return $this;
     }
 
     /**
