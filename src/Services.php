@@ -9,8 +9,8 @@ namespace Framework2;
 class Services
 {
     /**
-     * Array of instantiated services, keyed on service name
-     * @var mixed[]
+     * Array of callable functions that create services, keyed on service name.
+     * @var callable[]
      */
     private $instances;
     
@@ -19,10 +19,10 @@ class Services
      * @var array
      */
     private $config;
-    
+
     /**
-     * Array of callable functions that create services, keyed on service name.
-     * @var callable[]
+     * Array of anonymous functions that create services, keyed ons ervice name
+     * @var array
      */
     private $services;
 
