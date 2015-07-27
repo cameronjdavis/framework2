@@ -41,6 +41,8 @@ class CrudController
 
         // could use "=== false" but its more cautious to use "!== true"
         if ($authentication->isAuthenticated() !== true) {
+            // @todo: need a better place to send this header
+            header('WWW-Authenticate: Basic realm="My Website"');
             $this->responder->respond(null, Http::NOT_AUTHENTICATED);
             // not allowed to execute any more so exit
             exit;

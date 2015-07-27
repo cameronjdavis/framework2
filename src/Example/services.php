@@ -9,10 +9,9 @@ use Framework2\Rest\RestfulRouteInfo;
 class ExampleRestfulServices
 {
     const CONTROLLER = 'example_restful_controller';
-
     const ROUTE_INFO = 'example_restful_route_info';
-}
 
+}
 return [
     ExampleSettingUser::class => function(array $config, Services $s) {
         return new ExampleSettingUser(
@@ -45,5 +44,8 @@ return [
     },
     ExampleRestfulServices::ROUTE_INFO => function(array $config, Services $s) {
         return new RestfulRouteInfo(ExampleRestfulHelper::ID);
+    },
+    \Framework2\Rest\AuthenticationInterface::class => function(array $config, Services $s) {
+        return new Framework2\Example\ExampleAuthentication($_SERVER);
     },
 ];
