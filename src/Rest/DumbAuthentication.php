@@ -13,11 +13,13 @@ class DumbAuthentication implements AuthenticationInterface
     private $isAuthenticated;
 
     /**
+     * @param string $realm HTTP basic auth realm
      * @param bool $isAuthenticated Value isAuthenticated() will return
      */
-    public function __construct($isAuthenticated = false)
+    public function __construct($realm, $isAuthenticated = false)
     {
         $this->isAuthenticated = $isAuthenticated;
+        $this->realm = $realm;
     }
 
     /**
@@ -27,5 +29,14 @@ class DumbAuthentication implements AuthenticationInterface
     public function isAuthenticated()
     {
         return $this->isAuthenticated;
+    }
+
+    /**
+     * Get the realm this authentication is protecting
+     * @return string
+     */
+    public function getRealm()
+    {
+        return $this->realm;
     }
 }

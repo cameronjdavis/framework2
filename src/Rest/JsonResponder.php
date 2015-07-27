@@ -74,4 +74,14 @@ class JsonResponder
             echo json_encode($response, JSON_PRETTY_PRINT);
         }
     }
+
+    /**
+     * Respond to indicate failure of authentication.
+     * @param string $realm HTTP basic auth realm
+     */
+    public function respondToNotAuthenticated($realm)
+    {
+        http_response_code(Http::NOT_AUTHENTICATED);
+        header("WWW-Authenticate: Basic realm=\"{$realm}\"");
+    }
 }

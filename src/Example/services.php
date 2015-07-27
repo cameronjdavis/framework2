@@ -46,6 +46,6 @@ return [
         return new RestfulRouteInfo(ExampleRestfulHelper::ID);
     },
     \Framework2\Rest\AuthenticationInterface::class => function(array $config, Services $s) {
-        return new Framework2\Example\ExampleAuthentication($_SERVER);
+        return new Framework2\Example\ExampleAuthentication($_SERVER, 'Example Realm');
     },
 ];

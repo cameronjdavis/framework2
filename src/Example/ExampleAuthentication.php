@@ -9,18 +9,27 @@ use Framework2\Rest\AuthenticationInterface;
  */
 class ExampleAuthentication implements AuthenticationInterface
 {
+    const USERNAME = 'user';
+    const PASSWORD = 'secret';
+
     /**
      * @var array
      */
     private $server;
 
     /**
-     *
-     * @param array $server PHP's $_SERVER array
+     * @var string
      */
-    public function __construct(array $server)
+    private $realm;
+
+    /**
+     * @param array $server PHP's $_SERVER array
+     * @param string $realm HTTP basic auth realm
+     */
+    public function __construct(array $server, $realm)
     {
         $this->server = $server;
+        $this->realm = $realm;
     }
 
     /**
@@ -33,6 +42,15 @@ class ExampleAuthentication implements AuthenticationInterface
             return false;
         }
 
-        return $this->server['PHP_AUTH_USER'] == 'user' && $this->server['PHP_AUTH_PW'] == 'secret';
+        return $this->server['PHP_AUTH_USER'] == self::USERNAME && $this->server['PHP_AUTH_PW'] == self::PASSWORD;
+    }
+
+    /**
+     * Get the realm this authentication is protecting
+     * @return string
+     */
+    public function getRealm()
+    {
+        return $this->realm;
     }
 }
