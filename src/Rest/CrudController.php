@@ -10,11 +10,6 @@ use Framework2\Rest\JsonResponder;
  */
 class CrudController
 {
-    const OK = 200;
-    const CREATED = 201;
-    const NO_CONTENT = 204;
-    const NOT_FOUND = 404;
-
     /**
      * @var CrudInterface
      */
@@ -50,12 +45,12 @@ class CrudController
         $id = $this->routeParams->getInt($this->routeInfo->getIdName());
 
         $this->responder->respond(null,
-                $this->crud->delete($id) ? self::NO_CONTENT : self::NOT_FOUND);
+                $this->crud->delete($id) ? Http::NO_CONTENT : Http::NOT_FOUND);
     }
 
     public function create()
     {
-        $this->responder->respond($this->crud->create(), self::CREATED);
+        $this->responder->respond($this->crud->create(), Http::CREATED);
     }
 
     public function get()
@@ -64,8 +59,7 @@ class CrudController
 
         $object = $this->crud->get($id);
 
-        $this->responder->respond($object,
-                $object ? self::OK : self::NOT_FOUND);
+        $this->responder->respond($object, $object ? Http::OK : Http::NOT_FOUND);
     }
 
     public function getMultiple()

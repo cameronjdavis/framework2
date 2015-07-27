@@ -52,21 +52,21 @@ class JsonResponder
      * @param mixed $data Data to be rendered
      * @param int $code HTTP response code
      */
-    public function respond($data, $code = 200)
+    public function respond($data, $code = Http::OK)
     {
         $errors = null;
 
         // if any errors have been recorded
         if ($this->errors->hasErrors()) {
             // override the response with the errors
-            $code = 400;
+            $code = Http::UNPROCESSABLE_ENTITY;
             $errors = $this->formatter->formatErrors($this->errors->getErrors());
         }
 
         $response = $this->envelope->putInEnvelope($data, $errors, $code);
 
         // when using an envelope always respond with 200
-        http_response_code($this->useEnvelope ? 200 : $code);
+        http_response_code($this->useEnvelope ? Http::OK : $code);
         header('Content-Type: application/json');
 
         // if repsonse is null, send nothing so the response is truly empty
