@@ -32,12 +32,18 @@ class CrudController
 
     public function __construct(CrudInterface $crud,
             RestfulRouteInfo $routeInfo, Input $routeParams,
-            JsonResponder $responder)
+            JsonResponder $responder, AuthenticationInterface $authentication)
     {
         $this->crud = $crud;
         $this->routeParams = $routeParams;
         $this->routeInfo = $routeInfo;
         $this->responder = $responder;
+
+        if ($authentication->isAuthenticated() === false) {
+            $this->responder->respond(null, Http::NOT_AUTHENTICATED);
+            // not allowed to execute any more so exit
+            exit;
+        }
     }
 
     public function delete()
