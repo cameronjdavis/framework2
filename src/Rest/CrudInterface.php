@@ -16,7 +16,7 @@ interface CrudInterface
     /**
      * Delete a record.
      * @param int $id
-     * @return bool Always true
+     * @return bool True if resource was found, otherwise false
      */
     public function delete($id);
 

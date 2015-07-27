@@ -67,6 +67,10 @@ class JsonResponder
         // when using an envelope always respond with 200
         http_response_code($this->useEnvelope ? 200 : $code);
         header('Content-Type: application/json');
-        echo json_encode($response, JSON_PRETTY_PRINT);
+
+        // if repsonse is null, send nothing so the response is truly empty
+        if($response !== null){
+            echo json_encode($response, JSON_PRETTY_PRINT);
+        }
     }
 }
