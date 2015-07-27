@@ -39,7 +39,8 @@ class CrudController
         $this->routeInfo = $routeInfo;
         $this->responder = $responder;
 
-        if ($authentication->isAuthenticated() === false) {
+        // could use "=== false" but its more cautious to use "!== true"
+        if ($authentication->isAuthenticated() !== true) {
             $this->responder->respond(null, Http::NOT_AUTHENTICATED);
             // not allowed to execute any more so exit
             exit;
