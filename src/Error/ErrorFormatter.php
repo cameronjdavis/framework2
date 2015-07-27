@@ -3,7 +3,7 @@
 namespace Framework2\Error;
 
 /**
- * Convert one or more Error objects into simeple stdClass
+ * Convert one or more Error objects into simple stdClass
  * objects so they are ready for JSON encoding with json_encode().
  */
 class ErrorFormatter
