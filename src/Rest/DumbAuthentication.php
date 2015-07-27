@@ -3,7 +3,7 @@
 namespace Framework2\Rest;
 
 /**
- * Provides hard-coded authentication with no credential checking.
+ * Hard-coded authentication with no credential checking.
  */
 class DumbAuthentication implements AuthenticationInterface
 {

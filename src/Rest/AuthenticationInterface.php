@@ -2,6 +2,9 @@
 
 namespace Framework2\Rest;
 
+/**
+ * Interface to determine if a request is authenticated or not.
+ */
 interface AuthenticationInterface
 {
 
