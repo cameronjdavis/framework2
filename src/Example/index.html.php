@@ -15,7 +15,7 @@ $updateRoute = $router->generate(ExampleRestfulRoutes::UPDATE, [Framework2\Examp
     <li>Route parameters <a href="?r=<?= $routeParams ?>"><?= $routeParams ?></a></li>
     <li><a href="?r=<?= $router->generate(ExampleRoutes::APP_CONFIG) ?>">Application config</a></li>
     <li>Restful controller examples.<br>
-        Username <strong><?= \Framework2\Example\ExampleAuthentication::USERNAME ?></strong><br>
+        Username <strong><?= \Framework2\Example\ExampleAuthentication::USERNAME ?></strong>
         Password <strong><?= \Framework2\Example\ExampleAuthentication::PASSWORD ?></strong>
         <ul>
             <li><a href="?r=<?= $deleteRoute ?>">Delete via GET</a></li>
