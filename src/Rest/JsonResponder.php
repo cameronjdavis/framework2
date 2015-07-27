@@ -11,6 +11,7 @@ use Framework2\Error\ErrorFormatter;
 class JsonResponder
 {
     const ENVELOPE = 'envelope';
+
     /**
      * @var ErrorBuffer
      */
@@ -69,7 +70,7 @@ class JsonResponder
         header('Content-Type: application/json');
 
         // if repsonse is null, send nothing so the response is truly empty
-        if($response !== null){
+        if ($response !== null) {
             echo json_encode($response, JSON_PRETTY_PRINT);
         }
     }
