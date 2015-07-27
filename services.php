@@ -54,7 +54,7 @@ return [
                 $s->get(Renderer::class));
     },
     \Framework2\Rest\AuthenticationInterface::class => function(array $config, Services $s) {
-        return new \Framework2\Rest\DumbAuthentication(false);
+        return new Framework2\Example\ExampleAuthentication($_SERVER);
     },
     \Framework2\Error\ErrorFormatter::class => function(array $config, Services $s) {
         return new \Framework2\Error\ErrorFormatter();
