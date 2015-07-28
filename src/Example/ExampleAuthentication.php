@@ -11,6 +11,7 @@ class ExampleAuthentication implements AuthenticationInterface
 {
     const USERNAME = 'user';
     const PASSWORD = 'secret';
+    const EXAMPLE_REALM = 'Example realm';
 
     /**
      * @var array
@@ -24,7 +25,7 @@ class ExampleAuthentication implements AuthenticationInterface
 
     /**
      * @param array $server PHP's $_SERVER array
-     * @param string $realm HTTP basic auth realm
+     * @param string $realm Realm this authetnication is protecting
      */
     public function __construct(array $server, $realm)
     {
@@ -38,7 +39,15 @@ class ExampleAuthentication implements AuthenticationInterface
      */
     public function isAuthenticated()
     {
+        // @todo: Here we would load the user from the DB and
+        // 1) Verify the username and password being attempted, and
+        // 2) Verify the user is allowed to acces $this->realm
+        // Simulated realms that the user has access to.
+        $usersRealms = [self::EXAMPLE_REALM];
+
         if (!isset($this->server['PHP_AUTH_USER']) || !isset($this->server['PHP_AUTH_PW'])) {
+            return false;
+        } else if (false == in_array($this->realm, $usersRealms)) {
             return false;
         }
 
@@ -46,7 +55,7 @@ class ExampleAuthentication implements AuthenticationInterface
     }
 
     /**
-     * Get the realm this authentication is protecting
+     * Get the realm this authentication is protecting.
      * @return string
      */
     public function getRealm()
