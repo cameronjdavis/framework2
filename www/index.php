@@ -21,7 +21,8 @@ if ($environment) {
 
     // merge the two service arrays giving precedence to $environmentServices
     $environmentServices = require_once("../services.{$environment}.php");
-    $servicesArray = array_replace_recursive($servicesArray, $environmentServices);
+    $servicesArray = array_replace_recursive($servicesArray,
+            $environmentServices);
 }
 
 $routes = require_once '../routes.php';
@@ -33,9 +34,16 @@ $services = new Framework2\Services($config, $servicesArray, $routes);
 $requestedRoute = $services->get(Service::QUERY)->get('r', Routes::HOME);
 
 // find the route object that matches the requested route
-$route = $services->get(Framework2\Routing\Router::class)->find($requestedRoute, $_SERVER['REQUEST_METHOD']);
+$route = $services->get(Framework2\Routing\Router::class)->find($requestedRoute,
+        $_SERVER['REQUEST_METHOD']);
 
-// call the controller action
-$controller = $route->getServiceName();
-$action = $route->getMethod();
-$services->get($controller)->$action();
+// if a route was found
+if ($route) {
+    // call the controller action
+    $controller = $route->getServiceName();
+    $action = $route->getMethod();
+    $services->get($controller)->$action();
+} else {
+    // no route found so 404
+    http_response_code(404);
+}
