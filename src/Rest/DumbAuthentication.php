@@ -18,8 +18,8 @@ class DumbAuthentication implements AuthenticationInterface
      */
     public function __construct($realm, $isAuthenticated = false)
     {
-        $this->isAuthenticated = $isAuthenticated;
         $this->realm = $realm;
+        $this->isAuthenticated = $isAuthenticated;
     }
 
     /**
