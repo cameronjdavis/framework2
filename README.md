@@ -18,13 +18,15 @@ My attempt to implement a feature-complete framework. Framework1 failed, obvious
 
 * Routing from URI to controller and action. E.g. /user/12 -> UserController::viewUser().
 
+* RESTful JSON-based API.
+
 ## Constraints
 
 * All config can be found in top-level files `config.php`, `services.php`, `routes.php`. No hidden config files.
 
 * Do no more than route, provide access to inputs and simplify output.
 
-* During a request, all actions are performed within the controller selected to fulfill the request. I.e. Once the route is determined from the request, all actions (e.g. authentication, sending headers, echoing content) must be triggered by the controller. This avoids the need for knowledge of hidden processes being triggered outside the chosen controller.
+* Once the route is determined from the request, all actions (e.g. authentication, sending headers, echoing content) must be triggered by the controller. This avoids the need for knowledge of hidden processes being triggered outside the chosen controller.
 
 * No external libraries.
 
