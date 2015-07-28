@@ -16,7 +16,7 @@ My attempt to implement a feature-complete framework. Framework1 failed, obvious
 
 * Environment-specific config and services. E.g. Override authentication while developing.
 
-* Routing from URI to controller and action. E.g. /user/12 -> UserController::viewUser().
+* Routing from URI to controller and action. E.g. `/user/12` -> `UserController::viewUser()`.
 
 * RESTful JSON-based API.
 
