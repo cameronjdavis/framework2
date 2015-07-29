@@ -48,7 +48,8 @@ class Router
 
             // add () around each of the route param regex patterns
             // E.g. \d+ becomes (\d+)
-            array_walk($params, function(&$val) {
+            array_walk($params,
+                    function(&$val) {
                 $val = "({$val})";
             });
 
@@ -85,7 +86,8 @@ class Router
 
         foreach ($route->getParams() as $paramKey => $pattern) {
             // @todo: ensure $params[$paramKey] matches regex in $pattern
-            $generated = str_replace("{{$paramKey}}", $params[$paramKey], $generated);
+            $generated = str_replace("{{$paramKey}}", $params[$paramKey],
+                    $generated);
         }
 
         return $generated;
@@ -99,5 +101,14 @@ class Router
     public function getParams()
     {
         return $this->routeParams;
+    }
+
+    /**
+     * Get the list of available routes.
+     * @return Route[]
+     */
+    public function getRoutes()
+    {
+        return $this->routes;
     }
 }

@@ -32,6 +32,11 @@ class Route
      * HTTP request method
      */
     const DELETE = 'DELETE';
+
+    /**
+     * Request method for console commands
+     */
+    const CONSOLE = 'CONSOLE';
     /**
      * @var string
      */

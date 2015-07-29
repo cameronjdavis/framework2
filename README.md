@@ -20,6 +20,8 @@ My attempt to implement a feature-complete framework. Framework1 failed, obvious
 
 * RESTful JSON-based API.
 
+* Console entry point. E.g. `php console.php routes:list`.
+
 ## Constraints
 
 * All config can be found in top-level files `config.php`, `services.php`, `routes.php`. No hidden config files.
