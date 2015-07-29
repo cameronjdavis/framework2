@@ -10,6 +10,8 @@ My attempt to implement a feature-complete framework. Framework1 failed, obvious
 
 3) View the website in your browser.
 
+You can also run `php console.php`.
+
 ## Features
 
 * Lazy-loading services. Also, controllers are services that are lazy-loaded just like any other service.
@@ -30,7 +32,7 @@ My attempt to implement a feature-complete framework. Framework1 failed, obvious
 
 * Once the route is determined from the request, all actions (e.g. authentication, sending headers, echoing content) must be triggered by the controller. This avoids the need for knowledge of hidden processes being triggered outside the chosen controller.
 
-* No external libraries.
+* No external dependencies.
 
 * Use PHP for config/routes/services. No need for YAML etc.
 
