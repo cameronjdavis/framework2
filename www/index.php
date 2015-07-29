@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is a web-based entry point that gets the route from the query
+ * string and calls the route's controller and action.
+ */
+
 // boot the framework
 require_once '../boot.php';
 
