@@ -7,7 +7,7 @@
 require_once 'boot.php';
 
 // get the requested route from the arguments
-$requestedRoute = $argv[1];
+$requestedRoute = isset($argv[1]) ? $argv[1] : null;
 
 // find the route object that matches the requested route
 // only look for routes that support Route::CONSOLE delivery method
