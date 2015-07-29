@@ -18,7 +18,7 @@ You can also run `php console.php`.
 
 * Environment-specific config and services. E.g. Override authentication while developing.
 
-* Routing from URI to controller and action. E.g. `/user/12` -> `UserController::viewUser()`.
+* Routing from URI to controller and action. E.g. `/users/12` -> `UserController::viewUser()`.
 
 * RESTful JSON-based API.
 
