@@ -22,4 +22,11 @@ class DumbAuthenticationTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $helper->isAuthenticated());
     }
+
+    public function test_getRealm()
+    {
+        $helper = new \Framework2\Rest\DumbAuthentication('test', false);
+
+        $this->assertEquals('test', $helper->getRealm());
+    }
 }
