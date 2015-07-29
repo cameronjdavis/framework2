@@ -25,7 +25,7 @@ class Index
 
     public function home()
     {
-        $fragment = $this->renderer->render('../src/Example/index.html.php');
+        $fragment = $this->renderer->render(ROOT . 'src/Example/index.html.php');
 
         $page = $this->pageBuilder->create()
                 ->setTitle('Framework 2 Quick Start Guide')

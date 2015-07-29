@@ -22,5 +22,5 @@ class Config
 
 return [
     Config::TEMPLATES => [
-        Config::BASE_PAGE => '../template/base.html.php'
-    ]] + require_once('../src/Example/config.php');
+        Config::BASE_PAGE => ROOT . 'template/base.html.php'
+    ]] + require_once(ROOT . 'src/Example/config.php');

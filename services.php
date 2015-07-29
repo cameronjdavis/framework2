@@ -64,5 +64,5 @@ return [
                 $useEnvelope, $envelope,
                 $s->get(\Framework2\Error\ErrorFormatter::class));
     },
-        ] + array_merge(require_once('../src/Example/services.php'));
+        ] + array_merge(require_once(ROOT . 'src/Example/services.php'));
 
