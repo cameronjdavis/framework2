@@ -10,7 +10,7 @@ require_once 'boot.php';
 $requestedRoute = isset($argv[1]) ? $argv[1] : null;
 
 // find the route object that matches the requested route
-// only look for routes that support Route::CONSOLE delivery method
+// only look for routes that support Route::CONSOLE channel
 $route = $services->get(Framework2\Routing\Router::class)->find($requestedRoute,
         Framework2\Routing\Route::CONSOLE);
 
