@@ -31,3 +31,9 @@ My attempt to implement a feature-complete framework. Framework1 failed, obvious
 * No external libraries.
 
 * Use PHP for config/routes/services. No need for YAML etc.
+
+* Lots of testing.
+
+## Tests
+
+Run tests with `phpunit`.
