@@ -4,8 +4,16 @@ namespace Framework2\Commands;
 
 use Framework2\Routing\Router;
 
+/**
+ * Provides a method to display route information.
+ */
 class RouteSummary
 {
+    /**
+     * A mask to print a formatted row.
+     */
+    const MASK = "%-17s %-32s %-15s %-35s %-15s\n";
+
     /**
      * @var Router
      */
@@ -16,16 +24,23 @@ class RouteSummary
         $this->router = $router;
     }
 
+    /**
+     * Echo summary of routes.
+     */
     public function listRoutes()
     {
         $routes = $this->router->getRoutes();
         ksort($routes);
 
+        printf(self::MASK, 'Route key', 'Service name', 'Method', 'Pattern',
+                'Channels');
+        printf(self::MASK, '---------', '------------', '------', '-------',
+                '--------');
+
         foreach ($routes as $key => $route) {
-            echo "{$key}\n";
-            echo "\tService: {$route->getServiceName()}\n";
-            echo "\tMethod: {$route->getMethod()}()\n";
-            echo "\tPattern: {$route->getPattern()}\n";
+            $channels = implode(', ', $route->getHttpMethods());
+            printf(self::MASK, $key, $route->getServiceName(),
+                    $route->getMethod() . '()', $route->getPattern(), $channels);
         }
     }
 }
