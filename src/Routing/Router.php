@@ -20,6 +20,11 @@ class Router
     private $routeParams;
 
     /**
+     * @var string
+     */
+    private $routeKey;
+
+    /**
      * @param Route[] $routes
      */
     public function __construct(array $routes)
@@ -67,6 +72,9 @@ class Router
                 // values come from regex matches for route params.
                 $this->routeParams = array_combine(array_keys($params), $matches);
 
+                // remember the route key for later reference
+                $this->routeKey = $key;
+
                 return $route;
             }
         }
@@ -111,5 +119,14 @@ class Router
     public function getRoutes()
     {
         return $this->routes;
+    }
+
+    /**
+     * Get the route key that was found on the last call of find().
+     * @return string
+     */
+    public function getRouteKey()
+    {
+        return $this->routeKey;
     }
 }

@@ -58,14 +58,20 @@ class Routes
     public function matchRoute()
     {
         $requestedRoute = $this->argv->get(2);
+
+        if(!$requestedRoute){
+            echo "Please specify a route to match. E.g. /users/12.\n";
+        }
+
         $route = $this->router->find($requestedRoute);
 
         if ($route) {
             $channels = implode(', ', $route->getChannels());
-            printf(self::MASK, 'TODO', $route->getServiceName(),
-                    $route->getMethod() . '()', $route->getPattern(), $channels);
+            printf(self::MASK, $this->router->getRouteKey(),
+                    $route->getServiceName(), $route->getMethod() . '()',
+                    $route->getPattern(), $channels);
         } else {
-            echo "No route was found that matches the requested route: {$requestedRoute}\n";
+            echo "No route was found that matches the requested route ({$requestedRoute})\n";
         }
     }
 }
