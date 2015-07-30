@@ -5,9 +5,9 @@ namespace Framework2\Console;
 use Framework2\Routing\Router;
 
 /**
- * Provides a method to display route information.
+ * Provides methods to display route information.
  */
-class RouteSummary
+class Routes
 {
     /**
      * A mask to print a formatted row.
