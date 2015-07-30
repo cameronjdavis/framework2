@@ -10,7 +10,7 @@ My attempt to implement a feature-complete framework. Framework1 failed, obvious
 
 3) View the website in your browser.
 
-You can also run `php console.php`.
+You can also run `./console`.
 
 ## Features
 
