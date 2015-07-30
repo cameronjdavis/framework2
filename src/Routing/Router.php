@@ -40,7 +40,7 @@ class Router
 
         foreach ($this->routes as $key => $route) {
             // if the requested HTTP method is not supported by the current route object
-            if (!in_array($httpMethod, $route->getHttpMethods())) {
+            if (!in_array($httpMethod, $route->getChannels())) {
                 continue;
             }
 

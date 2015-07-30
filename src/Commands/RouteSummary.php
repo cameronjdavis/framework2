@@ -38,7 +38,7 @@ class RouteSummary
                 '--------');
 
         foreach ($routes as $key => $route) {
-            $channels = implode(', ', $route->getHttpMethods());
+            $channels = implode(', ', $route->getChannels());
             printf(self::MASK, $key, $route->getServiceName(),
                     $route->getMethod() . '()', $route->getPattern(), $channels);
         }

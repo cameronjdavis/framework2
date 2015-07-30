@@ -21,7 +21,7 @@ return [
             'rest_example/{' . ExampleRestfulHelper::ID . '}/get', ExampleRestfulServices::CONTROLLER, 'get', [ExampleRestfulHelper::ID => '\d+']),
     ExampleRestfulRoutes::CREATE => (new Route(
             'rest_example/create', ExampleRestfulServices::CONTROLLER, 'create'))
-            ->setHttpMethods([Route::POST]),
+            ->setChannels([Route::POST]),
     ExampleRestfulRoutes::GET_MULTIPLE => new Route(
             'rest_example/get_multiple', ExampleRestfulServices::CONTROLLER, 'getMultiple'),
 ];
