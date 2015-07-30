@@ -18,9 +18,10 @@ class Config
      * Base HTML template used to render a page.
      */
     const BASE_PAGE = 'base_page';
-}
 
+}
 return [
     Config::TEMPLATES => [
         Config::BASE_PAGE => ROOT . 'template/base.html.php'
-    ]] + require_once(ROOT . 'src/Example/config.php');
+    ]] + array_merge(require_once(ROOT . 'src/Console/config.php'),
+                require_once(ROOT . 'src/Example/config.php'));

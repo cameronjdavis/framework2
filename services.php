@@ -64,8 +64,6 @@ return [
                 $useEnvelope, $envelope,
                 $s->get(\Framework2\Error\ErrorFormatter::class));
     },
-    \Framework2\Console\Routes::class => function(array $config, Services $s) {
-        return new \Framework2\Console\Routes($s->get(Router::class));
-    },
-        ] + array_merge(require_once(ROOT . 'src/Example/services.php'));
+        ] + array_merge(require_once(ROOT . 'src/Console/services.php'),
+                require_once(ROOT . 'src/Example/services.php'));
 

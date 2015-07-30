@@ -30,17 +30,18 @@ class Router
     /**
      * Find the Route object for an incoming route string
      * by matching the incoming route with regex.
-     * @param string $completeRoute
-     * @param string $httpMethod
+     * @param string $completeRoute E.g. /users/12.
+     * @param string $channel [Optional] Only consider routes that use this channel.
      * @return Route
      */
-    public function find($completeRoute, $httpMethod)
+    public function find($completeRoute, $channel = null)
     {
         $matches = null;
 
         foreach ($this->routes as $key => $route) {
             // if the requested HTTP method is not supported by the current route object
-            if (!in_array($httpMethod, $route->getChannels())) {
+            // only consider channel if it is set
+            if ($channel && !in_array($channel, $route->getChannels())) {
                 continue;
             }
 

@@ -22,6 +22,6 @@ if ($route) {
     $services->get($controller)->$action();
 } else {
     echo "No route matches '{$requestedRoute}'. Try,\n";
-    echo "php " . basename(__FILE__) . " " . Routes::LIST_ROUTES . "\n";
+    echo "php " . basename(__FILE__) . " " . ConsoleRoutes::LIST_ROUTES . "\n";
     exit(1);
 }
