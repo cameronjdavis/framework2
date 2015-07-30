@@ -35,7 +35,7 @@ return [
                 $s->get(\Framework2\Rest\AuthenticationInterface::class));
     },
     \Framework2\Example\ExampleRestfulHelper::class => function(array $config, Services $s) {
-        return new ExampleRestfulHelper($s->get(Service::POST),
+        return new \Framework2\Example\ExampleRestfulHelper($s->get(Service::POST),
                 $s->get(\Framework2\Error\ErrorBuffer::class));
     },
     ExampleRestfulServices::ROUTE_INFO => function(array $config, Services $s) {
