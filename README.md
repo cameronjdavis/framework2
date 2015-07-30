@@ -22,7 +22,7 @@ You can also run `php console.php`.
 
 * RESTful JSON-based API.
 
-* Console entry point. E.g. `php console.php routes:list`.
+* Console entry point. E.g. `./console routes:list`.
 
 ## Constraints
 

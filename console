@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 
 /**
@@ -21,8 +22,8 @@ if ($route) {
     $action = $route->getMethod();
     $services->get($controller)->$action();
 } else {
-    echo "No route matches '{$requestedRoute}'. Try,\n";
-    echo "php " . basename(__FILE__) . " " . ConsoleRoutes::LIST_ROUTES . "\n";
+    echo "No route matches '{$requestedRoute}'. To see all routes use:\n";
+    echo "./" . basename(__FILE__) . " " . ConsoleRoutes::LIST_ROUTES . "\n";
     echo "Note: Only routes that use the " . Framework2\Routing\Route::CONSOLE . " channel are accessible via the console.\n";
     exit(1);
 }
