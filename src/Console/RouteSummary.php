@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework2\Commands;
+namespace Framework2\Console;
 
 use Framework2\Routing\Router;
 

@@ -14,5 +14,5 @@ return [
             Routes::HOME, Framework2\Controller\Index::class, 'home'),
     Routes::LIST_ROUTES =>
     new Route(
-            Routes::LIST_ROUTES, \Framework2\Commands\RouteSummary::class, 'listRoutes', [], [Route::CONSOLE]),
+            Routes::LIST_ROUTES, \Framework2\Console\RouteSummary::class, 'listRoutes', [], [Route::CONSOLE]),
         ] + array_merge(require_once(ROOT . 'src/Example/routes.php'), require_once(ROOT . 'src/Example/rest_routes.php'));
