@@ -1,10 +1,6 @@
 <?php
 
 use Framework2\Services;
-use Framework2\Templating\PageBuilder;
-use Framework2\Input;
-use Framework2\Templating\Renderer;
-use Framework2\Routing\Router;
 
 class Service
 {
@@ -25,33 +21,33 @@ class Service
 
 }
 return [
-    Router::class => function(array $config, Services $s) {
-        return new Router($s->getRoutes());
+    Framework2\Routing\Router::class => function(array $config, Services $s) {
+        return new Framework2\Routing\Router($s->getRoutes());
     },
-    Renderer::class => function(array $config, Services $s) {
-        return (new Renderer())
-                        ->addRenderingParam('router', $s->get(Router::class));
+    \Framework2\Templating\Renderer::class => function(array $config, Services $s) {
+        return (new \Framework2\Templating\Renderer())
+                        ->addRenderingParam('router', $s->get(Framework2\Routing\Router::class));
     },
-    PageBuilder::class => function(array $config, Services $s) {
-        return new PageBuilder(
+    \Framework2\Templating\PageBuilder::class => function(array $config, Services $s) {
+        return new \Framework2\Templating\PageBuilder(
                 $config[\Config::TEMPLATES][\Config::BASE_PAGE],
-                $s->get(Renderer::class));
+                $s->get(\Framework2\Templating\Renderer::class));
     },
     Service::QUERY => function(array $config, Services $s) {
-        return new Input($_GET);
+        return new \Framework2\Input($_GET);
     },
     Service::ROUTE_PARAMS => function(array $config, Services $s) {
-        return new Input($s->get(Router::class)->getParams());
+        return new \Framework2\Input($s->get(Framework2\Routing\Router::class)->getParams());
     },
     Service::POST => function(array $config, Services $s) {
-        return new Input($_POST);
+        return new \Framework2\Input($_POST);
     },
     \Framework2\Error\ErrorBuffer::class => function(array $config, Services $s) {
         return new \Framework2\Error\ErrorBuffer();
     },
     Framework2\Controller\Index::class => function(array $config, Services $s) {
-        return new Framework2\Controller\Index($s->get(PageBuilder::class),
-                $s->get(Renderer::class));
+        return new Framework2\Controller\Index($s->get(\Framework2\Templating\PageBuilder::class),
+                $s->get(\Framework2\Templating\Renderer::class));
     },
     \Framework2\Error\ErrorFormatter::class => function(array $config, Services $s) {
         return new \Framework2\Error\ErrorFormatter();

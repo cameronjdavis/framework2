@@ -1,10 +1,6 @@
 <?php
 
-use Framework2\Example\ExampleSettingUser;
 use Framework2\Services;
-use Framework2\Rest\CrudController;
-use Framework2\Example\ExampleRestfulHelper;
-use Framework2\Rest\RestfulRouteInfo;
 
 class ExampleRestfulServices
 {
@@ -13,8 +9,8 @@ class ExampleRestfulServices
 
 }
 return [
-    ExampleSettingUser::class => function(array $config, Services $s) {
-        return new ExampleSettingUser(
+    \Framework2\Example\ExampleSettingUser::class => function(array $config, Services $s) {
+        return new \Framework2\Example\ExampleSettingUser(
                 $config[ExampleConfig::EXAMPLE_SETTING]);
     },
     \Framework2\Example\QueryString::class => function(array $config, Services $s) {
@@ -27,28 +23,30 @@ return [
                 $s->get(Service::ROUTE_PARAMS));
     },
     \Framework2\Example\ConfigExample::class => function(array $config, Services $s) {
-        return new \Framework2\Example\ConfigExample($s->get(ExampleSettingUser::class),
+        return new \Framework2\Example\ConfigExample($s->get(\Framework2\Example\ExampleSettingUser::class),
                 $s->get(\Framework2\Templating\PageBuilder::class),
                 $s->get(\Framework2\Templating\PageBuilder::class));
     },
     ExampleRestfulServices::CONTROLLER => function(array $config, Services $s) {
-        return new CrudController($s->get(ExampleRestfulHelper::class),
+        return new Framework2\Rest\CrudController($s->get(\Framework2\Example\ExampleRestfulHelper::class),
                 $s->get(ExampleRestfulServices::ROUTE_INFO),
                 $s->get(Service::ROUTE_PARAMS),
                 $s->get(\Framework2\Rest\JsonResponder::class),
                 $s->get(\Framework2\Rest\AuthenticationInterface::class));
     },
-    ExampleRestfulHelper::class => function(array $config, Services $s) {
+    \Framework2\Example\ExampleRestfulHelper::class => function(array $config, Services $s) {
         return new ExampleRestfulHelper($s->get(Service::POST),
                 $s->get(\Framework2\Error\ErrorBuffer::class));
     },
     ExampleRestfulServices::ROUTE_INFO => function(array $config, Services $s) {
-        return new RestfulRouteInfo(ExampleRestfulHelper::ID);
+        return new \Framework2\Rest\RestfulRouteInfo(\Framework2\Example\ExampleRestfulHelper::ID);
     },
     \Framework2\Rest\AuthenticationInterface::class => function(array $config, Services $s) {
-        return new Framework2\Example\ExampleAuthentication($_SERVER, Framework2\Example\ExampleAuthentication::EXAMPLE_REALM);
+        return new Framework2\Example\ExampleAuthentication($_SERVER,
+                Framework2\Example\ExampleAuthentication::EXAMPLE_REALM);
     },
     \Framework2\Example\Console::class => function(array $config, Services $s) {
-        return new \Framework2\Example\Console($s->get(\Framework2\Console\Routes::class), $s->get(\Framework2\Templating\PageBuilder::class));
+        return new \Framework2\Example\Console($s->get(\Framework2\Console\Routes::class),
+                $s->get(\Framework2\Templating\PageBuilder::class));
     },
 ];
