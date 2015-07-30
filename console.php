@@ -23,5 +23,6 @@ if ($route) {
 } else {
     echo "No route matches '{$requestedRoute}'. Try,\n";
     echo "php " . basename(__FILE__) . " " . ConsoleRoutes::LIST_ROUTES . "\n";
+    echo "Note: Only routes that use the " . Framework2\Routing\Route::CONSOLE . " channel are accessible via the console.\n";
     exit(1);
 }

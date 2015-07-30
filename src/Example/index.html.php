@@ -7,6 +7,7 @@ $getRoute = $router->generate(ExampleRestfulRoutes::GET, [Framework2\Example\Exa
 $getNonRoute = $router->generate(ExampleRestfulRoutes::GET, [Framework2\Example\ExampleRestfulHelper::ID => 666]);
 $getMultiple = $router->generate(ExampleRestfulRoutes::GET_MULTIPLE);
 $updateRoute = $router->generate(ExampleRestfulRoutes::UPDATE, [Framework2\Example\ExampleRestfulHelper::ID => 123]);
+$consoleExample = $router->generate(ExampleRoutes::CONSOLE);
 ?>
 <h1>Framework2 Quick Start Guide</h1>
 
@@ -14,6 +15,7 @@ $updateRoute = $router->generate(ExampleRestfulRoutes::UPDATE, [Framework2\Examp
     <li>Query string processing <a href="?r=<?= $queryString ?>"><em><?= $queryString ?></em></a></li>
     <li>Route parameters <a href="?r=<?= $routeParams ?>"><?= $routeParams ?></a></li>
     <li><a href="?r=<?= $router->generate(ExampleRoutes::APP_CONFIG) ?>">Application config</a></li>
+    <li><a href="?r=<?= $consoleExample ?>">Console usage</a></li>
     <li>Restful controller examples.<br>
         Username <strong><?= \Framework2\Example\ExampleAuthentication::USERNAME ?></strong>
         Password <strong><?= \Framework2\Example\ExampleAuthentication::PASSWORD ?></strong>
