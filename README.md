@@ -28,9 +28,11 @@ You can also run `./console`.
 
 * All config can be found in top-level files `config.php`, `services.php`, `routes.php`. No hidden config files.
 
-* Do no more than route, provide access to inputs and simplify output.
+* Do no more than route, provide access to inputs and simplify output. I.e. Get to the business logic quickly and unencumbered by framework restrictions.
 
 * Once the route is determined from the request, all actions (e.g. authentication, sending headers, echoing content) must be triggered by the controller. This avoids the need for knowledge of hidden processes being triggered outside the chosen controller.
+
+* Do not require implementations to inherit from framework classes. E.g. Controllers do not extend a base framework controller.
 
 * No external dependencies.
 
