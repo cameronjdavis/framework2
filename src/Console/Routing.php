@@ -13,7 +13,7 @@ class Routing
     /**
      * A mask to print a formatted row.
      */
-    const MASK = "\033[01;100m%-17s\033[0m %-32s \033[01;100m%-15s\033[0m %-35s \033[01;100m%-15s\033[0m\n";
+    const MASK = "%-17s %-32s %-15s %-35s %-15s\n";
 
     /**
      * @var Router
