@@ -19,12 +19,12 @@ class Console
     private $pageBuilder;
 
     /**
-     * @var Config
+     * @var AppConfig
      */
     private $config;
 
     public function __construct(Routing $routes, PageBuilder $pageBuilder,
-            Config $config)
+            AppConfig $config)
     {
         $this->routes = $routes;
         $this->pageBuilder = $pageBuilder;

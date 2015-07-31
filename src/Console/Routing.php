@@ -25,10 +25,21 @@ class Routing
      */
     private $argv;
 
-    public function __construct(Router $router, Input $argv)
+    /**
+     * @var string
+     */
+    private $mask;
+
+    /**
+     * @param Router $router
+     * @param Input $argv
+     * @param string $mask String format used with printf() to output route info.
+     */
+    public function __construct(Router $router, Input $argv, $mask = self::MASK)
     {
         $this->router = $router;
         $this->argv = $argv;
+        $this->mask = $mask;
     }
 
     /**
@@ -39,14 +50,14 @@ class Routing
         $routes = $this->router->getRoutes();
         ksort($routes);
 
-        printf(self::MASK, 'Route key', 'Service name', 'Method', 'Pattern',
+        printf($this->mask, 'Route key', 'Service name', 'Method', 'Pattern',
                 'Channels');
-        printf(self::MASK, '---------', '------------', '------', '-------',
+        printf($this->mask, '---------', '------------', '------', '-------',
                 '--------');
 
         foreach ($routes as $key => $route) {
             $channels = implode(', ', $route->getChannels());
-            printf(self::MASK, $key, $route->getServiceName(),
+            printf($this->mask, $key, $route->getServiceName(),
                     $route->getMethod() . '()', $route->getPattern(), $channels);
         }
     }
@@ -63,7 +74,7 @@ class Routing
 
         if ($route) {
             $channels = implode(', ', $route->getChannels());
-            printf(self::MASK, $this->router->getRouteKey(),
+            printf($this->mask, $this->router->getRouteKey(),
                     $route->getServiceName(), $route->getMethod() . '()',
                     $route->getPattern(), $channels);
         }
