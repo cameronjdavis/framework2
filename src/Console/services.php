@@ -9,10 +9,14 @@ class ConsoleServices
 }
 return [
     \Framework2\Console\Routing::class => function(array $config, Services $s) {
-        return new \Framework2\Console\Routing($s->get(Framework2\Routing\Router::class), $s->get(ConsoleServices::ARGS));
+        return new \Framework2\Console\Routing($s->get(Framework2\Routing\Router::class),
+                $s->get(ConsoleServices::ARGS));
     },
     ConsoleServices::ARGS => function(array $config, Services $s) {
         return new \Framework2\Input($config[ConsoleConfig::ARGV]);
+    },
+    \Framework2\Console\Config::class => function(array $config, Services $s) {
+        return new \Framework2\Console\Config($config);
     },
 ];
 

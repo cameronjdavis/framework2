@@ -6,6 +6,7 @@ class ConsoleRoutes
 {
     const LIST_ROUTES = 'routing:list';
     const MATCH_ROUTE = 'routing:match';
+    const LIST_CONFIG = 'config:list';
 
 }
 return [
@@ -17,4 +18,8 @@ return [
     new Route(
             ConsoleRoutes::MATCH_ROUTE, \Framework2\Console\Routing::class,
             'matchRoute', [], [Route::CONSOLE]),
+    ConsoleRoutes::LIST_CONFIG =>
+    new Route(
+            ConsoleRoutes::LIST_CONFIG, \Framework2\Console\Config::class,
+            'listConfig', [], [Route::CONSOLE]),
 ];
