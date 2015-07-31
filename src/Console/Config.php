@@ -18,6 +18,9 @@ class Config
         $this->config = $config;
     }
 
+    /**
+     * Echo the config array.
+     */
     public function listConfig()
     {
         print_r($this->config);

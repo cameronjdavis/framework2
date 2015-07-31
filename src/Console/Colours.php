@@ -4,7 +4,7 @@ namespace Framework2\Console;
 
 /**
  * String masks to apply colours to text outputted to the console.
- * E.g. echo printf(Colours::RED, 'Some red text');
+ * E.g. printf(Colours::RED, 'Some red text');
  */
 class Colours
 {
