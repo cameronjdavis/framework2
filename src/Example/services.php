@@ -46,7 +46,7 @@ return [
                 Framework2\Example\ExampleAuthentication::EXAMPLE_REALM);
     },
     \Framework2\Example\Console::class => function(array $config, Services $s) {
-        return new \Framework2\Example\Console($s->get(\Framework2\Console\Routes::class),
+        return new \Framework2\Example\Console($s->get(\Framework2\Console\Routing::class),
                 $s->get(\Framework2\Templating\PageBuilder::class));
     },
 ];

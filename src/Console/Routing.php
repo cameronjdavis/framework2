@@ -8,7 +8,7 @@ use Framework2\Input;
 /**
  * Provides methods to display route information.
  */
-class Routes
+class Routing
 {
     /**
      * A mask to print a formatted row.

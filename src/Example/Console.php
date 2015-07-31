@@ -2,13 +2,13 @@
 
 namespace Framework2\Example;
 
-use Framework2\Console\Routes;
+use Framework2\Console\Routing;
 use Framework2\Templating\PageBuilder;
 
 class Console
 {
     /**
-     * @var Routes
+     * @var Routing
      */
     private $routes;
 
@@ -17,7 +17,7 @@ class Console
      */
     private $pageBuilder;
 
-    public function __construct(Routes $routes, PageBuilder $pageBuilder)
+    public function __construct(Routing $routes, PageBuilder $pageBuilder)
     {
         $this->routes = $routes;
         $this->pageBuilder = $pageBuilder;

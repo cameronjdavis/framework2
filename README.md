@@ -22,7 +22,7 @@ You can also run `./console`.
 
 * RESTful JSON-based API.
 
-* Console entry point. E.g. `./console routes:list`.
+* Console entry point. E.g. `./console routing:list`.
 
 ## Constraints
 

@@ -4,17 +4,17 @@ use Framework2\Routing\Route;
 
 class ConsoleRoutes
 {
-    const LIST_ROUTES = 'routes:list';
-    const MATCH_ROUTE = 'routes:match';
+    const LIST_ROUTES = 'routing:list';
+    const MATCH_ROUTE = 'routing:match';
 
 }
 return [
     ConsoleRoutes::LIST_ROUTES =>
     new Route(
-            ConsoleRoutes::LIST_ROUTES, \Framework2\Console\Routes::class,
+            ConsoleRoutes::LIST_ROUTES, \Framework2\Console\Routing::class,
             'listRoutes', [], [Route::CONSOLE]),
     ConsoleRoutes::MATCH_ROUTE =>
     new Route(
-            ConsoleRoutes::MATCH_ROUTE, \Framework2\Console\Routes::class,
+            ConsoleRoutes::MATCH_ROUTE, \Framework2\Console\Routing::class,
             'matchRoute', [], [Route::CONSOLE]),
 ];
