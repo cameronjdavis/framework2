@@ -48,6 +48,6 @@ return [
     \Framework2\Example\Console::class => function(array $config, Services $s) {
         return new \Framework2\Example\Console($s->get(\Framework2\Console\Routing::class),
                 $s->get(\Framework2\Templating\PageBuilder::class),
-                $s->get(Framework2\Console\Config::class));
+                $s->get(Framework2\Console\AppConfig::class));
     },
 ];

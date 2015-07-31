@@ -15,8 +15,8 @@ return [
     ConsoleServices::ARGS => function(array $config, Services $s) {
         return new \Framework2\Input($config[ConsoleConfig::ARGV]);
     },
-    \Framework2\Console\Config::class => function(array $config, Services $s) {
-        return new \Framework2\Console\Config($config);
+    \Framework2\Console\AppConfig::class => function(array $config, Services $s) {
+        return new \Framework2\Console\AppConfig($config);
     },
 ];
 

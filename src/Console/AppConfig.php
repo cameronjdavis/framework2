@@ -2,7 +2,7 @@
 
 namespace Framework2\Console;
 
-class Config
+class AppConfig
 {
     /**
      * Multi-dimensional config array

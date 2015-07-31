@@ -4,7 +4,7 @@ namespace Framework2\Example;
 
 use Framework2\Console\Routing;
 use Framework2\Templating\PageBuilder;
-use Framework2\Console\Config;
+use Framework2\Console\AppConfig;
 
 class Console
 {

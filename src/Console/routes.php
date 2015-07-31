@@ -20,6 +20,6 @@ return [
             'matchRoute', [], [Route::CONSOLE]),
     ConsoleRoutes::LIST_CONFIG =>
     new Route(
-            ConsoleRoutes::LIST_CONFIG, \Framework2\Console\Config::class,
+            ConsoleRoutes::LIST_CONFIG, \Framework2\Console\AppConfig::class,
             'listConfig', [], [Route::CONSOLE]),
 ];
