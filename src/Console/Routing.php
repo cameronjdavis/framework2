@@ -59,7 +59,7 @@ class Routing
     {
         $requestedRoute = $this->argv->get(2);
 
-        if(!$requestedRoute){
+        if (!$requestedRoute) {
             echo "Please specify a route to match. E.g. /users/12.\n";
         }
 
@@ -71,7 +71,7 @@ class Routing
                     $route->getServiceName(), $route->getMethod() . '()',
                     $route->getPattern(), $channels);
         } else {
-            echo "No route was found that matches the requested route ({$requestedRoute})\n";
+            printf(Colours::ERROR, "No route was found that matches the requested route ({$requestedRoute}).\n");
         }
     }
 }
