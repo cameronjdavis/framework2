@@ -42,7 +42,7 @@ return [
         return new \Framework2\Rest\RestfulRouteInfo(\Framework2\Example\ExampleRestfulHelper::ID);
     },
     \Framework2\Rest\AuthenticationInterface::class => function(array $config, Services $s) {
-        return new Framework2\Example\ExampleAuthentication($_SERVER,
+        return new Framework2\Example\ExampleAuthentication($config[Config::SERVER],
                 Framework2\Example\ExampleAuthentication::EXAMPLE_REALM);
     },
     \Framework2\Example\Console::class => function(array $config, Services $s) {

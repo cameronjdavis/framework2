@@ -34,13 +34,13 @@ return [
                 $s->get(\Framework2\Templating\Renderer::class));
     },
     Service::QUERY => function(array $config, Services $s) {
-        return new \Framework2\Input($_GET);
+        return new \Framework2\Input($config[Config::GET]);
     },
     Service::ROUTE_PARAMS => function(array $config, Services $s) {
         return new \Framework2\Input($s->get(Framework2\Routing\Router::class)->getParams());
     },
     Service::POST => function(array $config, Services $s) {
-        return new \Framework2\Input($_POST);
+        return new \Framework2\Input($config[Config::POST]);
     },
     \Framework2\Error\ErrorBuffer::class => function(array $config, Services $s) {
         return new \Framework2\Error\ErrorBuffer();
@@ -62,4 +62,3 @@ return [
     },
         ] + array_merge(require_once(ROOT . 'src/Console/services.php'),
                 require_once(ROOT . 'src/Example/services.php'));
-
