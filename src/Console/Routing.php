@@ -59,10 +59,6 @@ class Routing
     {
         $requestedRoute = $this->argv->get(2);
 
-        if (!$requestedRoute) {
-            echo "Please specify a route to match. E.g. /users/12.\n";
-        }
-
         $route = $this->router->find($requestedRoute);
 
         if ($route) {
