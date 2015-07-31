@@ -66,8 +66,6 @@ class Routing
             printf(self::MASK, $this->router->getRouteKey(),
                     $route->getServiceName(), $route->getMethod() . '()',
                     $route->getPattern(), $channels);
-        } else {
-            printf(Colours::ERROR, "No route was found that matches the requested route ({$requestedRoute}).\n");
         }
     }
 }
