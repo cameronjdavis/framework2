@@ -22,8 +22,9 @@ if ($route) {
     $action = $route->getMethod();
     $services->get($controller)->$action();
 } else {
-    echo "No route matches '{$requestedRoute}'. To see all routes use:\n";
-    echo "./" . basename(__FILE__) . " " . ConsoleRoutes::LIST_ROUTES . "\n";
+    printf(Framework2\Console\Colours::ERROR, "No route matches '{$requestedRoute}'.");
+    echo  " To see all routes use:\n\n";
+    printf(Framework2\Console\Colours::BLUE, "./" . basename(__FILE__) . " " . ConsoleRoutes::LIST_ROUTES . "\n\n");
     echo "Note: Only routes that use the " . Framework2\Routing\Route::CONSOLE . " channel are accessible via the console.\n";
     exit(1);
 }
