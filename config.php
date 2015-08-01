@@ -36,9 +36,9 @@ class Config
 
 }
 return [
-    Config::SERVER => $_SERVER,
     Config::GET => $_GET,
     Config::POST => $_POST,
+    Config::SERVER => $_SERVER,
     Config::TEMPLATES => [
         Config::BASE_PAGE => ROOT . 'template/base.html.php'
     ]] + array_merge(require_once(ROOT . 'src/Console/config.php'),
