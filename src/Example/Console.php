@@ -34,7 +34,9 @@ class Console
     public function showExample()
     {
         ob_start();
-        $this->routes->listRoutes();
+        $this->routes
+                ->setMask(Routing::MASK)
+                ->listRoutes();
         $output1 = ob_get_clean();
 
         ob_start();

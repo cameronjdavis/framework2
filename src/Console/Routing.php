@@ -16,6 +16,10 @@ class Routing
     const MASK = "%-17s %-32s %-15s %-35s %-15s\n";
 
     /**
+     * Mask for formatting a coloured string for the console.
+     */
+    const COLOUR_MASK = "\033[01;100m%-17s\033[0m %-32s \033[01;100m%-15s\033[0m %-35s \033[01;100m%-15s\033[0m\n";
+    /**
      * @var Router
      */
     private $router;
@@ -35,11 +39,26 @@ class Routing
      * @param Input $argv
      * @param string $mask String format used with printf() to output route info.
      */
-    public function __construct(Router $router, Input $argv, $mask = self::MASK)
+    public function __construct(Router $router, Input $argv,
+            $mask = self::COLOUR_MASK)
     {
         $this->router = $router;
         $this->argv = $argv;
         $this->mask = $mask;
+    }
+
+    /**
+     * Set the mask for formatting route info strings
+     * @param string $mask
+     * @see self::MASK
+     * @see self::COLOUR_MASK
+     * @return Routing
+     */
+    public function setMask($mask)
+    {
+        $this->mask = $mask;
+
+        return $this;
     }
 
     /**
