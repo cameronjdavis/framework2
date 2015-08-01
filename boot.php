@@ -16,8 +16,9 @@ define('ROOT', __DIR__ . '/');
 
 /**
  * Name of environment variable used to load
- * environment-specific config.
+ * environment-specific config and services.
  * E.g. FRAMEWORK2_ENV = "dev" will load config.dev.php
+ * and services.dev.php.
  */
 define('ENV_VARIABLE', 'FRAMEWORK2_ENV');
 
