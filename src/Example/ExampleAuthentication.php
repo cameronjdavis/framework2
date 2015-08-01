@@ -2,7 +2,7 @@
 
 namespace Framework2\Example;
 
-use Framework2\Rest\AuthenticationInterface;
+use Framework2\Authentication\AuthenticationInterface;
 
 /**
  * Exmaple authentication that uses basic HTTP authentication.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework2\Rest;
+namespace Framework2\Authentication;
 
 /**
  * Hard-coded authentication with no credential checking.

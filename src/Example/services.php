@@ -33,7 +33,7 @@ return [
                 $s->get(ExampleRestfulServices::ROUTE_INFO),
                 $s->get(Service::ROUTE_PARAMS),
                 $s->get(\Framework2\Rest\JsonResponder::class),
-                $s->get(\Framework2\Rest\AuthenticationInterface::class));
+                $s->get(\Framework2\Authentication\AuthenticationInterface::class));
     },
     \Framework2\Example\ExampleRestfulHelper::class => function(array $config, Services $s) {
         return new \Framework2\Example\ExampleRestfulHelper($s->get(Service::POST),
@@ -42,7 +42,7 @@ return [
     ExampleRestfulServices::ROUTE_INFO => function(array $config, Services $s) {
         return new \Framework2\Rest\RestfulRouteInfo(\Framework2\Example\ExampleRestfulHelper::ID);
     },
-    \Framework2\Rest\AuthenticationInterface::class => function(array $config, Services $s) {
+    \Framework2\Authentication\AuthenticationInterface::class => function(array $config, Services $s) {
         return new Framework2\Example\ExampleAuthentication($config[Config::SERVER],
                 Framework2\Example\ExampleAuthentication::EXAMPLE_REALM);
     },

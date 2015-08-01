@@ -4,6 +4,7 @@ namespace Framework2\Rest;
 
 use Framework2\Input;
 use Framework2\Rest\JsonResponder;
+use Framework2\Authentication\AuthenticationInterface;
 
 /**
  * Entry points for performing CRUD operations.

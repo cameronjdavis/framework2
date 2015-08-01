@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework2\Rest;
+namespace Framework2\Authentication;
 
 /**
  * Interface to determine if a request is authenticated or not.
