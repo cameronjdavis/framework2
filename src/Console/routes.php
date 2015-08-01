@@ -5,10 +5,12 @@ use Framework2\Routing\Route;
 class ConsoleRoutes
 {
     const LIST_ROUTES = 'routing:list';
-    const MATCH_ROUTE = 'routing:match';
-    const LIST_CONFIG = 'config:list';
 
+    const MATCH_ROUTE = 'routing:match';
+
+    const LIST_CONFIG = 'config:list';
 }
+
 return [
     ConsoleRoutes::LIST_ROUTES =>
     new Route(

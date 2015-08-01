@@ -5,12 +5,16 @@ use Framework2\Routing\Route;
 class ExampleRestfulRoutes
 {
     const DELETE = 'delete';
-    const CREATE = 'create';
-    const GET = 'get';
-    const GET_MULTIPLE = 'get_multiple';
-    const UPDATE = 'update';
 
+    const CREATE = 'create';
+
+    const GET = 'get';
+
+    const GET_MULTIPLE = 'get_multiple';
+
+    const UPDATE = 'update';
 }
+
 return [
     ExampleRestfulRoutes::DELETE => new Route(
             'rest_example/{' . \Framework2\Example\ExampleRestfulHelper::ID . '}/delete',

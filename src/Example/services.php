@@ -5,9 +5,10 @@ use Framework2\Services;
 class ExampleRestfulServices
 {
     const CONTROLLER = 'example_restful_controller';
-    const ROUTE_INFO = 'example_restful_route_info';
 
+    const ROUTE_INFO = 'example_restful_route_info';
 }
+
 return [
     \Framework2\Example\ExampleSettingUser::class => function(array $config, Services $s) {
         return new \Framework2\Example\ExampleSettingUser(
