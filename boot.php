@@ -14,6 +14,13 @@
  */
 define('ROOT', __DIR__ . '/');
 
+/**
+ * Name of environment variable used to load
+ * environment-specific config.
+ * E.g. FRAMEWORK2_ENV = "dev" will load config.dev.php
+ */
+define('ENV_VARIABLE', 'FRAMEWORK2_ENV');
+
 // set up PHP autoloading so that framework classes are automagically included as needed
 $function = function($class) {
     $namespacePath = str_replace('Framework2\\', '', $class);
@@ -27,7 +34,7 @@ spl_autoload_register($function);
 $config = require_once ROOT . 'config.php';
 $servicesArray = require_once ROOT . 'services.php';
 // get the environemnt variable for this app
-$environment = getenv(Config::ENV_VARIABLE);
+$environment = getenv(ENV_VARIABLE);
 // if the environemnt variable is set then load its config
 if ($environment) {
     // merge the two configs giving precedence to $environmentConfig

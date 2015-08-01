@@ -3,13 +3,6 @@
 class Config
 {
     /**
-     * Name of environment variable used to load
-     * environment-specific config.
-     * E.g. FRAMEWORK2_ENV = "dev" will load config.dev.php
-     */
-    const ENV_VARIABLE = 'FRAMEWORK2_ENV';
-
-    /**
      * Array index to group templare config settings together.
      */
     const TEMPLATES = 'template';
@@ -33,8 +26,8 @@ class Config
      * $_POST array
      */
     const POST = '$_POST';
-
 }
+
 return [
     Config::GET => $_GET,
     Config::POST => $_POST,

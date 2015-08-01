@@ -19,7 +19,8 @@ class ConfigExample
      */
     private $pageBuilder;
 
-    public function __construct(ExampleSettingUser $settingUser, PageBuilder $pageBuilder)
+    public function __construct(ExampleSettingUser $settingUser,
+            PageBuilder $pageBuilder)
     {
         $this->settingUser = $settingUser;
         $this->pageBuilder = $pageBuilder;
@@ -29,9 +30,10 @@ class ConfigExample
     {
         $settingValue = $this->settingUser->settingValue;
 
-        $env = getenv(\Config::ENV_VARIABLE);
+        $env = getenv(ENV_VARIABLE);
 
-        $message = $env ? "Environment variable " . \Config::ENV_VARIABLE . " is set to <b>{$env}</b> so config.{$env}.php has been loaded" : "Environment variable " . \Config::ENV_VARIABLE . " is not set. If you set it then environment-specific config will be loaded from config." . \Config::ENV_VARIABLE . ".php. E.g. config.dev.php.";
+        $message = $env ? "Environment variable " . ENV_VARIABLE . " is set to <b>{$env}</b> so config.{$env}.php has been loaded"
+                    : "Environment variable " . ENV_VARIABLE . " is not set. If you set it then environment-specific config will be loaded from config." . ENV_VARIABLE . ".php. E.g. config.dev.php.";
 
         $page = $this->pageBuilder->create()
                 ->setBody("<h1>App config</h1>
