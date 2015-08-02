@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework2\Tests\Rest;
+namespace Framework2\Tests\Authentication;
 
 class DumbAuthenticationTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,14 +18,16 @@ class DumbAuthenticationTest extends \PHPUnit_Framework_TestCase
      */
     public function test_isAuthenticated($expected)
     {
-        $helper = new \Framework2\Authentication\DumbAuthentication('test', $expected);
+        $helper = new \Framework2\Authentication\DumbAuthentication('test',
+                $expected);
 
         $this->assertEquals($expected, $helper->isAuthenticated());
     }
 
     public function test_getRealm()
     {
-        $helper = new \Framework2\Authentication\DumbAuthentication('test', false);
+        $helper = new \Framework2\Authentication\DumbAuthentication('test',
+                false);
 
         $this->assertEquals('test', $helper->getRealm());
     }
