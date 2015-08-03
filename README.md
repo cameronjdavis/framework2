@@ -1,6 +1,6 @@
 # Framework2
 
-My attempt to implement a feature-complete framework. Framework1 failed, obviously. :)
+My attempt to implement a feature-complete PHP framework. Framework1 failed, obviously. :)
 
 ## Install
 
