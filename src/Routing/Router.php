@@ -50,18 +50,8 @@ class Router
                 continue;
             }
 
-            $params = $route->getParams();
-
-            // add () around each of the route param regex patterns
-            // E.g. \d+ becomes (\d+)
-            array_walk($params,
-                    function(&$val) {
-                $val = "({$val})";
-            });
-
-            // generate the route using regex patterns for route params
-            // e.g. /contact/{id} becomes /contact/(\d+)
-            $routeRegex = $this->generate($key, $params);
+            // get the complete route regex. E.g. /contact/{id} becomes /contact/(\d+)
+            $routeRegex = $this->buildRouteRegex($route);
 
             // attempt to match the incoming route with the complete route regex
             if (preg_match("({$routeRegex})", $completeRoute, $matches)) {
@@ -70,7 +60,8 @@ class Router
                 // remember the route params for later reference.
                 // keys come from route param names.
                 // values come from regex matches for route params.
-                $this->routeParams = array_combine(array_keys($params), $matches);
+                $this->routeParams = array_combine(array_keys($route->getParams()),
+                        $matches);
 
                 // remember the route key for later reference
                 $this->routeKey = $key;
@@ -78,6 +69,47 @@ class Router
                 return $route;
             }
         }
+    }
+
+    /**
+     * Complete the route by filling in the route params with the regexes
+     * of the route params. E.g. /contact/{id} becomes /contact/(\d+).
+     * @param \Framework2\Routing\Route $route
+     * @return string
+     */
+    public function buildRouteRegex(Route $route)
+    {
+        $params = $route->getParams();
+
+        // add () around each of the route param regex patterns
+        // E.g. \d+ becomes (\d+)
+        array_walk($params,
+                function(&$val) {
+            $val = "({$val})";
+        });
+
+        // generate the route using regex patterns for route params
+        // e.g. /contact/{id} becomes /contact/(\d+)
+        return $this->generateFromRoute($route, $params);
+    }
+
+    /**
+     * Generate a completed route string from a Route object and route params.
+     * @param \Framework2\Routing\Route $route
+     * @param array $params Keyed on route param name
+     * @return string Complete route
+     */
+    public function generateFromRoute(Route $route, array $params = [])
+    {
+        $generated = $route->getPattern();
+
+        foreach ($route->getParams() as $paramKey => $pattern) {
+            // @todo: ensure $params[$paramKey] matches regex in $pattern
+            $generated = str_replace("{{$paramKey}}", $params[$paramKey],
+                    $generated);
+        }
+
+        return $generated;
     }
 
     /**
@@ -89,17 +121,7 @@ class Router
      */
     public function generate($routeKey, array $params = [])
     {
-        $route = $this->routes[$routeKey];
-
-        $generated = $route->getPattern();
-
-        foreach ($route->getParams() as $paramKey => $pattern) {
-            // @todo: ensure $params[$paramKey] matches regex in $pattern
-            $generated = str_replace("{{$paramKey}}", $params[$paramKey],
-                    $generated);
-        }
-
-        return $generated;
+        return $this->generateFromRoute($this->routes[$routeKey], $params);
     }
 
     /**
