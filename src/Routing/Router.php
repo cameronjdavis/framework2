@@ -54,7 +54,7 @@ class Router
             $routeRegex = $this->buildRouteRegex($route);
 
             // attempt to match the incoming route with the complete route regex
-            if (preg_match("({$routeRegex})", $completeRoute, $matches)) {
+            if (preg_match("(^{$routeRegex}$)", $completeRoute, $matches)) {
                 unset($matches[0]);
 
                 // remember the route params for later reference.

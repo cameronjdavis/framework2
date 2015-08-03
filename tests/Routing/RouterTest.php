@@ -60,4 +60,90 @@ class RouterTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('pattern1/12/abc/aaa', $actual);
     }
+
+    public function test_find_notUsingChannel()
+    {
+        $route1 = new Route('', '', '', [], ['a channel']);
+        $routes = [$route1];
+
+        $this->helper = new Helper($routes);
+
+        $actual = $this->helper->find('', 'a different channel');
+
+        $this->assertNull($actual);
+    }
+
+    public function test_find_usingChannel()
+    {
+        $route1 = new Route('', '', '', [], ['a channel']);
+        $routes = [$route1];
+
+        $this->helper = new Helper($routes);
+
+        $actual = $this->helper->find('', 'a channel');
+
+        $this->assertEquals($route1, $actual);
+    }
+
+    public function test_find_ignoreChannel()
+    {
+        $route1 = new Route('def', '', '', [], ['a channel']);
+        $routes = [$route1];
+
+        $this->helper = new Helper($routes);
+
+        $actual = $this->helper->find('def');
+
+        $this->assertEquals($route1, $actual);
+    }
+
+    public function find()
+    {
+        return [
+            ['', '', []],
+            ['', '', []],
+            ['abc', 'abc', []],
+            ['abc/{anId}', 'abc/12', ['anId' => '\d+']],
+        ];
+    }
+
+    /**
+     * @dataProvider find
+     */
+    public function test_find($pattern, $completeRoute, $params)
+    {
+        $route1 = new Route($pattern, '', '', $params);
+        $routes = [$route1];
+
+        $this->helper = new Helper($routes);
+
+        $actual = $this->helper->find($completeRoute);
+
+        $this->assertEquals($route1, $actual);
+    }
+
+    public function test_find_dontMatchRouteAsSubSctring()
+    {
+        $route1 = new Route('abc', '', '', []);
+        $routes = [$route1];
+
+        $this->helper = new Helper($routes);
+
+        $actual = $this->helper->find('abcdef');
+
+        $this->assertNull($actual);
+    }
+
+    public function test_find_setFoundItems()
+    {
+        $route1 = new Route('abc/{id}', '', '', ['id' => '\d+']);
+        $routes = ['key1' => $route1];
+
+        $this->helper = new Helper($routes);
+
+        $this->helper->find('abc/12');
+
+        $this->assertEquals('key1', $this->helper->getRouteKey());
+        $this->assertEquals(['id' => 12], $this->helper->getParams());
+    }
 }
