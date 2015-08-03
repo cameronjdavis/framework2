@@ -51,4 +51,7 @@ $consoleExample = $router->generate(ExampleRoutes::CONSOLE);
             </li>
         </ul>
     </li>
+    <li>
+        <a href="code_coverage">Testing code coverage</a> located in <em><?= ROOT ?>tests/code_coverage</em>
+    </li>
 </ul>
