@@ -16,7 +16,7 @@ $consoleExample = $router->generate(ExampleRoutes::CONSOLE);
     <li>Route parameters <a href="?r=<?= $routeParams ?>"><?= $routeParams ?></a></li>
     <li><a href="?r=<?= $router->generate(ExampleRoutes::APP_CONFIG) ?>">Application config</a></li>
     <li><a href="?r=<?= $consoleExample ?>">Console usage</a></li>
-    <li><a href="code_coverage">Test code coverage</a> located in <em><?= ROOT ?>tests/code_coverage</em></li>
+    <li>After running <code>phpunit</code> <a href="code_coverage">view code coverage</a> located in <em><?= ROOT ?>code_coverage</em></li>
     <li>Restful controller examples.
         Username <strong><?= \Framework2\Example\ExampleAuthentication::USERNAME ?></strong>
         Password <strong><?= \Framework2\Example\ExampleAuthentication::PASSWORD ?></strong>
