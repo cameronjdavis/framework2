@@ -2,8 +2,6 @@
 
 My attempt to implement a feature-complete PHP framework. Framework1 failed, obviously. :)
 
-<img title="Build Status Images" src="https://travis-ci.org/cameronjdavis/framework2.svg">
-
 ## Install
 
 1) Clone this repo.
