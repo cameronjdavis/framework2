@@ -10,7 +10,7 @@ class Renderer
     /**
      * @var array
      */
-    private $renderingParams;
+    private $renderingParams = [];
 
     /**
      * Render a template file with parameters.
