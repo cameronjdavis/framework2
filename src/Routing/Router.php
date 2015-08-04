@@ -131,7 +131,8 @@ class Router
      */
     public function getParams()
     {
-        return $this->routeParams;
+        // default to empty array if route params have not been set with call to find()
+        return $this->routeParams ? $this->routeParams : [];
     }
 
     /**

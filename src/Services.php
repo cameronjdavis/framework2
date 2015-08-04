@@ -13,7 +13,7 @@ class Services
      * @var callable[]
      */
     private $instances;
-    
+
     /**
      * Multidimensional array of config settings
      * @var array
@@ -75,5 +75,14 @@ class Services
     public function getRoutes()
     {
         return $this->routes;
+    }
+
+    /**
+     * Get the array of service creation callbacks keyed on service name.
+     * @return array
+     */
+    public function getServices()
+    {
+        return $this->services;
     }
 }
