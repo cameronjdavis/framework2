@@ -12,11 +12,11 @@ $consoleExample = $router->generate(ExampleRoutes::CONSOLE);
 <h1>Framework2 Quick Start Guide</h1>
 
 <ul>
-    <li>Query string processing <a href="?r=<?= $queryString ?>"><em><?= $queryString ?></em></a></li>
-    <li>Route parameters <a href="?r=<?= $routeParams ?>"><?= $routeParams ?></a></li>
-    <li><a href="?r=<?= $router->generate(ExampleRoutes::APP_CONFIG) ?>">Application config</a></li>
-    <li><a href="?r=<?= $consoleExample ?>">Console usage</a></li>
-    <li>After running <code>phpunit</code> <a href="code_coverage">view code coverage</a> located in <em><?= ROOT ?>code_coverage</em></li>
+    <li><p>Query string processing <a href="?r=<?= $queryString ?>"><em><?= $queryString ?></em></a></p></li>
+    <li><p>Route parameters <a href="?r=<?= $routeParams ?>"><?= $routeParams ?></a></p></li>
+    <li><p><a href="?r=<?= $router->generate(ExampleRoutes::APP_CONFIG) ?>">Application config</a></p></li>
+    <li><p><a href="?r=<?= $consoleExample ?>">Console usage</a></li>
+    <li><p>Run <code>phpunit</code> then <a href="code_coverage">view code coverage</a> located in <code><?= ROOT ?>code_coverage</code></p></li>
     <li>Restful controller examples.
         Username <strong><?= \Framework2\Example\ExampleAuthentication::USERNAME ?></strong>
         Password <strong><?= \Framework2\Example\ExampleAuthentication::PASSWORD ?></strong>

@@ -45,11 +45,12 @@ class Console
 
         $page = $this->pageBuilder->create()
                 ->setTitle('Console usage')
+                ->addHeadContent('<link rel="stylesheet" type="text/css" href="index_style.css">')
                 ->setBody("<h1>Console usage</h1>
                         <p>A console-based entry point to the framework is available. Run these commands from <code>" . ROOT . "</code>.</p>
-                        <p style='font-weight: bold; font-size: x-large'><code>$ ./console " . \ConsoleRoutes::LIST_ROUTES . "</code></p>
+                        <p><code>$ ./console " . \ConsoleRoutes::LIST_ROUTES . "</code></p>
                         <pre>{$output1}</pre>
-                        <p style='font-weight: bold; font-size: x-large'><code>$ ./console " . \ConsoleRoutes::LIST_CONFIG . "<code></p>
+                        <p><code>$ ./console " . \ConsoleRoutes::LIST_CONFIG . "</code></p>
                         <pre>{$output2}</pre>
                         <p>Controller action was <em>" . __METHOD__ . "();</em></p>");
 
