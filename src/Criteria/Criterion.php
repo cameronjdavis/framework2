@@ -39,4 +39,28 @@ class Criterion
 
         return "{$this->target} {$this->operator} {$value}";
     }
+
+    /**
+     * @return string
+     */
+    public function getTarget()
+    {
+        return $this->target;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOperator()
+    {
+        return $this->operator;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
 }
