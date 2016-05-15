@@ -12,6 +12,11 @@ class Criteria implements \Iterator
 
     private $count;
 
+    /**
+     * @var int
+     */
+    private $limit;
+
     public function __construct()
     {
         $this->count = 0;
@@ -98,5 +103,32 @@ class Criteria implements \Iterator
         $key = key($this->andGroups);
 
         return $key !== null && $key !== false;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLimit()
+    {
+        return $this->limit;
+    }
+
+    /**
+     * @param type $limit
+     * @return \Framework2\Criteria\Criteria
+     */
+    public function setLimit($limit)
+    {
+        $this->limit = $limit;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLimit()
+    {
+        return $this->limit > 0;
     }
 }
