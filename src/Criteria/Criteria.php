@@ -2,6 +2,10 @@
 
 namespace Framework2\Criteria;
 
+/**
+ * A Criteria is multiple sets of Criterion
+ * logically joined by AND and OR.
+ */
 class Criteria implements \Iterator
 {
     private $andGroups;

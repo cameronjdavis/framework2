@@ -20,7 +20,7 @@ class MatcherTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->locater = $this->getMock(\Framework2\Criteria\TargetInterface::class);
+        $this->locater = $this->getMock(\Framework2\Criteria\TargeterInterface::class);
         $this->subject = new Subject($this->locater);
     }
 

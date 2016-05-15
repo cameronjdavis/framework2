@@ -2,6 +2,14 @@
 
 namespace Framework2\Criteria;
 
+/**
+ * A Criterion is made up of a target, an operator
+ * and a value. The target is a string that identifies
+ * what the Criterion applies to, e.g. 'user.id'.
+ * The operator is the type of comparison, e.g. '=', '<='.
+ * The value is what the operator applies to, e.g. 3.
+ * A complete Criterion might be "user.id <= 3".
+ */
 class Criterion
 {
     const EQ = '=';

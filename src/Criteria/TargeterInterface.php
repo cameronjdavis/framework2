@@ -2,7 +2,12 @@
 
 namespace Framework2\Criteria;
 
-interface TargetInterface
+/**
+ * A criterion applies to a specific target, e.g. $user->getId().
+ * The value of the target comes from a subject.
+ * A TargeterInterface object can locate the target value from a subject.
+ */
+interface TargeterInterface
 {
 
     /**

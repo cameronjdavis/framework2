@@ -2,7 +2,7 @@
 
 namespace Framework2\Criteria;
 
-class PropertyTargeter implements TargetInterface
+class PropertyTargeter implements TargeterInterface
 {
 
     public function locate($subject, $target)

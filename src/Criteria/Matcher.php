@@ -5,11 +5,11 @@ namespace Framework2\Criteria;
 class Matcher implements MatcherInterface
 {
     /**
-     * @var TargetInterface
+     * @var TargeterInterface
      */
     private $targeter;
 
-    public function __construct(TargetInterface $targeter)
+    public function __construct(TargeterInterface $targeter)
     {
         $this->targeter = $targeter;
     }
