@@ -68,20 +68,36 @@ class MatcherTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
     
-//    /**
-//     * @dataProvider match
-//     */
-//    public function test_matchCriteria($operator, $actualVal, $targetVal, $expected)
-//    {
-//        $subject = new \stdClass();
-//        $criterion = new Criterion('prop1', $operator, $targetVal);
-//        $criteria = (new Criteria())->andCriterion($criterion);
-//
-//        $this->locater->expects($this->once())->method('locate')->with($subject,
-//                $criterion->getTarget())->will($this->returnValue($actualVal));
-//
-//        $actual = $this->subject->matchCriteria($subject, $criteria);
-//
-//        $this->assertEquals($expected, $actual);
-//    }
+    /**
+     * @dataProvider match
+     */
+    public function test_matchCriteria($operator, $actualVal, $targetVal, $expected)
+    {
+        $subject = new \stdClass();
+        $criterion = new Criterion('prop1', $operator, $targetVal);
+        $criteria = (new Criteria())->andCriterion($criterion);
+
+        $this->locater->expects($this->once())->method('locate')->with($subject,
+                $criterion->getTarget())->will($this->returnValue($actualVal));
+
+        $actual = $this->subject->matchCriteria($subject, $criteria);
+
+        $this->assertEquals($expected, $actual);
+    }
+    
+    /**
+     * @dataProvider match
+     */
+    public function test_matchCriterions($operator, $actualVal, $targetVal, $expected)
+    {
+        $subject = new \stdClass();
+        $criterion = new Criterion('prop1', $operator, $targetVal);
+
+        $this->locater->expects($this->once())->method('locate')->with($subject,
+                $criterion->getTarget())->will($this->returnValue($actualVal));
+
+        $actual = $this->subject->matchCriterions($subject, [$criterion]);
+
+        $this->assertEquals($expected, $actual);
+    }
 }

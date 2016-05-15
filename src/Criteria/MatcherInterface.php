@@ -8,4 +8,6 @@ interface MatcherInterface
     public function match($subject, Criterion $criterion);
 
     public function matchCriteria($subject, Criteria $criteria);
+    
+    public function matchCriterions($subject, array $criterions);
 }

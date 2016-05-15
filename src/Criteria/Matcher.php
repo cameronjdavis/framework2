@@ -50,7 +50,18 @@ class Matcher implements MatcherInterface
      */
     public function matchCriteria($subject, Criteria $criteria)
     {
-        foreach ($criteria as $criterion) {
+        $result = true;
+        
+        foreach ($criteria as $criterions) {
+            $result = $result && $this->matchCriterions($subject, $criterions);
+        }
+
+        return $result;
+    }
+
+    public function matchCriterions($subject, array $criterions)
+    {
+        foreach ($criterions as $criterion) {
             if (!$this->match($subject, $criterion)) {
                 return false;
             }

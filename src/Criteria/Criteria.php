@@ -2,16 +2,16 @@
 
 namespace Framework2\Criteria;
 
-class Criteria
+class Criteria implements \Iterator
 {
-    private $sets;
+    private $andGroups;
 
     private $count;
 
     public function __construct()
     {
         $this->count = 0;
-        $this->sets = [];
+        $this->andGroups = [];
     }
 
     /**
@@ -40,7 +40,7 @@ class Criteria
      */
     public function andCriterion(Criterion $criterion)
     {
-        $this->sets[$this->count][] = $criterion;
+        $this->andGroups[$this->count][] = $criterion;
 
         return $this;
     }
@@ -52,7 +52,7 @@ class Criteria
     public function orCriterion(Criterion $criterion)
     {
         $this->count++;
-        $this->sets[$this->count] = [];
+        $this->andGroups[$this->count] = [];
         $this->andCriterion($criterion);
 
         return $this;
@@ -63,9 +63,36 @@ class Criteria
         $setStrings = [];
 
         for ($i = 0; $i <= $this->count; $i++) {
-            $setStrings[] = implode(' AND ', $this->sets[$i]);
+            $setStrings[] = implode(' AND ', $this->andGroups[$i]);
         }
 
         return '(' . implode(")\nOR (", $setStrings) . ')';
+    }
+
+    public function current()
+    {
+        return current($this->andGroups);
+    }
+
+    public function key()
+    {
+        return key($this->andGroups);
+    }
+
+    public function next()
+    {
+        return next($this->andGroups);
+    }
+
+    public function rewind()
+    {
+        reset($this->andGroups);
+    }
+
+    public function valid()
+    {
+        $key = key($this->andGroups);
+
+        return $key !== null && $key !== false;
     }
 }
